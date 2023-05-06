@@ -66,25 +66,33 @@
 
 // splice() method
     // The splice() method adds new items to an array and remove also
-    // const fruits = ["Banana", "Orange", "Apple", "Mango"];
-    // fruits.splice(2, 0, "Lemon", "Kiwi");
-        // The first parameter(2) defines the position where new elements should be added(spliced in).
-        // The second parameter(0) defines how many elements should be removed.
-        // The rest of the parameters("Lemon", "Kiwi") define the new elements to be added.
-        // The splice() method returns an array with the deleted items:
+        // const fruits = ["Banana", "Orange", "Apple", "Mango"];
+        // fruits.splice(2, 0, "Lemon", "Kiwi");
+        // result: ['Banana', 'Orange', 'Lemon', 'Kiwi', 'Apple', 'Mango']
+
+        // const fruits = ["Banana", "Orange", "Apple", "Mango"];
+        // let result = fruits.splice(1, 2);
+        // result : result = ['Orange', 'Apple']
+        // result = fruits = ['Banana', 'Mango']
+
+            // The first parameter(2) defines the position where new elements should be added(spliced in).
+            // The second parameter(0) defines how many elements should be removed.
+            // The rest of the parameters("Lemon", "Kiwi") define the new elements to be added.
+            // The splice() method returns an array with the deleted items:
 
 // slice() method
     // The slice() method slices out a piece of an array into a new array. The slice() method does not remove any elements from the source array.
-    // const fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
-    // const citrus = fruits.slice(3);
-    // Result: Apple, Mango
+    // let fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+    // let result = fruits.slice(3);
+    // Result: result = [Apple, Mango]
+
         // The slice() method can take two arguments like slice(1, 3).
        // The method then selects elements from the start argument, and up to(but not including) the end argument.
 
 
 // sort() method
     // The sort() method sorts an array alphabetically:
-    // const fruits = ["Banana", "Orange", "Apple", "Mango"];
+    // let fruits = ["Banana", "Orange", "Apple", "Mango"];
     // fruits.sort();
 
 // reverse() method
@@ -93,14 +101,14 @@
     // fruits.sort();
     // fruits.reverse();
 
-// Numberc Sort
+// Number Sort
     // By default, the sort() function sorts values as strings.
     // This works well for strings("Apple" comes before "Banana").
     //     However, if numbers are sorted as strings, "25" is bigger than "100", because "2" is bigger than "1".
     // Because of this, the sort() method will produce incorrect result when sorting numbers.
     // You can fix this by providing a compare function:
-    // const points = [40, 100, 1, 5, 25, 10];
-    // points.sort(function (a, b) { return a - b });
+    // let points = [40, 100, 1, 5, 25, 10];
+    // points.sort((a, b) => { return a - b });
 
         // reverse numeric sort -Use the same trick to sort an array descending:
         // const points = [40, 100, 1, 5, 25, 10];
@@ -110,6 +118,10 @@
     // The map() method creates a new array by performing a function on each array element.
     // The map() method does not execute the function for array elements without values.
     // The map() method does not change the original array.
+
+    // array.map((curElemt, index, array) => {
+
+    // });
 
 
 // new Set() method
@@ -130,11 +142,6 @@
 
     // let x = sum(4, 9, 16, 25, 29, 100, 66, 77);
 
-// Math.max()
-    // get highest value
-    // const numbers = [23, 55, 21, 87, 56];
-    // let maxValue = Math.max(...numbers);
-
 // JavaScript Classes
     // JavaScript Classes are templates for JavaScript Objects.
     // Use the keyword class to create a class.
@@ -142,17 +149,15 @@
 
 // JavaScript Promises
     // JavaScript Promise are easy to manage when dealing with multiple asynchronous operations where callbacks can create callback hell leading to unmanageable code.
-    // const myPromise = new Promise(function (myResolve, myReject) {
-    //     // "Producing Code" (May take some time)
 
-    //     myResolve(); // when successful
-    //     myReject();  // when error
+    // let myPromise = new Promise((resolve, reject) => {
+    //     resolve(); // when successful
+    //     reject(); // when error
     // });
 
-    // // "Consuming Code" (Must wait for a fulfilled Promise).
     // myPromise.then(
-    //     function (value) { /* code if successful */ },
-    //     function (error) { /* code if some error */ }
+    //     resolve(value) { /* code if successful */ },
+    //     reject(error) { /* code if some error */ }
     // );
 
 // String.includes()
@@ -173,13 +178,14 @@
 
 // Array keys()
     // The keys() method returns an Array Iterator object with the keys of an array.
-    // const fruits = ["Banana", "Orange", "Apple", "Mango"];
-    // const keys = fruits.keys();
+    // let fruits = ["Banana", "Orange", "Apple", "Mango"];
+    // let keys = fruits.keys();
 
 // Array find()
     // The find() method returns the value of the first array element that passes a test function.
     // This example finds(returns the value of) the first element that is larger than 18:
-    // const numbers = [4, 9, 16, 25, 29];
+
+    // let numbers = [4, 9, 16, 25, 29];
     // let first = numbers.find(myFunction);
 
     // function myFunction(value, index, array) {
@@ -198,13 +204,19 @@
 
 // toString()
     // The JavaScript method toString() converts an array to a string of (comma separated) array values.
-
+    // let fruits = ["Banana", "Orange", "Apple", "Mango"];
+    // let result = fruits.toString();
+    // result = 'Banana,Orange,Apple,Mango'
 
 // JavaScript Array indexOf()
     // The indexOf() method searches an array for an element value and returns its position.
+    // let fruits = ["Banana", "Orange", "Apple", "Mango"];
+    // let result = fruits.indexOf('Apple') // result is 2
 
 // JavaScript Array lastIndexOf()
     // Array.lastIndexOf() is the same as Array.indexOf(), but returns the position of the last occurrence of the specified element.
+    // let fruits = ["Banana", "Orange", "Apple", "Mango", "Banana", "Orange", "Apple", "Mango"];
+    // let result = fruits.indexOf('Apple') // result is 6
 
 // Types of array
     // Js array is divided into two types:
@@ -214,8 +226,23 @@
 // JavaScript Array filter()
     // The filter() method creates a new array with array elements that pass a test.
 
+    // const ages = [32, 33, 16, 40];
+    // document.getElementById("demo").innerHTML = ages.filter(checkAdult);
+    // function checkAdult(age) {
+    //     return age >= 18;
+    // }
+    // result is 33,32,40
+
 // JavaScript Array reduce()
     //The reduce() method runs a function on each array element to produce(reduce it to) a single value.  The reduce() method works from left-to-right in the array. See also reduceRight(). The reduce() method does not reduce the original array.
+
+    // let arr = [5, 6, 2];
+
+    // let sum = arr.reduce((accumulator, curElem) => {
+    //     debugger;
+    //     return accumulator += curElem;
+    // }, 7)
+    // console.log(sum);
 
 // trim()
     // remove white space before array and end array
@@ -274,7 +301,6 @@
 
 // Object.entries()
     // Create an Array Iterator, and then iterate over the key / value pairs:
-
 
 
 
@@ -518,7 +544,6 @@
 
 
 
-
 // =======================================================================================
 // String Method
 // =======================================================================================
@@ -617,15 +642,16 @@
 // =======================================================================================
 // Math Method
 // =======================================================================================
+// Note: Math.Floor rounds down, Math.Ceiling rounds up, and Math.Truncate rounds towards zero. Thus, Math.Truncate is like Math.Floor for positive numbers, and like Math.Ceiling for negative numbers.
 
-// abs(x)	Returns the absolute value of x	double | float | int | long
+// abs(x) Returns the absolute value of x in positive	double | float | int | long
     // let a = Math.abs(7.25); - 7.25
     // let b = Math.abs(-7.25); - 7.25
     // let c = Math.abs(null); - 0
     // let d = Math.abs("Hello"); - NaN
     // let e = Math.abs(2 - 3); - 1
 
-// max(x, y)	Returns the number with the highest value	double | float | int | long
+// max(x, y) Returns the number with the highest value	double | float | int | long
     // let a = Math.max(5, 10); - 10
     // let b = Math.max(0, 150, 30, 20, 38); - 150
     // let c = Math.max(-5, 10); - 10
@@ -639,11 +665,11 @@
     // let d = Math.max(-5, -10); - -10
     // let e = Math.max(1.5, 2.5); - 1.5
 
-// trunc() returns the integer part of a number. removes the decimals (does NOT round the number).
+// trunc() returns the integer part of a number. removes the decimals (does NOT round the number). {truncate}
     // let a = Math.trunc(8.76); - 8
     // let b = Math.trunc(5.9); - 5
 
-// floor(x)	Returns the value of x rounded down to its nearest integer value
+// floor(x)	Returns the value of x rounded down to its nearest integer value in positive
     // let a = Math.floor(0.60); - 0
     // let b = Math.floor(0.40); - 0
     // let c = Math.floor(5); - 5
@@ -660,10 +686,21 @@
     // let e = Math.round(-2.50); - -2
     // let f = Math.round(-2.49); - -2
 
+// ceil() return rounds a number rounded UP to the nearest integer.
+    // let a = Math.ceil(0.60); - 1
+    // let b = Math.ceil(0.40); - 1
+    // let c = Math.ceil(5); - 5
+    // let d = Math.ceil(5.1); - 6
+    // let e = Math.ceil(-5.1); - -5
+    // let f = Math.ceil(-5.9); - -5
+
 // sqrt(x)	Returns the square root of x	
     // let d = Math.sqrt(25); - 5
     // let d = Math.sqrt(9); - 3
 
+// toFixed() The toFixed() method rounds the string to a specified number of decimals. Note. If the number of decimals are higher than in the number, zeros are added
+    // let num = 5.56789;
+    // let n = num.toFixed(2); result is 5.56
 
 // pow(x, y)	Returns the value of x to the power of y	double
 // acos(x)	Returns the arccosine of x, in radians	double
@@ -713,12 +750,18 @@
 // Object.keys() - return all keys
 // Object.values() - return all values
 // Object.freeze() - when object freeze we can not update any value 
+    // const obj1 = { property1: 'initial_data' }; // creating an object constructor and assigning values to it 
+    // const obj2 = Object.freeze(obj1); // creating a second object which will freeze // the properties of the first object
+    // obj2.property1 = 'new_data';// Updating the properties of the frozen object
+    // console.log(obj2.property1);// Displaying the properties of the  frozen object 
 
 
 
 
 
-
+// Difference between splice vs slice
+    // splice method return delete item of an array, source arr updated, also add and remove elements
+    // slice method return delete item of an new array, source arr as it is. can not be add new elements
 
 // Difference between null vs undefined
     // In JavaScript, undefined is a type, whereas null an object.
@@ -732,20 +775,16 @@
     // The initial value of NaN is Not-A-Number
 
 // Difference between var, let and const
-    // var is not a scope varible, we can define it many times, Function scope 
-    // let is scope variable, we can reassign its value
-    // const is scope variable, we can not reasign value
+    // var is not a scope varible, we can define it many times, Function scope, we can redeclared it. 
+    // let is scope variable, we can reassign its value, we can not redeclared it.
+    // const is scope variable, we can not reasign value, we can not redeclared it.
 
 // break
-// Terminates the current loop, switch, or label
-// statement and transfers
-// program control to the statement following the terminated statement.
+    // The break statement "jumps out" of a loop
 
 
 // continue
-// Terminates execution of the statements in the current iteration of the
-// current or labeled loop, and continues execution of the loop with the
-// next iteration.
+    // The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
 
 // Function
     // A JavaScript function is a block of code designed to perform a particular task.
@@ -753,8 +792,7 @@
     // Why Functions? 
 
     // You can reuse code: Define the code once, and use it many times.
-    // You can use the same code many times with different arguments, 
-    // to produce different results.
+    // You can use the same code many times with different arguments, to produce different results.
 
     // OR
 
@@ -764,9 +802,7 @@
 
 
 // Return Keyword
-    // The first return statement immediately stops execution of our function and causes our function to return true . The code on line three: return false; is never executed.
-    // When JavaScript reaches a return statement, 
-    // the function will stop executing.
+    // The return statement stops the execution of a function and returns a value. return is never executed.
 
 // Template literals (Template strings) 
     // we can use html and js both using template literals
@@ -803,10 +839,10 @@
     // object.
     
 // call another js file
-// ... everything necessary is done before
-// var scriptEl = document.createElement('script');
-// scriptEl.setAttribute('src', '/path_to_js_file.js');
-// document.body.appendChild(scriptEl);
+    // ... everything necessary is done before
+    // var scriptEl = document.createElement('script');
+    // scriptEl.setAttribute('src', '/path_to_js_file.js');
+    // document.body.appendChild(scriptEl);
 
 /*===========================================================================*/
 // Javascript loops 
@@ -821,25 +857,29 @@
     // }
 
 // foreach loop 
+    // foreach loop provide value and index number
     // const array = ["one", "two", "three"]
     // array.forEach(function (item, index) {
     //     console.log(item, index);
     // });
 
 // for of loop
+    // for of loop provide value
     // let colors = ['red', 'green', 'blue'];
     // for (color of colors) {
-    //     console.log(color);
+    //     console.log(color);  result is: red,green,blue
     // }
 
 // for in loop
-    // var array = ['a', 'b', 'c'];
+    // for in loop provide index number
 
+    // var array = ['a', 'b', 'c'];
     // for (var i in array) {
-    //     console.log(array[i]);
+    //     console.log(array[i]);  result is: 0,1,2
     // }
 
 // while loop
+    // let i = 0;
     // while (i < 10) {
     //     text += "The number is " + i;
     //     i++;
@@ -871,3 +911,45 @@
     // }
     // document.getElementById("demo").innerHTML = "Today is " + day;
 
+// =============================================================================
+// Main Method list
+// =============================================================================
+
+// Math Method or number method
+    // abs, trunc, round, floor, ceil, min, max, sqrt
+
+// String Method
+    // includes, charAt, toLowerCase, toUpperCase, trim, toString, indexOf, lastIndexOf, concat, replace, replaceAll, split, length
+
+// Object Method
+    // keys, values, entries, freeze, date
+
+// Array Method
+    // push, unshift, pop, shift, map, filter, find, join, length, sort, flat, slice, concat, findIndex, includes, keys
+
+// Data Type
+    // Number, string, boolean, undefined, null, object, array, date, bigint, symbol 
+
+// Dom
+    // getElementId, getElementsByClassName, getElementsByTagName, createElement, appendChild, removeChild, getAttribute, setAttribute, innerHTML, textContent, innerText, insertAdjacentHTML, classList, remove, localStorage
+
+// BOM
+    // window.open(), window.close(), window.moveTo(), window.resizeTo(), window.location.href, window.location.hostname, window.location.pathname, window.location.protocol, window.confirm(), window.alert, window.onClick, window.onScroll
+
+// Ajax
+    // Read data from a web server - after the page has loaded. Update a web page without reloading the page. Send data to a web server - in the background . ajax stands for Asynchronous JavaScript And XML.
+        // demo
+            // function loadDoc() {
+            //     const xhttp = new XMLHttpRequest();
+            //     xhttp.onload = function () {
+            //         document.getElementById("demo").innerHTML =
+            //             this.responseText;
+            //     }
+            //     xhttp.open("GET", "ajax_info.txt");
+            //     xhttp.send();
+            // }
+
+// JSON 
+    // JSON stands for JavaScript Object Notation. JSON is a text format for storing and transporting data. JSON is "self-describing" and easy to understand. JSON is parsed into a ready-to-use JavaScript object.
+
+    // JSON.parese(), JSON.stringify(),
