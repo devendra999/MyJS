@@ -1,0 +1,116 @@
+(1) Creating an Array
+    const array_name = [item1, item2, ...];  
+
+(2) You can also create an array, and then provide the elements:
+    const cars = [];
+    cars[0]= "Saab";
+    cars[1]= "Volvo";
+    cars[2]= "BMW";
+
+(3) Using the JavaScript Keyword new
+    const cars = new Array("Saab", "Volvo", "BMW");
+
+
+(4) Accessing Array Elements
+    const cars = ["Saab", "Volvo", "BMW"];
+    let car = cars[0];
+
+(5)  Changing an Array Element
+    const cars = ["Saab", "Volvo", "BMW"];
+    cars[0] = "Opel";
+
+
+(6) Converting an Array to a String
+    const fruits = ["Banana", "Orange", "Apple", "Mango"];
+    document.getElementById("demo").innerHTML = fruits.toString();
+
+
+(7) Arrays are Objects
+    const person = ["John", "Doe", 46];
+    
+    person type is object
+
+(8) Array Elements Can Be Objects and functions
+    You can have objects in an Array. You can have functions in an Array. You can have arrays in an Array:
+    
+    myArray[0] = Date.now;
+    myArray[1] = myFunction;
+    myArray[2] = myCars;
+
+
+(9)Array Properties and Methods
+    1. cars.length   // Returns the number of elements
+    2. cars.sort()   // Sorts the array
+
+(10) Accessing the First Array Element
+    const fruits = ["Banana", "Orange", "Apple", "Mango"];
+    let fruit = fruits[0];
+
+(11) Accessing the Last Array Element
+    const fruits = ["Banana", "Orange", "Apple", "Mango"];
+    let fruit = fruits[fruits.length - 1];
+
+(12) Adding Array Elements
+    1. const fruits = ["Banana", "Orange", "Apple"];
+       fruits.push("Lemon");  // Adds a new element (Lemon) to fruits
+
+    2. const fruits = ["Banana", "Orange", "Apple"];
+       fruits[fruits.length] = "Lemon";  // Adds "Lemon" to fruits
+
+
+(13) Adding elements with high indexes can create undefined "holes" in an array:
+    const fruits = ["Banana", "Orange", "Apple"];
+    fruits[6] = "Lemon";  // Creates undefined "holes" in fruits
+
+    Result: Banana Orange Apple undefined undefined undefined Lemon
+
+(14) If you use a named index when accessing an array, JavaScript will redefine the array to a standard object, and some array methods and properties will produce undefined or incorrect results.
+    const person = [];
+    person["firstName"] = "John";
+    person["lastName"] = "Doe";
+    person["age"] = 46; 
+    document.getElementById("demo").innerHTML =
+    person[0] + " " + person.length;
+
+    Result: undefined 0
+
+() The Difference Between Arrays and Objects
+    In JavaScript, arrays use numbered indexes.  
+    In JavaScript, objects use named indexes.
+
+    
+() When to Use Arrays. When to use Objects.
+    You should use objects when you want the element names to be strings (text).
+    You should use arrays when you want the element names to be numbers.
+
+() What is an associative array?
+    Associative arrays are basically objects in JavaScript where indexes are replaced by user-defined keys. They do not have a length property like a normal array and cannot be traversed using a normal for loop. Refer more about looping through an associative array in this blog
+
+
+() JavaScript Array.from()
+    The Array.from() method returns an array from any object with a length property.
+
+    Syntax: Array.from(object, mapFunction, thisValue)
+
+() JavaScript Array reduce()
+    The reduce() method runs a function on each array element to produce (reduce it to) a single value.
+    The reduce() method does not reduce the original array.
+
+    This example finds the sum of all numbers in an array:
+
+    const numbers = [45, 4, 9, 16, 25];
+    const sum = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    console.log(sum); // Output: 99
+
+
+
+
+() JavaScript Array Spread (...)
+    Merge more than two arraay 
+
+    const q1 = ["Jan", "Feb", "Mar"];
+    const q2 = ["Apr", "May", "Jun"];
+    const q3 = ["Jul", "Aug", "Sep"];
+    const q4 = ["Oct", "Nov", "May"];
+
+    const year = [...q1, ...q2, ...q3, ...q4];
