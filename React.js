@@ -46,6 +46,8 @@ React Events
 keys or React List
 --------------------------------------------------------------------------------
     Keys allow React to keep track of elements. the key should be a unique ID assigned to each item. As a last resort, you can use the array index as a key.
+    A key is a special attribute you should include when mapping over arrays to render data. Key prop helps React identify which items have changed, are added, or are removed.
+
 
 React Form
 --------------------------------------------------------------------------------
@@ -174,4 +176,125 @@ React Custom Hooks
     When you have component logic that needs to be used by multiple components, we can extract that logic to a custom Hook.
 
 
+when we refresh page using redux data is stable or not
+--------------------------------------------------------------------------------
+    data it's not stable in redux.
 
+framework vs library
+--------------------------------------------------------------------------------
+framework - flow already defined, in framework there are multiple library used
+library - flow defined by us, in library we cannot use framework
+
+Why react js so fast?
+--------------------------------------------------------------------------------
+    react js using virtual dom there are two layer before updates and after updates.
+
+useId hook
+--------------------------------------------------------------------------------
+    useId hook use for generage unique ID
+
+What is the difference between Element and Component?
+--------------------------------------------------------------------------------
+    An Element is a plain object describing what you want to appear on the screen in terms of the DOM nodes or other components. Elements can contain other Elements in their props. Creating a React element is cheap. Once an element is created, it cannot be mutated.
+
+    Whereas a component can be declared in several different ways. It can be a class with a render() method or it can be defined as a function. In either case, it takes props as an input, and returns a JSX tree as the output:
+
+
+Pure components (class based component)
+--------------------------------------------------------------------------------
+    If the previous value of the state or props and the new value of the state or props are the same, the component will not re-render itself. Pure Components restricts the re-rendering when there is no use for re-rendering of the component.
+    
+    React.memo() is a higher-order component.
+
+    Demo
+         import { memo, useState } from 'react';
+
+        const EmployeeProfile = memo(function EmployeeProfile({ name, email }) {
+            return (<>
+                <p>Name:{name}</p>
+                <p>Email: {email}</p>
+                </>);
+        });
+        export default function EmployeeRegForm() {
+            const [name, setName] = useState('');
+            const [email, setEmail] = useState('');
+            return (
+            <>
+                <label>
+                Name: <input value={name} onChange={e => setName(e.target.value)} />
+                </label>
+                <label>
+                Email: <input value={email} onChange={e => setEmail(e.target.value)} />
+                </label>
+                <hr/>
+                <EmployeeProfile name={name}/>
+            </>
+            );
+        }
+
+        In the above code, the email prop has not been passed to child component. So there won't be any re-renders for email prop change.
+
+What is the purpose of callback function as an argument of setState()?
+--------------------------------------------------------------------------------
+    The callback function is invoked when setState finished and the component gets rendered. Since setState() is asynchronous the callback function is used for any post action.
+
+    setState((prevState, props) => ({
+        count: prevState.count + props.increment,
+    }));
+
+What are inline conditional expressions?
+--------------------------------------------------------------------------------
+    <h1>Hello!</h1>;
+    {
+    messages.length > 0 && !isLogin ? (
+        <h2>You have {messages.length} unread messages.</h2>
+    ) : (
+        <h2>You don't have unread messages.</h2>
+    );
+    }
+
+What is the use of refs?
+--------------------------------------------------------------------------------
+    The ref is used to return a reference to the element. They should be avoided in most cases, however, they can be useful when you need a direct access to the DOM element or an instance of a component.
+
+
+Controlled vs Uncontrolled Components in ReactJS
+--------------------------------------------------------------------------------
+    In React, Controlled components refer to the components where the state and behaviors are controlled by Parent components while Uncontrolled components are the ones having control of their own state and manage the behaviors on themselves.
+
+    Uncontrolled Components are the components that are not controlled by the React state and are handled by the DOM (Document Object Model). So in order to access any value that has been entered we take the help of refs.
+
+
+What are Higher-Order Components?
+--------------------------------------------------------------------------------
+    A higher-order component (HOC) is a function that takes a component and returns a new component.
+
+what is context?
+--------------------------------------------------------------------------------
+    The React Context is a way for a React app to effectively produce global variables that can be passed around. This is the alternative to "prop drilling" or moving props from grandparent to child to parent, and so on.
+
+Why fragments are better than container divs?
+--------------------------------------------------------------------------------
+    using divs it's create a new div in html, with react fragement <></> it's not create any element.
+
+What are the limitations of React?
+--------------------------------------------------------------------------------
+    React is just a view library, not a full framework.
+
+What are the differences between a class component and functional component?
+--------------------------------------------------------------------------------
+    The class component uses ES6 class syntax, and it extends React components with a render method that returns React elements.
+
+    Functional components with hooks are purely JavaScript functions that also return React elements. Before the introduction of hooks, functional components were stateless.
+
+
+--------------------------------------------------------------------------------
+    
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
