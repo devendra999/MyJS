@@ -141,11 +141,6 @@ useRef
         );
     }
 
-useReducer
---------------------------------------------------------------------------------
-    The useReducer Hook is similar to the useState Hook.
-    It allows for custom state logic.
-    If you find yourself keeping track of multiple pieces of state that rely on complex logic, useReducer may be useful.
 
 useMemo Hook
 --------------------------------------------------------------------------------
@@ -164,6 +159,20 @@ useCallback Hook
     The React useCallback Hook returns a memoized callback function.
     The useCallback Hook only runs when one of its dependencies update.
     This can improve performance.
+
+    const cachedFn = useCallback(fn, dependencies)
+
+    example
+    1. import { useCallback } from 'react';
+
+        export default function ProductPage({ productId, referrer, theme }) {
+        const handleSubmit = useCallback((orderDetails) => {
+            post('/product/' + productId + '/buy', {
+            referrer,
+            orderDetails,
+            });
+        }, [productId, referrer]);
+
 
 Difference between useCallback and useMemo Hooks
 --------------------------------------------------------------------------------
@@ -192,6 +201,20 @@ Why react js so fast?
 useId hook
 --------------------------------------------------------------------------------
     useId hook use for generage unique ID
+
+    example
+    import { useId } from 'react';
+
+    function PasswordField() {
+        const passwordHintId = useId();
+        // ...
+    }
+
+    <>
+        <input type="password" aria-describedby={passwordHintId} />
+        <p id={passwordHintId}>
+    </>
+
 
 What is the difference between Element and Component?
 --------------------------------------------------------------------------------
@@ -257,6 +280,42 @@ What is the use of refs?
 --------------------------------------------------------------------------------
     The ref is used to return a reference to the element. They should be avoided in most cases, however, they can be useful when you need a direct access to the DOM element or an instance of a component.
 
+    example
+    1. export default function Counter() {
+            let ref = useRef(0);
+
+            function handleClick() {
+                ref.current = ref.current + 1;
+                alert('You clicked ' + ref.current + ' times!');
+            }
+
+            return (
+                <button onClick={handleClick}>
+                Click me!
+                </button>
+            );
+        }
+
+    2. import { useRef } from 'react';
+
+            export default function Form() {
+            const inputRef = useRef(null);
+
+            function handleClick() {
+                inputRef.current.focus();
+            }
+
+            return (
+                <>
+                <input ref={inputRef} />
+                <button onClick={handleClick}>
+                    Focus the input
+                </button>
+                </>
+            );
+        }
+
+
 
 Controlled vs Uncontrolled Components in ReactJS
 --------------------------------------------------------------------------------
@@ -267,7 +326,25 @@ Controlled vs Uncontrolled Components in ReactJS
 
 What are Higher-Order Components?
 --------------------------------------------------------------------------------
-    A higher-order component (HOC) is a function that takes a component and returns a new component.
+    higher-order component is a function that takes a component as an argument and returns a new component that wraps the original component.
+
+    example:
+        // Here's a simple component
+        function SimpleComponent(props) {
+            return <div>{props.message}</div>;
+        }
+        // And here's a higher-order component
+        function withExtraProp(WrappedComponent) {
+            return function EnhancedComponent(props) {
+                return <WrappedComponent {...props} extraProp="I'm an extra prop!" />;
+            };
+        }
+
+        // You can then create an enhanced version of SimpleComponent
+        const EnhancedComponent = withExtraProp(SimpleComponent);
+
+        // EnhancedComponent will have an extra prop
+        <EnhancedComponent message="Hello world" />; // Renders: <div>Hello world. I'm an extra prop!</div>
 
 what is context?
 --------------------------------------------------------------------------------
@@ -288,11 +365,142 @@ What are the differences between a class component and functional component?
     Functional components with hooks are purely JavaScript functions that also return React elements. Before the introduction of hooks, functional components were stateless.
 
 
---------------------------------------------------------------------------------
-    
 
+
+
+The synchronous callback
 --------------------------------------------------------------------------------
+    The synchronous callback is executed during the execution of the higher-order function that uses the callback.
+    In other words, the synchronous callbacks are blocking: the higher-order function doesn't complete its execution until the callback is done executing.
+
+    example
+     // Higher order function
+    1. function map(array, callback) {
+        console.log('map() starts');
+        const mappedArray = [];
+        for (const item of array) { mappedArray.push(callback(item)) }
+        console.log('map() completed');
+        return mappedArray;
+    }
+
+    function greet(name) {
+        console.log('greet() called');
+        return `Hello, ${name}!`;
+    }
+
+    const persons = ['Cristina'];
+
+    map(persons, greet);
+    // logs 'map() starts'
+    // logs 'greet() called'
+    // logs 'map() completed'
+
+    Explained: greet() is a synchronous callback because it's being executed at the same time as the higher-order function map(). 
+
+    2. // Examples of synchronous callbacks on arrays
+        const persons = ['Ana', 'Elena'];
+
+        persons.forEach(
+            function callback(name) {
+                console.log(name);
+            }
+        );
+        // logs 'Ana'
+        // logs 'Elena'
+
+        const nameStartingA = persons.find(
+            function callback(name) {
+                return name[0].toLowerCase() === 'a';
+            }
+        );
+        nameStartingA; // => 'Ana'
+
+        const countStartingA = persons.reduce(
+            function callback(count, name) {
+                const startsA = name[0].toLowerCase() === 'a';
+                return startsA ? count + 1 : count;
+            }, 0 );
+        countStartingA; // => 1
+
+    3. // Examples of synchronous callbacks on strings
+        const person = 'Cristina';
+
+        // Replace 'i' with '1'
+        person.replace(/./g, 
+        function(char) {
+            return char.toLowerCase() === 'i' ? '1' : char;
+        }); // => 'Cr1st1na'
+
+
+        
+The asynchronous callback
 --------------------------------------------------------------------------------
+    The asynchronous callback is executed after the execution of the higher-order function.
+    Simply saying, the asynchronous callbacks are non-blocking: the higher-order function completes its execution without waiting for the callback. The higher-order function makes sure to execute the callback later on a certain event.
+
+    example
+    1. console.log('setTimeout() starts');
+        setTimeout(function later() {
+            console.log('later() called');
+        }, 2000);
+        console.log('setTimeout() completed');
+
+        // logs 'setTimeout() starts'
+        // logs 'setTimeout() completed'
+        // logs 'later() called' (after 2 seconds)
+
+
+
+Asynchronous callback function vs asynchronous function
+--------------------------------------------------------------------------------
+    The special keyword async placed before the function definition creates an asynchornous function:
+    setTimeout is Asynchronous callback function
+
+
+useReducer
+--------------------------------------------------------------------------------
+    The useReducer Hook is similar to the useState Hook.
+
+    It allows for custom state logic.
+
+    If you find yourself keeping track of multiple pieces of state that rely on complex logic, useReducer may be useful.
+
+    The reducer function contains your custom state logic and the initialStatecan be a simple value but generally will contain an object.
+    The useReducer Hook returns the current stateand a dispatchmethod.
+
+    const CartProvider = ({ children }) => {
+        const [state, dispatch] = useReducer(reducer, initialState);
+
+        const addToCart = (id, color, amount, product) => {
+            dispatch({ type: "ADD_TO_CART", payload: { id, color, amount, product } });
+        };
+
+        // increment and decrement the product
+
+        const setDecrease = (id) => {
+            dispatch({ type: "SET_DECREMENT", payload: id });
+        };
+
+        const setIncrement = (id) => {
+            dispatch({ type: "SET_INCREMENT", payload: id });
+        };
+
+        return (
+                <CartContext.Provider
+                value={{
+                    ...state,
+                    addToCart,
+                    removeItem,
+                    clearCart,
+                    setDecrease,
+                    setIncrement,
+                }}
+                >
+                {children}
+                </CartContext.Provider>
+            );
+        };
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
