@@ -953,3 +953,20 @@
     // JSON stands for JavaScript Object Notation. JSON is a text format for storing and transporting data. JSON is "self-describing" and easy to understand. JSON is parsed into a ready-to-use JavaScript object.
 
     // JSON.parese(), JSON.stringify(),
+
+
+
+
+// =============================================================================
+// Reduce method
+// =============================================================================
+The reduce() method executes a reducer function (that you provide) on each element of the array, resulting in a single output value.
+The reduce() method does not change the original array.
+
+The reducer function takes four arguments:
+    Accumulator
+    Current Value
+    Current Index
+    Source Array
+
+array.reduce(callbackFunction(accumulator, currentValue, currentIndex, arr), initialValue)
