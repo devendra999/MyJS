@@ -1,0 +1,194 @@
+Conditionally returning JSX 
+-----------------------------------------
+if (isPacked) {
+  return <li className="item">{name} ✔</li>;
+}
+return <li className="item">{name}</li>;
+
+Conditional (ternary) operator (? :) 
+-----------------------------------------
+return (
+  <li className="item">
+    {isPacked ? name + ' ✔' : name}
+  </li>
+);
+
+Logical AND operator (&&) 
+-----------------------------------------
+return (
+  <li className="item">
+    {name} {isPacked && '✔'}
+  </li>
+);
+
+switch case operator for multiple conditional renderings
+-----------------------------------------
+function Notification({ text, status }) {
+  switch (status) {
+    case 'info':
+      return <Info text={text} />;
+    case 'warning':
+      return <Warning text={text} />;
+    case 'error':
+      return <Error text={text} />;
+    default:
+      return null;
+  }
+}
+
+NESTED CONDITIONAL RENDERING IN REACT
+-----------------------------------------
+function List({ list }) {
+  const isNotAvailable = !list;
+  const isEmpty = !list.length;
+
+  return (
+    <div>
+      {isNotAvailable
+        ? <p>Sorry, the list is not there.</p>
+        : (isEmpty
+          ? <p>Sorry, the list is empty.</p>
+          : <div>{list.map(item => <Item item={item} />)}</div>
+        )
+      }
+    </div>
+  
+CONDITIONAL RENDERING WITH HOC
+-----------------------------------------
+// Higher-Order Component
+function withLoadingIndicator(Component) {
+  return function EnhancedComponent({ isLoading, ...props }) {
+    if (!isLoading) {
+      return <Component {...props} />;
+    }
+
+    return (
+      <div>
+        <p>Loading</p>
+      </div>
+    );
+  };
+}
+
+const ListWithLoadingIndicator = withLoadingIndicator(List);
+
+function App({ list, isLoading }) {
+  return (
+    <div>
+      <h1>Hello Conditional Rendering</h1>
+
+      <ListWithLoadingIndicator isLoading={isLoading} list={list} />
+    </div>
+  )
+
+CONDITIONAL RENDERING IN REACT: IF
+-----------------------------------------
+function List({ list }) {
+  if (!list) {
+    return null;
+  }
+
+  return (
+    <ul>
+      {list.map(item => (
+        <Item key={item.id} item={item} />
+      ))}
+    </ul>
+  );
+}
+
+CONDITIONAL RENDERING IN REACT: IF ELSE
+-----------------------------------------
+function List({ list }) {
+  if (!list) {
+    return null;
+  }
+
+  if (!list.length) {
+    return <p>Sorry, the list is empty.</p>;
+  } else {
+    return (
+      <div>
+        {list.map(item => (
+          <Item item={item} />
+        ))}
+      </div>
+    );
+  }
+}
+    
+mount, unmount, and updated mount component ( life cycle method)
+-----------------------------------------
+function ChatRoom() {
+  useEffect(() => {
+    const connection = createConnection(serverUrl, roomId);
+    connection.connect(); // mount component
+    return () => {
+      connection.disconnect(); // unmount component
+    };
+  }, []); // when dependency declared there are updated mount component
+  // ...
+}    
+
+
+Pass props to the child component 
+-----------------------------------------
+export default function Profile() {
+  return (
+    <Avatar
+      person={{ name: 'Lin Lanying', imageId: '1bX5QH6' }}
+      size={100}
+    />
+  );
+}
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
+-----------------------------------------
