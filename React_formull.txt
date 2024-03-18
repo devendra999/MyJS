@@ -300,7 +300,8 @@ export default HigherOrderUpdatedComponent(Person2);
 
 useCallback Hook
 -----------------------------------------
-// The React useCallback Hook returns a memoized callback function. The useCallback Hook only runs when one of its dependencies updated. 
+// The React useCallback Hook returns a memoized callback function. The useCallback Hook only runs when one of its dependencies updated.
+// Formulla : useCallback(fn, dependencies) 
 
 Callback.js
 -----------
