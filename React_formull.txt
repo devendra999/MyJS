@@ -142,17 +142,123 @@ export default function Profile() {
   );
 }
 
-
+Manipulating the DOM with Refs
 -----------------------------------------
+import { useRef } from 'react';
+
+export default function Form() {
+  const inputRef = useRef(null);
+
+  function handleClick() {
+    inputRef.current.focus();
+  }
+
+  return (
+    <>
+      <input ref={inputRef} />
+      <button onClick={handleClick}>
+        Focus the input
+      </button>
+    </>
+  );
+}
 
 
+Accessing another component’s DOM nodes (you have to use forwardRef for it, IF you can access directly got a error cannot access)
 -----------------------------------------
+import { forwardRef, useRef } from 'react';
+
+const MyInput = forwardRef((props, ref) => {
+  return <input {...props} ref={ref} />;
+});
+
+export default function Form() {
+  const inputRef = useRef(null);
+
+  function handleClick() {
+    inputRef.current.focus();
+  }
+
+  return (
+    <>
+      <MyInput ref={inputRef} />
+      <button onClick={handleClick}>
+        Focus the input
+      </button>
+    </>
+  );
+}
 
 
+video play and pause using ref method
 -----------------------------------------
+import { useState, useRef, useEffect } from 'react';
+
+function VideoPlayer({ src, isPlaying }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (isPlaying) {
+      ref.current.play();
+    } else {
+      ref.current.pause();
+    }
+  });
+
+  return <video ref={ref} src={src} loop playsInline />;
+}
+
+export default function App() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  return (
+    <>
+      <button onClick={() => setIsPlaying(!isPlaying)}>
+        {isPlaying ? 'Pause' : 'Play'}
+      </button>
+      <VideoPlayer
+        isPlaying={isPlaying}
+        src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+      />
+    </>
+  );
+}
 
 
+Reusing Logic with Custom Hooks
 -----------------------------------------
+// custome hook defined it in app folder and create new folder customHook like component folder
+// useCounter.js (it's a custom hook) 
+    import { useState } from 'react';
+
+    const useCounter = () => {
+      const [count, setCount] = useState(0);
+
+      const increment = () => {
+        setCount(prevCount => prevCount + 1);
+      };
+
+      return { count, increment };
+    };
+
+    export default useCounter;
+
+
+// ExampleComponent.js
+    import React from 'react';
+    import useCounter from './useCounter';
+
+    const ExampleComponent = () => {
+      const { count, increment } = useCounter();
+
+      return (
+        <div>
+          <h1>Count: {count}</h1>
+          <button onClick={increment}>Increment</button>
+        </div>
+      );
+    };
+
+    export default ExampleComponent;
 
 
 -----------------------------------------
