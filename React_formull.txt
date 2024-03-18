@@ -260,8 +260,42 @@ Reusing Logic with Custom Hooks
 
     export default ExampleComponent;
 
-
+Higher Order Component demo (HOC)
 -----------------------------------------
+import React, { useState } from "react";
+function HigherOrderUpdatedComponent(OriginalComponent) { // its a HOC component
+  function UpdatedComponent() {
+    const [money, setMoney] = useState(10);
+    const handleIncrease = () => {
+      setMoney(money * 2);
+    };
+    return <OriginalComponent handleIncrease={handleIncrease} money={money} />;
+  }
+  return UpdatedComponent;
+}
+export default HigherOrderUpdatedComponent;
+
+
+function Person1({ money, handleIncrease }) {
+  return (
+    <>
+      <h2>Jimmy is offering me $10 </h2>
+      <button onclick={handleIncrease}>Increase Money</button>
+    </>
+  );
+}
+export default HigherOrderUpdatedComponent(Person1);
+
+
+function Person2({ money, handleIncrease }) {
+  return (
+    <>
+      <h2>John is offering me $10 </h2>
+      <button onclick={handleIncrease}>Increase Money</button>
+    </>
+  );
+}
+export default HigherOrderUpdatedComponent(Person2);
 
 
 -----------------------------------------
