@@ -359,7 +359,50 @@ todos.js
 
     export default memo(Todos);
 
+
+useReducer hook
 -----------------------------------------
+// useReducer is very similar to useState, when we have more that one value we can use useReducer hook
+
+import { useReducer } from "react";
+
+const initialState = 0;
+
+function reducer(state, action) {
+  if (action.type === "INCREMENT") {
+    return state + 1;
+  }
+  if (action.type === "DECREMENT") {
+    return state - 1;
+  }
+  return state;
+}
+
+export default function Counter() {
+  const [state, dispatch] = useReducer(reducer, initialState); // useReducer hook take two arguments first reducer function and second is initialState and dispatch method trigger that action
+
+  return (
+    <>
+      <button
+        onClick={() => {
+          dispatch({ type: "INCREMENT" });
+        }}
+      >
+        Increment
+      </button>
+
+      <p>{state}</p>
+
+      <button
+        onClick={() => {
+          dispatch({ type: "DECREMENT" });
+        }}
+      >
+        Decrement
+      </button>
+    </>
+  );
+}
 
 
 -----------------------------------------
