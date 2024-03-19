@@ -498,6 +498,144 @@ const Memo = () => {
 
 export default Memo;
 
+
+
+useDebugValue
+-----------------------------------------
+// useDebugValue is a React Hook that lets you add a label to a custom Hook in React DevTools.
+
+import { useDebugValue } from "react";
+
+function useOnlineStatus() {
+  useDebugValue(isOnline ? "Online" : "Offline");
+}
+
+
+useDeferredValue
+-----------------------------------------
+// React 18 comes with a number of concurrent features that you can just start using in your existing codebase as there is no concurrent mode anymore. One such feature is the new useDeferedValue hook so lets take a look.
+// useDeferredValue is a React Hook that lets you defer updating a part of the UI.
+// jab variable ki value bar bar change ho rahi ho, to ui print hone me time lagta he, us solution ke liye deffered value use hota he, deffered value bar bar update nahi hota he jab last me variable update hota he tab vo last me ui update karta he, jisse performance badti he
+
+App.tsx
+-------
+    import React, { useDeferredValue, useState } from "react";
+    import { Products } from "./List";
+
+    function App() {
+      const [value, setValue] = useState("");
+      const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        setValue(e.target.value);
+      };
+
+      const deferredValue = useDeferredValue(value);
+      const isStale = deferredValue !== value;
+
+      return (
+        <div>
+          <input
+            style={{ color: isStale ? "dimgray" : "black" }}
+            value={value}
+            onChange={handleChange}
+          />
+          <Products searchTerm={deferredValue} />
+        </div>
+      );
+    }
+
+    export default App;
+
+Products.tsx
+------------
+    import { useMemo } from "react";
+
+    export function Products({ searchTerm }: { searchTerm: string }) {
+      const items = useMemo(() => {
+        return [...Array(10000)].map(
+          () =>
+            (searchTerm ? searchTerm + " " : "") + Math.floor(Math.random() * 10000)
+        );
+      }, [searchTerm]);
+
+      return <List items={items} />;
+    }
+
+
+List.tsx
+--------
+    /**
+     * This component is intentionally designed to be slow
+     * - bad keys
+     * - inline styles
+     */
+    function List({ items }: { items: string[] }) {
+      return (
+        <div>
+          {items.map((product, i) => (
+            <div
+              key={i + product}
+              style={{
+                margin: "1rem 0",
+                backgroundColor: "lightskyblue",
+                borderRadius: "4px",
+                boxShadow: "0 1px 4px rgba(0, 0, 0, 0.25)",
+                padding: "10px",
+              }}
+            >
+              {product}
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+
+
+useTransition
+-----------------------------------------
+// useTransition is a React Hook that lets you update the state without blocking the UI.
+// Formulla: const [isPending, startTransition] = useTransition()
+
+import React, { useState, useTransition } from "react";
+
+function UseTranstion() {
+  const [items, setItems] = useState(["Item 1", "Item 2", "Item 3"]);
+  const [isPending, startTransition] = useTransition({
+    timeoutMs: 500
+  });
+
+  const handleItemClick = (index) => {
+    startTransition(() => {
+      setItems((prevItems) => {
+        const updatedItems = [...prevItems];
+        updatedItems.splice(index, 1);
+        return updatedItems;
+      });
+    });
+  };
+
+  return (
+    <ul>
+      {items.map((item, index) => (
+        <li key={index} onClick={() => handleItemClick(index)}>
+          {item}
+        </li>
+      ))}
+      {isPending && <div>Loading....</div>}
+    </ul>
+  );
+}
+
+export default UseTranstion;
+
+
+
+-----------------------------------------
+
+
+-----------------------------------------
+
+
 -----------------------------------------
 
 
