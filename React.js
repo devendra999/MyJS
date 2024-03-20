@@ -501,7 +501,21 @@ useReducer
             );
         };
 
+Network response
 --------------------------------------------------------------------------------
+    200 - request succed - for CRUD
+    201 - Created - Post some data
+    202 - accepted - The request has been received but not yet acted upon.
+    203 - Non-Authoritative Information - This response code means the returned metadata is not exactly the same as is available from the origin server, but is collected from a local or a third-party copy.
+    204 - No Content - There is no content to send for this request, but the headers may be useful. 
+    400 - Bad Request - The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).
+    401 - Unauthorized - Although the HTTP standard specifies "unauthorized", semantically this response means "unauthenticated". That is, the client must authenticate itself to get the requested response.
+    402 - Payment Required Experimental - This response code is reserved for future use. The initial aim for creating this code was using it for digital payment systems, however this status code is used very rarely and no standard convention exists.
+    403 - Forbidden - The client does not have access rights to the content; 
+    404 - Not Found - The server cannot find the requested resource. In the browser, this means the URL is not recognized.
+    405 - Method Not Allowed
+    408 - Request Timeout - This response is sent on an idle connection by some servers, even without any previous request by the client. It means that the server would like to shut down this unused connection.
+    500 - Internal Server Error - The server has encountered a situation it does not know how to handle.
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
