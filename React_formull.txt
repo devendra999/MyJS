@@ -209,8 +209,9 @@ export default function Form() {
 }
 
 
-Accessing another component’s DOM nodes (you have to use forwardRef for it, IF you can access directly got a error cannot access)
+forwardRef
 -----------------------------------------
+// Accessing another component’s DOM nodes (you have to use forwardRef for it, IF you can access directly got a error cannot access)
 import { forwardRef, useRef } from 'react';
 
 const MyInput = forwardRef((props, ref) => {
