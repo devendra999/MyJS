@@ -523,42 +523,29 @@ export default MyComponent;
 useMemo hook
 -----------------------------------------
 // The React useMemo Hook returns a memoized value. The useMemo Hook only runs when one of its dependencies is updated.
-import React, { useState, useMemo } from "react";
 
-const Memo = () => {
-  const [myNum, setMyNum] = useState(0);
-  const [show, setShow] = useState(false);
-
-  const getValue = () => {
-    return setMyNum(myNum + 1);
+  import React, { useState, useMemo } from 'react';
+  
+  const MyComponent = () => {
+    const [number, setNumber] = useState(0);
+    
+    // Define a memoized value using useMemo
+    const squaredNumber = useMemo(() => {
+      console.log("Calculating squared number...");
+      return number * number;
+    }, [number]); // Recalculate only when 'number' changes
+    
+    return (
+      <div>
+        <h2>Number: {number}</h2>
+        <button onClick={() => setNumber(prev => prev + 1)}>Increment Number</button>
+        <h2>Squared Number: {squaredNumber}</h2>
+      </div>
+    );
   };
+  
+  export default MyComponent;
 
-  const countNumber = (num) => {
-    console.log("🚀 ~ file: Memo.jsx ~ line 12 ~ countNumber ~ num", num);
-    for (let i = 0; i <= 1000000000; i++) {}
-    return num;
-  };
-
-  // subscribe to thapa technical
-
-  const checkData = useMemo(() => {
-    return countNumber(myNum);
-  }, [myNum]);
-
-  return (
-    <>
-      <button onClick={getValue} style={{ backgroundColor: "red" }}>
-        Counter
-      </button>
-      <p> My new number : {checkData} </p>
-      <button onClick={() => setShow(!show)}>
-        {show ? "You clicked me" : "Click me plz"}
-      </button>
-    </>
-  );
-};
-
-export default Memo;
 
 
 
