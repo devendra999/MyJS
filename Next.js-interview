@@ -350,9 +350,65 @@ To implement testing and continuous integration in a Next.js application, you ca
 
 
 
+===========================================================================================================================================================
+React Interview
+===========================================================================================================================================================
+
+What is an event loop in JavaScript ?
+    the event loop is a fundamental mechanism that enables the asynchronous execution of code. It’s an essential part of the JavaScript runtime environment, allowing the language to handle non-blocking operations efficiently. The event loop is responsible for managing the execution of code, handling events, and maintaining the flow of control.
+    
+    Call Stack:
+        JavaScript uses a call stack to keep track of the currently executing function (where the program is in its execution).
+    Callback Queue:
+        Asynchronous operations, such as I/O operations or timers, are handled by the browser or Node.js runtime. When these operations are complete, corresponding functions (callbacks) are placed in the callback queue.
+    Event Loop:
+        The event loop continuously checks the call stack and the callback queue. If the call stack is empty, it takes the first function from the callback queue and pushes it onto the call stack for execution.
+    Execution:
+        The function on top of the call stack is executed. If this function contains asynchronous code, it might initiate further asynchronous operations.
+    Callback Execution:
+        When an asynchronous operation is complete, its callback is placed in the callback queue.
+    Repeat:
+        The event loop continues this process, ensuring that the call stack is always empty before taking the next function from the callback queue.
 
 
 
+useEffect(() => {
+    // we want some state or props and to run on every render regardless of changes in those dependencies, you might also use null or undefined.
+}, null); // This effect runs after every render
+
+clousure
+
+function currying
+    const curry = (a) => {
+        return (b) => {
+            return a*b;
+        }
+    }
+    curry(3)(4) // output 12
+
+why use middleware
+saga
+thunk
+
+
+
+/* 5431 => 5+4+3+2+1
+=> 13
+=> 1+3 => 4 */
+
+function addData = (data) => {
+    let convettoString = ""+data;
+    let converttoArray = convettoString.split('').map((data) {
+        return parseInt(data);
+    });
+
+    let finalOutput = converttoArray.reduce((a,b ) => a+b)
+    if(finalOutput > 10) {
+        return addData(finalOutput)
+    } else finalOutput
+}
+
+addData(5431)
 
 
 
