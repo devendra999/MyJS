@@ -407,6 +407,58 @@ function x(){
 x();
 
 
+console.log(abc);
+var abc = 123; // undefined
+
+
+console.log(abc);
+let abc = 123; // ReferenceError: Cannot access 'abc' before initialization
+
+
+
+function somemethod() {
+    console.log(counter1); // undefined
+    console.log(counter2); // ReferenceError
+    var counter1 = 1;
+    let counter2 = 2;
+  }
+
+
+// hoisted variable
+console.log(message); //output : undefined
+var message = "The variable Has been hoisted";
+
+
+
+// Function declaration
+hoistedFunction(); // This works even though hoistedFunction is called before its declaration
+
+function hoistedFunction() {
+  console.log("This is a hoisted function");
+}
+
+
+
+// Function expression
+notHoistedFunction(); // This will throw an error because notHoistedFunction is not defined at this point
+
+const notHoistedFunction = function() {
+  console.log("This is not a hoisted function");
+};
+
+
+
+var a = null;
+console.log(a == null) // true
+console.log(a == undefined) // true
+
+
+const
+The const declaration declares block-scoped local variables. 
+The value of a constant can't be changed through reassignment using the assignment operator,
+but if a constant is an object, its properties can be added, updated, or removed.
+
+
 
 The recursive call
     The recursive call is what handles the function calling itself again. In the doSomething function, the recursive call is the line below.
