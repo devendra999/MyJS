@@ -409,28 +409,6 @@ function x(){
 x();
 
 
-console.log(abc);
-var abc = 123; // undefined
-
-
-console.log(abc);
-let abc = 123; // ReferenceError: Cannot access 'abc' before initialization
-
-
-
-function somemethod() {
-    console.log(counter1); // undefined
-    console.log(counter2); // ReferenceError
-    var counter1 = 1;
-    let counter2 = 2;
-  }
-
-
-// hoisted variable
-console.log(message); //output : undefined
-var message = "The variable Has been hoisted";
-
-
 
 // Function declaration
 hoistedFunction(); // This works even though hoistedFunction is called before its declaration
@@ -494,6 +472,105 @@ function addData = (data) => {
 }
 
 addData(5431)
+
+
+
+
+
+setTimeout 
+--------------------------------------------------------
+
+closure 
+--------------------------------------------------------
+
+let const var - block scope
+--------------------------------------------------------
+    global scope – so you can access it everywhere (inside and outside functions).
+    var 
+        global and local scope
+        reassign, redeclare
+
+        function print() {
+            var number = 50
+            var square = number * number
+            console.log(square)
+        }
+        console.log(number) // ReferenceError: number is not defined, because of variable diclare in local scope
+
+        function print() {
+            var square1 = number * number
+            console.log(square1) // NaN
+
+            var number = 50
+
+            var square2 = number * number
+            console.log(square2) // 2500
+        }
+
+
+    let 
+        global, block and local scope
+        reassign, can not redeclare
+        You can find blocks in if, loop, switch
+        
+        let number = 50
+        function print() {
+            let square = number * number
+
+            if (number < 60) {
+                var largerNumber = 80
+                let anotherLargerNumber = 100
+
+                console.log(square)  // 2500
+            }
+
+            console.log(largerNumber) //80
+            console.log(anotherLargerNumber) // ReferenceError: anotherLargerNumber is not defined, because of block scope
+        }
+        console.log(largerNumber) // ReferenceError: largerNumber is not defined
+
+        let number = 50
+        let number = 100 // SyntaxError: Identifier 'number' has already been declared
+
+        console.log(number) // ReferenceError: Cannot access 'number' before initialization
+        let number = 50
+
+
+    const 
+        global, block and local scope
+        can not reassign, can not redclare, but object can modified 
+
+        const number = 50
+        number = 100 // TypeError: Assignment to constant variable
+
+
+this
+--------------------------------------------------------
+
+Pure functions
+--------------------------------------------------------
+
+Compose
+--------------------------------------------------------
+Currying
+--------------------------------------------------------
+
+Promise vs Async vs Await vs Callback
+--------------------------------------------------------
+& Its output related question
+Parallel request
+Subsequently request
+Exit Callback
+Promise implementation
+
+
+Virtual DOM, Reconciliation, Fiber
+
+Debounce
+Throttle
+
+
+
 
 
 
