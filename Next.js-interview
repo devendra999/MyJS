@@ -811,14 +811,50 @@ Throttling : Throttling is a technique that limits the execution of a function t
 
 
 
+Middlewere
+----------------------------------
+Middleware is a crucial concept in many programming frameworks and libraries, particularly in web development. It sits between the incoming request and the outgoing response in the request-response cycle and allows you to perform various tasks such as request processing, authentication, logging, error handling, and more.
 
 
 
 
-setTimeout 
-why use middleware
-saga
-thunk
+
+
+
+setTimeout, setInterval and clearTimeout
+-------------------------------------------------------------
+setTimeout: setTimeout allows you to run a function after a certain amount of time has passed.
+            
+            setTimeout(function, milliseconds);
+
+            // With parameter or argument
+            setTimeout(function (param1, param2) {
+                // Code to be executed after the delay
+            }, delay);
+
+
+
+setInterval : setInterval is a function in JavaScript that is used to repeatedly execute a given function at a specified interval. 
+                
+                setInterval(myTimer, 1000);
+
+                function myTimer() {
+                    const date = new Date();
+                    document.getElementById("demo").innerHTML = date.toLocaleTimeString();
+                }
+
+
+clearTimeout : clearTimeout allows developers to clear and reset the timer created by the setTimeout() method.
+               
+                const myTimeout = setTimeout(myGreeting, 3000);
+
+                function myGreeting() {
+                 document.getElementById("demo").innerHTML = "Happy Birthday!"
+                }
+
+                function myStopFunction() {
+                 clearTimeout(myTimeout);
+                }
 
 
 
