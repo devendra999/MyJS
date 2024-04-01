@@ -374,23 +374,13 @@ What is an event loop in JavaScript ?
 
 
 
+
+
+
 useEffect(() => {
     // we want some state or props and to run on every render regardless of changes in those dependencies, you might also use null or undefined.
 }, null); // This effect runs after every render
 
-clousure
-
-function currying
-    const curry = (a) => {
-        return (b) => {
-            return a*b;
-        }
-    }
-    curry(3)(4) // output 12
-
-why use middleware
-saga
-thunk
 
 
 
@@ -400,6 +390,8 @@ setTimeout(() => {console.log(3)}, 0)
 console.log(4) // output 1, 4, 3, 2
 
 
+
+
 function x(){
     setTimeout(() => {
         console.log(i) // after one second output become 1
@@ -407,6 +399,8 @@ function x(){
     var i = 1;
 }
 x();
+
+
 
 
 
@@ -441,6 +435,7 @@ but if a constant is an object, its properties can be added, updated, or removed
 
 
 The recursive call
+--------------------------------------------------------
     The recursive call is what handles the function calling itself again. In the doSomething function, the recursive call is the line below.
     expamle
         function doSomething(n) {
@@ -452,6 +447,9 @@ The recursive call
             doSomething(n - 1)
         }
         doSomething(3)
+
+
+
 
 
 
@@ -476,9 +474,6 @@ addData(5431)
 
 
 
-
-setTimeout 
---------------------------------------------------------
 
 
 closure
@@ -577,16 +572,32 @@ let const var - block scope
         number = 100 // TypeError: Assignment to constant variable
 
 
-this
---------------------------------------------------------
 
-Pure functions
---------------------------------------------------------
 
-Compose
---------------------------------------------------------
-Currying
---------------------------------------------------------
+
+
+
+Currying 
+----------------------------------------------------------
+Currying is a functional programming, that transforms the function of multiple arguments into several functions of a single argument in sequence. 
+
+    normal function
+    ---------------
+        function getSum(a) {
+            return function (b) {
+                return function (c) {
+                    console.log(a + b + c)
+                }
+            }
+        }
+        getSum(a)(b)(c)
+   
+    Fat arrow function
+    ---------------
+        const getSum = (a) => (b) => (c) => a+b+c;
+        getSum(a)(b)(c)
+
+
 
 
 Pure functions
@@ -641,6 +652,8 @@ Await : The await keyword basically makes JavaScript wait until the Promise obje
     .catch(error => console.log(error));
 
 
+
+
 Promises
 ------------------------------------------------------------------------------------------------------------------
     let promise = new Promise(function (resolve, reject) {
@@ -657,14 +670,155 @@ Promises
         });
 
 
-Virtual DOM, Reconciliation, Fiber
-
-Debounce
-Throttle
 
 
 
 
+this
+-----------------------------
+the this keyword refers to an object.
+Alone, this refers to the global object.
+In a function, this refers to the global object.
+In a function, in strict mode, this is undefined.
+
+
+    "use strict";
+    let x = this; // this refer to window object
+
+
+    "use strict";
+    function myFunction() {
+        return this; // this is undefined
+    }
+
+
+    const person = {
+        firstName: "John",
+        lastName: "Doe",
+        id: 5566,
+        fullName : function() {
+          return this.firstName + " " + this.lastName; // this refer to person object
+        }
+      };
+
+
+
+
+this
+-----------------------------
+the this keyword refers to an object.
+Alone, this refers to the global object.
+In a function, this refers to the global object.
+In a function, in strict mode, this is undefined.
+
+
+    "use strict";
+    let x = this; // this refer to window object
+
+
+    "use strict";
+    function myFunction() {
+        return this; // this is undefined
+    }
+
+
+    const person = {
+        firstName: "John",
+        lastName: "Doe",
+        id: 5566,
+        fullName : function() {
+          return this.firstName + " " + this.lastName; // this refer to person object
+        }
+      };
+
+
+
+
+Debouncing and Throttling
+-----------------------------
+Debouncing : Debouncing is a technique that delays the execution of a function until the user stops performing a certain action for a specified amount of time. 
+    For example, if you have a search bar that fetches suggestions from the backend as the user types, you can debounce the function that makes the API call, so that it only runs after the user stops typing for a few seconds. This way, you can avoid making too many API calls that might overload your server or return irrelevant results.
+
+    example
+    -------
+        // Simulated API function
+        function fetchDataFromApi() {
+            console.log("API call made");
+            // Replace this with your actual API call
+        }
+
+        // Debounce function
+        function debounce(func, delay) {
+            let timeoutId;
+            
+            return function() {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(func, delay);
+            };
+        }
+
+        // Create a debounced version of the API call function
+        const debouncedFetchData = debounce(fetchDataFromApi, 1000); // Debounce for 1 second (1000 milliseconds)
+
+        // Simulated event triggering API call
+        function handleUserInput() {
+            console.log("User input detected");
+            debouncedFetchData();
+        }
+
+        // Simulated user input event (e.g., button click)
+        handleUserInput(); // This will trigger API call after 1 second
+        handleUserInput(); // This will cancel the previous timer and start a new one, API call will be made after 1 second
+
+
+
+
+Throttling : Throttling is a technique that limits the execution of a function to once in every specified time interval.
+    For example, if you have a resize event handler that adjusts the layout of your page, you can throttle the function that updates the layout, so that it only runs once every 100ms.
+
+
+    example
+    -------
+
+        // Function to be throttled
+        function handleResize() {
+          console.log("Window resized");
+          // Your resizing logic goes here
+        }
+        
+        // Throttle function
+        function throttle(func, limit) {
+          let lastExecutionTime = 0;
+        
+          return function() {
+            const now = Date.now();
+            if (now - lastExecutionTime >= limit) {
+              func();
+              lastExecutionTime = now;
+            }
+          };
+        }
+        
+        // Throttle the resize event handler
+        const throttledResizeHandler = throttle(handleResize, 1000); // Throttle to at most one execution per second
+        
+        // Attach the throttled event handler to the window resize event
+        window.addEventListener("resize", throttledResizeHandler);
+        
+
+
+
+
+
+
+
+
+
+
+setTimeout 
+why use middleware
+saga
+thunk
 
 
 
