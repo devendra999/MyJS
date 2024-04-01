@@ -480,8 +480,41 @@ addData(5431)
 setTimeout 
 --------------------------------------------------------
 
-closure 
---------------------------------------------------------
+
+closure
+------------------------------------------------------------------------------------------------------------------
+A closure is the combination of a function. 
+
+closure in action that is inner function can have access to the outer function variables/parameters as well as all the global variables.
+
+    closure example
+    ---------------
+    const outerFunc = (a) => {
+        let b = 10;
+        const innerFunc = () => {
+            let sum = a + b;
+        }
+        return innerFunc;  
+    }    
+
+    outerFunc(5)
+
+    lexical scoping example
+    ------------------------
+    const outerFunc = (a) => {
+        let b = 10;
+        const innerFunc = () => {
+            let sum = a + b;
+        }
+        innerFunc();  
+    }    
+
+    outerFunc(5)
+
+
+
+
+
 
 let const var - block scope
 --------------------------------------------------------
