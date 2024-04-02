@@ -356,7 +356,14 @@ To implement testing and continuous integration in a Next.js application, you ca
 React Interview
 ===========================================================================================================================================================
 
+Event
+-------------------------------
+    Events are "things" that happen to HTML elements. When JavaScript is used in HTML pages, JavaScript can react on these events
+
+
+
 What is an event loop in JavaScript ?
+---------------------------------------
     the event loop is a fundamental mechanism that enables the asynchronous execution of code. It’s an essential part of the JavaScript runtime environment, allowing the language to handle non-blocking operations efficiently. The event loop is responsible for managing the execution of code, handling events, and maintaining the flow of control.
     
     Call Stack:
