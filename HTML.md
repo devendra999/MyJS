@@ -1,7 +1,7 @@
 6) Difference between pseudo class and psuedo elements
   Pseudo-classes enable you to target an element when it's in a particular state, as if you had added a class for that state to the DOM. Pseudo-elements act as if you had added a whole new element to the DOM, and enable you to style that.
-  Pseudo class: hover, visited, link, focus
-  Pseudo elements: before, after, first-line, first-child, last-child, checked
+  Pseudo class: hover, visited, link, focus, first-child, last-child, , checked
+  Pseudo elements: before, after, first-line, 
 
 
 
