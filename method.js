@@ -970,3 +970,35 @@ The reducer function takes four arguments:
     Source Array
 
 array.reduce(callbackFunction(accumulator, currentValue, currentIndex, arr), initialValue)
+
+    const array1 = [1, 2, 3, 4];
+    
+    // 0 + 1 + 2 + 3 + 4
+    const initialValue = 0;
+    const sumWithInitial = array1.reduce((accumulator, currentValue) => accumulator + currentValue,
+      initialValue,
+    );
+
+
+
+// =============================================================================
+// Higher Order Function (HOF)
+// =============================================================================
+A higher order function is a function that takes one or more functions as arguments, or returns a function as its result.
+map(), reduce(), filter() is a HOF.
+
+    // Callback function, passed as a parameter in the higher order function
+    function callbackFunction(){
+        console.log('I am  a callback function');
+    }
+    
+    // higher order function
+    function higherOrderFunction(func){
+        console.log('I am higher order function')
+        func()
+    }
+    
+    higherOrderFunction(callbackFunction);
+
+
+    
