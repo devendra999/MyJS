@@ -1,3 +1,22 @@
+higher order component
+mount, unmount, and updated mount component ( life cycle method)
+forwardRef
+Reusing Logic with Custom Hooks
+useCallback Hook
+useReducer hook
+useContext hook
+memo
+useMemo hook
+useDebugValue
+useDeferredValue
+useTransition
+useLayoutEffect
+useImperativeHandle
+useInsertionEffect
+useSyncExternalStore
+
+
+
 Conditionally returning JSX 
 -----------------------------------------
 if (isPacked) {
