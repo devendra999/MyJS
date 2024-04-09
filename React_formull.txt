@@ -143,11 +143,11 @@ mount, unmount, and updated mount component ( life cycle method)
 function ChatRoom() {
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
-    connection.connect(); // mount component
+    connection.connect(); // mount component or componentDidMount
     return () => {
-      connection.disconnect(); // unmount component
+      connection.disconnect(); // unmount component or componentWillUnmount
     };
-  }, []); // when dependency declared there are updated mount component
+  }, []); // when dependency declared there are updated mount component or componentDidUpdate
   // ...
 }    
 
