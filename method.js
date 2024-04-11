@@ -1001,4 +1001,22 @@ map(), reduce(), filter() is a HOF.
     higherOrderFunction(callbackFunction);
 
 
+// =============================================================================
+// Pure Function and Impure function
+// =============================================================================
+pure functions are functions that accept an input and return a value without modifying any data outside its scope (side effect).
+
+    Pure function
+        var x = 5;
+        function add(x) { // this is pure function becaue x value is not modified here
+            return x+4;  
+        }
+
+
+    Impure function
+    var x = 5;
+    function add(x) { // this is impure function becaue x value is modified here
+        return x++;  
+    }
+
     
