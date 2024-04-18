@@ -62,7 +62,7 @@
     // flat method remove nested array and return to convert nested array into a single array.
     // const myArr = [[1, 2], [3, 4], [5, 6]];
     // const newArr = myArr.flat();
-    // Result: 1,2,3,4,5,6
+    // Result: [1,2,3,4,5,6]
 
 // splice() method
     // The splice() method adds new items to an array and remove also
