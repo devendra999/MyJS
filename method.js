@@ -249,7 +249,9 @@
 
 // charAt
     // The charAt() method returns the character at a specified index (position) in a string. Get the first character in a string:
-
+    // var str = "Hello, world!";
+    // var strPos = str.charAt(4); 
+    // Result:  o
 
 
 // Math.trunc() - returns the integer part of x:
