@@ -1036,4 +1036,24 @@ pure functions are functions that accept an input and return a value without mod
         return x++;  
     }
 
-    
+
+// =============================================================================
+// closure js
+// =============================================================================
+A closure is the combination of a function and the lexical environment within which that function was declared. 
+
+closure in action that is inner function can have access to the outer function variables/parameters as well as all the global variables.
+
+const outerFunction = (a) => {
+    let b = 10;
+    const innerFunction = () => {
+        let sum = a+b;
+        console.log(`two number sum is ${sum}`)
+    }
+    innerFunction();
+}
+outerFunction(5);
+
+
+
+
