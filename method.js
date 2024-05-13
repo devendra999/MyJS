@@ -990,17 +990,32 @@ A higher order function is a function that takes one or more functions as argume
 map(), reduce(), filter() is a HOF.
 
     // Callback function, passed as a parameter in the higher order function
-    function callbackFunction(){
-        console.log('I am  a callback function');
+    const interviewQuestion = (name) => {
+    if(name === 'devendra') {
+        return (topic) => {
+            console.log(`Hi ${name}. What is ${topic}. Plz Explain us?`)
+        }
+    } 
+
+    if(name === 'devendra prajapati') {
+        return (topic) => {
+            console.log(`Hi ${name}. What is ${topic}. Plz Explain us?`)
+        }
     }
-    
-    // higher order function
-    function higherOrderFunction(func){
-        console.log('I am higher order function')
-        func()
+
+    if(name === 'prajapati') {
+        return (topic) => {
+            console.log(`Hi ${name}. What is ${topic}. Plz Explain us?`)
+        }
+    } else {
+        console.log('welcome to Exam');
     }
-    
-    higherOrderFunction(callbackFunction);
+}
+
+
+interviewQuestion('devendra')('Frontend Developer');
+interviewQuestion('devendra prajapati')('Full Stack Developer');
+interviewQuestion('prajapati')('Backend Developer');
 
 
 // =============================================================================
