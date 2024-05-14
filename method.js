@@ -1055,5 +1055,30 @@ const outerFunction = (a) => {
 outerFunction(5);
 
 
+// =============================================================================
+// hoisting
+// =============================================================================
+Hoisting in Javascript is a mechanism where variables and functions declarations are moved to the top of their scope before the code execute.
+    
+    // 1. function hoisting
+    sum(5,10);
+    function sum (a,b) {
+        var add = a+b;
+        console.log(add)
+    }
+
+
+    // 2. function hoisting
+    console.log(sum) // undefined
+    var sum  = function (a,b) {
+        var add = a+b;
+        console.log(add)
+    }
+    console.log(sum); // whole function
+
+    // 3. variable hoisting
+    console.log(a); // undefined
+    var a = 10;
+
 
 
