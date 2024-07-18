@@ -559,4 +559,243 @@
 
     // 63.
     // console.log(true + +'10') // 11
+
+    //  How to find duplicate element in array in javascript
+        // Method 1: Using a Set
+        // function findDuplicates(arr) {
+        //     let duplicates = [];
+        //     let set = new Set();
+    
+        //     for (let i = 0; i < arr.length; i++) {
+        //         if (set.has(arr[i])) {
+        //         duplicates.push(arr[i]);
+        //         } else {
+        //         set.add(arr[i]);
+        //         }
+        //     }
+    
+        //     return duplicates;
+        // }
+    
+        // function findDuplicates(arr) {
+        // Method 2: Using reduce and filter
+        // function findDuplicates(arr) {
+        //     return arr.reduce((acc, currentValue, index, array) => {
+        //         if (
+        //         array.indexOf(currentValue) !== index &&
+        //         acc.indexOf(currentValue) === -1
+        //         ) {
+        //         acc.push(currentValue);
+        //         }
+        //         return acc;
+        //     }, []);
+        // }
+    
+    
+    // How To find max/min in a given array in javascript
+        // Method 1: Using Math.max and Math.min with the Spread Operator (...)
+            // const numbers = [5, 2, 9, 1, 5, 6];
+            // const max = Math.max(...numbers);
+            // const min = Math.min(...numbers);
+    
+        // Method 2: Using reduce function
+            // const numbers = [5, 2, 9, 1, 5, 6];
+            // const max = numbers.reduce((a, b) => Math.max(a, b));
+            // const min = numbers.reduce((a, b) => Math.min(a, b));
+    
+        // Method 3: Using a loop (for loop or forEach)
+            // let max = numbers[0]; // max value
+            // numbers.forEach(num => {
+            //     if (num > max) {
+            //         max = num;
+            //     }
+            // });
+    
+            // let min = numbers[0]; // min value
+            //     numbers.forEach(num => {
+            //     if (num < min) {
+            //         min = num;
+            //     }
+            // });
+    
+    
+    // How To find second Largest value in array
+        // Method 1: Using Sorting
+            // function findSecondLargest(arr) {
+            //     // Sort the array in descending order
+            //     const sortedArr = arr.sort((a, b) => b - a);
+            
+            //     // Return the second element (index 1) of the sorted array
+            //     return sortedArr[1];
+            // }
+    
+    
+    // what is difference between Filter and Find method
+        // The filter method creates a new array with all elements that pass a test defined by a provided function. It iterates through each element of the array and includes only those elements for which the callback function returns true.
+    
+        // The find method returns the first element in the array that satisfies the provided testing function. It stops iterating once it finds an element that passes the test. If no elements pass the test, undefined is returned.
+    
+    
+    // How to Find missing elements in a given Array 1 to 10
+        // Method 1: Using Set and Array
+            // function findMissingElements(arr) {
+            //     const set = new Set(arr); // Convert array to Set for fast lookup
+            //     const missing = [];
+            
+            //     // Iterate through numbers 1 to 10 and check if they are in the Set
+            //     for (let i = 1; i <= 10; i++) {
+            //     if (!set.has(i)) {
+            //         missing.push(i);
+            //     }
+            //     }
+            
+            //     return missing;
+            // }
+    
+        // Method 2: Using Array includes method
+            // function findMissingElements(arr) {
+            //     const missing = [];
+            
+            //     // Iterate through numbers 1 to 10 and check if they are in the input array
+            //     for (let i = 1; i <= 10; i++) {
+            //     if (!arr.includes(i)) {
+            //         missing.push(i);
+            //     }
+            //     }
+            
+            //     return missing;
+            // }
+    
+    
+    // how to find even or odd numbers in array in javascript
+        // Method 1: Using filter Method
+            // function findEvenNumbers(arr) {
+            //     return arr.filter(num => num % 2 === 0);
+            // }
+            
+            // function findOddNumbers(arr) {
+            //     return arr.filter(num => num % 2 !== 0);
+            // }
+    
+        // Method 2: Using forEach Loop
+            // function findEvenNumbers(arr) {
+            //     const evenNumbers = [];
+            //     arr.forEach(num => {
+            //     if (num % 2 === 0) {
+            //         evenNumbers.push(num);
+            //     }
+            //     });
+            //     return evenNumbers;
+            // }
+            
+            // function findOddNumbers(arr) {
+            //     const oddNumbers = [];
+            //     arr.forEach(num => {
+            //     if (num % 2 !== 0) {
+            //         oddNumbers.push(num);
+            //     }
+            //     });
+            //     return oddNumbers;
+            // }
+    
+    
+    // how to find the sum of all elements in array in javascript
+            // Method 1: Using the reduce Method
+            //     function sumArray(arr) {
+            //         return arr.reduce((acc, currentValue) => acc + currentValue, 0);
+            //     }
+    
+            // // Method 2: Using a for Loop
+            //     function sumArray(arr) {
+            //         let sum = 0;
+            //         for (let i = 0; i < arr.length; i++) {
+            //         sum += arr[i];
+            //         }
+            //         return sum;
+            //     }
+    
+    
+    // how to find fictorial of a given number in Javascript
+            // what is 5 number of factorial : 5*4*3*2*1 = 120 is a 5 factorial
+                // function factorialRecursive(n) {
+                //     if (n === 0 || n === 1) {
+                //         return 1;
+                //     }
+                //     return n * factorialRecursive(n - 1);
+                // }
+    
+    
+    // how to swap two variables without using the third variable
+        // let a = 5;
+        // let b = 10;
+        //  // Swap using array destructuring
+        // [a, b] = [b, a];
+        // console.log(`After swapping: a = ${a}, b = ${b}`);
+    
+    
+    // how to merged two arrays in javascript
+        // Method 1: Using the Spread Operator (...)
+            // const mergedArray = [...array1, ...array2];
+    
+        // Method 2: Using concat Method
+            // const mergedArray = array1.concat(array2);
+        
+        // Method 3: Using push method (to modify an existing array)
+            // array1.push(...array2);
+    
+    
+    // How to compare two Arrays are Equal or Not in JavaScript
+        // const array1 = [1, 2, 3];
+        // const array2 = [4, 5, 6];
+        // const array3 = [4, 5, 6];
+    
+        // function arraysAreEqual(arr1, arr2) {
+        //     return JSON.stringify(arr1) === JSON.stringify(arr2);
+        // }
+        // arraysAreEqual(array1, array2) // false
+        // arraysAreEqual(array2, array3) // true
+    
+    
+    // how to find intersection(i.e., the elements that exist in both arrays) of two arrays in javascript
+        // Method 1: Using filter and includes
+            // function intersection(arr1, arr2) {
+            //     return arr1.filter(value => arr2.includes(value));
+            // }
+            
+            // Example usage:
+            // const array1 = [1, 2, 3, 4, 5];
+            // const array2 = [3, 4, 5, 6, 7];
+            
+            // const result = intersection(array1, array2);
+            // console.log('Intersection:', result); // Output: [3, 4, 5]
+          
+        // Method 2: Using Set for Efficiency
+            // function intersection(arr1, arr2) {
+            //     const set2 = new Set(arr2);
+            //     return arr1.filter(value => set2.has(value));
+            // }
+            
+            // Example usage:
+            // const array1 = [1, 2, 3, 4, 5];
+            // const array2 = [3, 4, 5, 6, 7];
+            
+            // const result = intersection(array1, array2);
+            // console.log('Intersection:', result); // Output: [3, 4, 5]
+          
+    
+    // how to find union(the combined set of unique elements from both arrays) of two arrays in javascript
+        // function union(arr1, arr2) {
+        //     return [...new Set([...arr1, ...arr2])];
+        //   }
+          
+          // Example usage:
+        //   const array1 = [1, 2, 3];
+        //   const array2 = [3, 4, 5];
+          
+        //   const result = union(array1, array2);
+        //   console.log('Union:', result); // Output: [1, 2, 3, 4, 5]
+          
+
+
+
 </script>
