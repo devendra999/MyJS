@@ -796,6 +796,37 @@
         //   console.log('Union:', result); // Output: [1, 2, 3, 4, 5]
           
 
-
+    // How does javascript execute
+            //     There are two types of execution contexts: global and function. The global execution context is created when a JavaScript script first starts to run, and it represents the global scope in JavaScript. A     function execution context is created whenever a function is called, representing the function's local scope.
+            
+            //     1. Global Execution (this)
+            //     2. Memory Phase (Creation Phase)
+            //     3. Execution Phase
+            
+            //     example
+            //         let val1 = 10;
+            //         let val2 = 5;
+            //         function addNum(num1, num2) {
+            //             let total = num1 + num2;
+            //             return total;
+            //         }
+            //         let result1 = addNum(val1, val2);
+            //         let result2 = addNum(8, 10);
+            
+            //         above code memory phase is below
+            //             1. val1 = undefined
+            //             2. val2 = undefined
+            //             3. addNum = defination
+            //             4. result1 = undefined
+            //             5. result2 = undefined
+            
+                    
+            //         above code Execution phase is below
+            //             1. val1 = 10
+            //             2. val2 = 5
+            //             3. addNum = New environment variable + execution thread (this is again create memory phase and execution phase)
+            //             4. result1 = 15
+            //             5. result2 = 12
+        
 
 </script>
