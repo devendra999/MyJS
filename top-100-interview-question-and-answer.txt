@@ -827,6 +827,10 @@
             //             3. addNum = New environment variable + execution thread (this is again create memory phase and execution phase)
             //             4. result1 = 15
             //             5. result2 = 12
-        
+
+
+
+    // what is javascript call stack ?
+            // JavaScript uses a Call Stack to track the functions in a program. The call stack works on the Last In, First Out (LIFO) principle. This means that the most recently called function will be the first to be completed. 
 
 </script>
