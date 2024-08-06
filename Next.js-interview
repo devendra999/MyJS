@@ -122,6 +122,64 @@ Navigating Between Pages
 
 Static and Dynamic Rendering
 ----------------------------------------
+        // Static rendering
+        Static rendering in Next.js refers to a method of pre-rendering pages at build time, which means generating HTML files ahead of time, rather than on every request. This approach is useful for improving performance and SEO because it provides the user with a fully rendered page almost instantly.
+        
+        In Next.js, static rendering can be achieved using two primary methods:
+        
+        1. Static Generation (getStaticProps)
+        
+            export async function getStaticProps() {
+            // Fetch data from an API or perform any other async operation
+            const res = await fetch('https://api.example.com/data');
+            const data = await res.json();
+        
+            return {
+                props: {
+                data
+                }
+            };
+            }
+        
+            export default HomePage;
+        
+        2. Static Site Generation with Dynamic Routes (getStaticPaths)
+        
+            export async function getStaticPaths() {
+                // Fetch a list of all post IDs
+                const res = await fetch('https://api.example.com/posts');
+                const posts = await res.json();
+            
+                // Get the paths we want to pre-render based on posts
+                const paths = posts.map(post => ({
+                params: { id: post.id.toString() }
+                }));
+            
+                return {
+                paths,
+                fallback: false // can be true or 'blocking' if you want to enable incremental static regeneration
+                };
+            }
+        
+        
+        // Server-Side Rendering
+            Server-side rendering (SSR) in Next.js allows you to generate the HTML for a page on the server for each request. This approach is useful when you need to fetch data that changes frequently or is specific to each request, ensuring that users receive the most up-to-date content.
+        
+        
+            // This function runs on the server for each request
+            export async function getServerSideProps() {
+                // Fetch data from an external API or other data source
+                const res = await fetch('https://api.example.com/data');
+                const data = await res.json();
+            
+                // Return the data as props to the page component
+                return {
+                props: {
+                    data
+                }
+                };
+            }
+
 
 
 15. What are the main scripts in Next JS?   
