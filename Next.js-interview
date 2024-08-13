@@ -916,6 +916,7 @@ Throttling : Throttling is a technique that limits the execution of a function t
 
 Middlewere
 ----------------------------------
+Middleware is a request handler that allows you to intercept and manipulate requests and responses before they reach route handlers.
 Middleware is a crucial concept in many programming frameworks and libraries, particularly in web development. It sits between the incoming request and the outgoing response in the request-response cycle and allows you to perform various tasks such as request processing, authentication, logging, error handling, and more.
 
 
