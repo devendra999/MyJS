@@ -759,6 +759,11 @@ Await : The await keyword basically makes JavaScript wait until the Promise obje
 
 Promises
 ------------------------------------------------------------------------------------------------------------------
+// A Promise represents an operation that hasn’t completed yet but is expected to in the future. It can be in one of three states:
+        1. Pending: The initial state, neither fulfilled nor rejected.
+        2. Fulfilled: The operation completed successfully.
+        3. Rejected: The operation failed
+
     // Create a new Promise
     let fetchData = new Promise((resolve, reject) => {
         // Simulate a delay with setTimeout
