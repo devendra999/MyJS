@@ -759,18 +759,29 @@ Await : The await keyword basically makes JavaScript wait until the Promise obje
 
 Promises
 ------------------------------------------------------------------------------------------------------------------
-    let promise = new Promise(function (resolve, reject) {
-        reject('Promise Rejected')
-    })
+    // Create a new Promise
+    let fetchData = new Promise((resolve, reject) => {
+        // Simulate a delay with setTimeout
+        setTimeout(() => {
+            const success = true; // Change to false to see the rejection scenario
+            
+            if (success) {
+                resolve("Data fetched successfully!"); // Operation was successful
+            } else {
+                reject("Failed to fetch data."); // Operation failed
+            }
+        }, 2000); // 2 seconds delay
+    });
     
-    promise
-        .then(function (successMessage) {
-            console.log(successMessage);
+    // Handle the Promise
+    fetchData
+        .then((message) => {
+            console.log(message); // This will run if the Promise is resolved
         })
-        .catch(function (errorMessage) {
-            //error handler function is invoked 
-            console.log(errorMessage);
+        .catch((error) => {
+            console.error(error); // This will run if the Promise is rejected
         });
+
 
 
 
