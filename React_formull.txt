@@ -76,31 +76,74 @@ CONDITIONAL RENDERING WITH HOC
 -----------------------------------------
 // higher-order component is a function that takes a component as an argument and returns a new component that wraps the original component.
 
-// Higher-Order Component
-function withLoadingIndicator(Component) {
-  return function EnhancedComponent({ isLoading, ...props }) {
-    if (!isLoading) {
-      return <Component {...props} />;
-    }
+
+1. Creating the Counter Component
+
+  import React, { useState } from 'react';
+
+  const Counter = () => {
+    const [count, setCount] = useState(0);
 
     return (
-      <div>
-        <p>Loading</p>
+      <div style={{ padding: '20px', textAlign: 'center' }}>
+        <p>Count: {count}</p>
+        <button onClick={() => setCount(count + 1)}>Increment</button>
+        <button onClick={() => setCount(count - 1)}>Decrement</button>
+        <button onClick={() => setCount(0)}>Reset</button>
       </div>
     );
   };
-}
 
-const ListWithLoadingIndicator = withLoadingIndicator(List);
+  export default Counter;
 
-function App({ list, isLoading }) {
+
+2. Creating the withBackgroundColor HOC
+
+  import React from 'react';
+
+  const withBackgroundColor = (WrappedComponent, backgroundColor) => {
+    return (props) => {
+      const style = {
+        backgroundColor: backgroundColor,
+        padding: '20px',
+        borderRadius: '8px',
+        margin: '10px',
+      };
+
+      return (
+        <div style={style}>
+          <WrappedComponent {...props} />
+        </div>
+      );
+    };
+  };
+
+  export default withBackgroundColor;
+
+
+3. Wrapping the Counter Component with Different Colors
+
+import React from 'react';
+import Counter from './Counter';
+import withBackgroundColor from './withBackgroundColor';
+
+// Create Counter components with different background colors
+const RedCounter = withBackgroundColor(Counter, 'red');
+const GreenCounter = withBackgroundColor(Counter, 'green');
+const BlueCounter = withBackgroundColor(Counter, 'blue');
+
+const App = () => {
   return (
-    <div>
-      <h1>Hello Conditional Rendering</h1>
-
-      <ListWithLoadingIndicator isLoading={isLoading} list={list} />
+    <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+      <RedCounter />
+      <GreenCounter />
+      <BlueCounter />
     </div>
-  )
+  );
+};
+
+export default App;
+
 
 CONDITIONAL RENDERING IN REACT: IF
 -----------------------------------------
@@ -231,28 +274,49 @@ export default function Form() {
 forwardRef
 -----------------------------------------
 // Accessing another component’s DOM nodes (you have to use forwardRef for it, IF you can access directly got a error cannot access)
-import { forwardRef, useRef } from 'react';
 
-const MyInput = forwardRef((props, ref) => {
-  return <input {...props} ref={ref} />;
-});
+// forwardRef is a function that allows you to pass a ref from a parent component to a child component. This is useful when you need to access the DOM element of a child component or a child component needs to expose some of its internals to the parent.
 
-export default function Form() {
-  const inputRef = useRef(null);
 
-  function handleClick() {
-    inputRef.current.focus();
-  }
+    1. Creating a FancyButton Component.
+        import React, { forwardRef } from 'react';
+          // FancyButton component using forwardRef
+          const FancyButton = forwardRef((props, ref) => {
+            return (
+              <button ref={ref} className="fancy-button">
+                {props.children}
+              </button>
+            );
+          });
 
-  return (
-    <>
-      <MyInput ref={inputRef} />
-      <button onClick={handleClick}>
-        Focus the input
-      </button>
-    </>
-  );
-}
+        export default FancyButton;
+
+
+    2. Using the FancyButton Component with a Ref
+        import React, { useRef } from 'react';
+        import FancyButton from './FancyButton';
+
+        const App = () => {
+          const buttonRef = useRef(null);
+
+          const handleClick = () => {
+            if (buttonRef.current) {
+              buttonRef.current.style.backgroundColor = 'yellow'; // Change background color on click
+              buttonRef.current.focus(); // Focus the button
+            }
+          };
+
+          return (
+            <div>
+              <FancyButton ref={buttonRef}>Click Me!</FancyButton>
+              <button onClick={handleClick}>Change FancyButton Style</button>
+            </div>
+          );
+        };
+
+        export default App;
+
+
 
 
 video play and pause using ref method
@@ -291,8 +355,10 @@ export default function App() {
 
 Reusing Logic with Custom Hooks
 -----------------------------------------
+// Custom hooks in React are functions that allow you to reuse logic across multiple components. They are a way to extract and share code that deals with stateful logic using React hooks like useState, useEffect, useContext, and others.
+
 // custome hook defined it in app folder and create new folder customHook like component folder
-// useCounter.js (it's a custom hook) 
+// useCounter.js (it's a custom hook) // custome hook create with start use keyword like: useCounter
     import { useState } from 'react';
 
     const useCounter = () => {
@@ -325,42 +391,50 @@ Reusing Logic with Custom Hooks
 
     export default ExampleComponent;
 
-Higher Order Component demo (HOC)
+
+
+
+memo
 -----------------------------------------
-import React, { useState } from "react";
-function HigherOrderUpdatedComponent(OriginalComponent) { // its a HOC component
-  function UpdatedComponent() {
-    const [money, setMoney] = useState(10);
-    const handleIncrease = () => {
-      setMoney(money * 2);
-    };
-    return <OriginalComponent handleIncrease={handleIncrease} money={money} />;
-  }
-  return UpdatedComponent;
-}
-export default HigherOrderUpdatedComponent;
+// Memo lets you skip re-rendering a component when its props are unchanged.
+
+import React from "react";
+import { memo } from 'react';
+
+const MyComponent = memo((props) => {
+  // component logic here
+});
+
+export default MyComponent;
 
 
-function Person1({ money, handleIncrease }) {
-  return (
-    <>
-      <h2>Jimmy is offering me $10 </h2>
-      <button onclick={handleIncrease}>Increase Money</button>
-    </>
-  );
-}
-export default HigherOrderUpdatedComponent(Person1);
 
+useMemo hook
+-----------------------------------------
+// The React useMemo Hook returns a memoized value. The useMemo Hook only runs when one of its dependencies is updated.
 
-function Person2({ money, handleIncrease }) {
-  return (
-    <>
-      <h2>John is offering me $10 </h2>
-      <button onclick={handleIncrease}>Increase Money</button>
-    </>
-  );
-}
-export default HigherOrderUpdatedComponent(Person2);
+  import React, { useState, useMemo } from 'react';
+  
+  const MyComponent = () => {
+    const [number, setNumber] = useState(0);
+    
+    // Define a memoized value using useMemo
+    const squaredNumber = useMemo(() => {
+      console.log("Calculating squared number...");
+      return number * number;
+    }, [number]); // Recalculate only when 'number' changes
+    
+    return (
+      <div>
+        <h2>Number: {number}</h2>
+        <button onClick={() => setNumber(prev => prev + 1)}>Increment Number</button>
+        <h2>Squared Number: {squaredNumber}</h2>
+      </div>
+    );
+  };
+  
+  export default MyComponent;
+
 
 
 useCallback Hook
@@ -426,6 +500,33 @@ todos.js
     export default memo(Todos);
 
 
+
+Difference between useMemo and useCallback hook
+-----------------------------------------------
+
+    useMemo: Used to memoize the result of a function.
+    useCallback: Used to memoize a function itself.
+    
+     // Usage:
+    
+    useMemo: Use when you have expensive calculations that you don't want to repeat unless necessary.
+    useCallback: Use when you need to prevent a function from being recreated on every render, especially when passing it as a prop to child components.
+    Return Value:
+    
+    // return 
+    useMemo: Returns the memoized value.
+    useCallback: Returns the memoized function.
+    
+    // When to Use Which:
+    
+    Use useMemo: When you have an expensive computation (like a large array or complex calculation) that you want to avoid recalculating unless necessary.
+    Example: Filtering a large list, calculating derived data.
+    
+    Use useCallback: When you want to avoid unnecessary re-creations of a function that’s passed as a prop to a child component or used as a dependency in useEffect.
+    Example: Passing a click handler to a child component that relies on stable references to avoid re-renders.
+
+
+
 useReducer hook
 -----------------------------------------
 // useReducer is very similar to useState, when we have more that one value we can use useReducer hook
@@ -470,100 +571,81 @@ export default function Counter() {
   );
 }
 
+
+
 useContext hook
 -----------------------------------------
 // React Context is a way to manage state globally. It can be used together with the useState Hook to share state between deeply nested components more easily
-import { createContext, useContext, useState } from "react";
 
-const ThemeContext = createContext(); // here create context
+  1. create context folder in root directory create productContext.js file
 
-export default function MyApp() {
-  const [theme, setTheme] = useState("light");
-  return (
-    <ThemeContext.Provider value={theme}> // here provide value
-      <Form />
-      <label>
-        <input
-          type="checkbox"
-          checked={theme === "dark"}
-          onChange={(e) => {
-            setTheme(e.target.checked ? "dark" : "light");
-          }}
-        />
-        Use dark mode
-      </label>
-    </ThemeContext.Provider>
-  );
-}
-
-function Form({ children }) {
-  return (
-    <Panel title="Welcome">
-      <Button>Sign up</Button>
-      <Button>Log in</Button>
-    </Panel>
-  );
-}
-
-function Panel({ title, children }) {
-  const theme = useContext(ThemeContext); // here get value
-  const className = "panel-" + theme;
-  return (
-    <section className={className}>
-      <h1>{title}</h1>
-      {children}
-    </section>
-  );
-}
-
-function Button({ children }) {
-  const theme = useContext(ThemeContext);
-  const className = "button-" + theme;
-  return <button className={className}>{children}</button>;
-}
-
-
-
-memo
------------------------------------------
-// Memo lets you skip re-rendering a component when its props are unchanged.
-
-import React from "react";
-import { memo } from 'react';
-
-const MyComponent = memo((props) => {
-  // component logic here
-});
-
-export default MyComponent;
-
-
-
-useMemo hook
------------------------------------------
-// The React useMemo Hook returns a memoized value. The useMemo Hook only runs when one of its dependencies is updated.
-
-  import React, { useState, useMemo } from 'react';
+      productContext.js(File)
+      -----------------------
+        import { createContext, useContext, useEffect, useReducer } from "react";
+        import reducer from "../reducer/ProductReducer";
   
-  const MyComponent = () => {
-    const [number, setNumber] = useState(0);
-    
-    // Define a memoized value using useMemo
-    const squaredNumber = useMemo(() => {
-      console.log("Calculating squared number...");
-      return number * number;
-    }, [number]); // Recalculate only when 'number' changes
-    
-    return (
-      <div>
-        <h2>Number: {number}</h2>
-        <button onClick={() => setNumber(prev => prev + 1)}>Increment Number</button>
-        <h2>Squared Number: {squaredNumber}</h2>
-      </div>
-    );
-  };
+        export const ProductContext = createContext();
   
-  export default MyComponent;
+        export const useProductContext = () => {
+          return useContext(ProductContext);
+        };
+  
+        const initialState = {
+            products: [],
+        };
+        export const ProductContextProvider = ({ children }) => { // create custom hook here
+        const [state, dispatch] = useReducer(reducer, initialState);
+  
+          return (
+            <ProductContext.Provider value={{ ...state, }}> // also passed function like : getSingleProduct
+              {children}
+            </ProductContext.Provider>
+          );
+        };
+  
+  
+  2. wrapped this for all js in index.js or layoutout.js or app.js file
+  
+      index.js(File)
+      -----------------------
+      import { ProductContextProvider } from "./context/ProductContext";
+  
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(
+        <React.StrictMode>
+          <ProductContextProvider>
+                <App />
+          </ProductContextProvider>
+        </React.StrictMode>
+      );
+  
+  3. use directory in page
+  
+      page.js(File)
+      -----------------------
+      import { useProductContext } from "../context/ProductContext";
+      
+      const FeaturedProduct = () => {
+        const { featuredProducts } = useProductContext();
+        return (
+          <>
+            <div className="featured-section space bg-gray">
+              <div className="container">
+                <h2 className="main-title">Our Feature Services</h2>
+                <div className="row">
+                  {featuredProducts && featuredProducts.length > 0
+                    ? featuredProducts.map((prod, index) => {
+                        return <Product key={index} product={prod} />;
+                      })
+                    : "No Featured products found"}
+                </div>
+              </div>
+            </div>
+          </>
+        );
+      };
+  
+      export default FeaturedProduct;
 
 
 
@@ -821,19 +903,3 @@ export default function App ()  {
 }
 
 
------------------------------------------
-
-
------------------------------------------
-
-
------------------------------------------
-
-
------------------------------------------
-
-
------------------------------------------
-
-
------------------------------------------
