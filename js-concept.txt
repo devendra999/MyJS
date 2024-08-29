@@ -1,0 +1,177 @@
+what is javascript
+--------------------------------------------------
+JavaScript is the Programming Language for the Web. JavaScript can update and change both HTML and CSS. JavaScript can calculate, manipulate and validate data.
+
+what are data types in javascript
+--------------------------------------------------
+primivve data types : String, Number, Bigint, Boolean, Undefined, Null, Symbol
+Non primitive data types : Object, array
+
+difference : Primitive Data types are predefined. Non-Primitive data types are created by the programmer.
+Primitive Data types will have certain values.	Non-Primitive data types can be NULL.
+
+what is functions ?
+--------------------------------------------------
+A JavaScript function is a block of code designed to perform a particular task. A JavaScript function is executed when "something" invokes it (calls it).
+
+ - types of functions
+        1. Function Declarations: function functionName(parameters) {// Code to execute}
+        2. Function Expressions: const functionName = function(parameters) {// Code to execute};
+        3. Named Function Expressions: const functionName = function functionName(parameters) {// Code to execute};
+        4. Arrow Functions (introduced in ES6):
+        5. Immediately Invoked Function Expressions (IIFE):
+        6. Anonymous Functions:
+
+
+
+
+
+
+
+
+
+
+
+
+
+what is an array ?
+--------------------------------------------------
+An array can hold many values under a single name, and you can access the values by referring to an index number.
+
+what is object ?
+--------------------------------------------------
+In JavaScript, an object is a collection of key-value pairs where each key (or property) is a string and each value can be any type of data, including other objects.
+
+what is scope in javascript
+--------------------------------------------------
+// In JavaScript, scope refers to the context in which variables and functions are accessible or visible. It determines how and where these variables and functions can be used within your code.
+
+1. global scope
+2. local scope - Variables or functions declared inside a function or block are in local scope.
+                They are only accessible within that function or block.
+3. Block Scope (introduced with ES6): - Variables declared with let or const inside a block (e.g., within {}) have block scope.
+    They are only accessible within that block.
+4. Lexical Scope
+5. Closure - 
+
+what is loops ?
+--------------------------------------------------
+In JavaScript, a loop is a control structure that allows you to execute a block of code repeatedly based on a condition or a range of values.
+
+callback function
+--------------------------------------------------
+Any function that is passed as an argument is called a callback function.
+A callback is a function that is to be executed after another function has finished executing — hence the name ‘call back’.
+
+list: Array => reduce, filter, map, forEach
+      Event Handling => addEventListener, onclick, onchange, onsubmit
+      Asynchronous Operations =>  setTimeout, setInterval, fetch
+
+
+- demo
+    const personOne = (friend, personTwo) => {
+        console.log(`I am busy right now, I am talking to ${friend}. I will call you back.`);
+        personTwo();
+    }
+    const personTwo = () => {
+        console.log(`hey what's up, I will back you later.`);
+    }
+    personOne("Devnddra", personTwo);
+
+
+- Why do we need Callbacks?
+        For one very important reason — JavaScript is an event-driven language. This means that instead of waiting for a response before moving on, JavaScript will keep executing while listening for other events.
+
+        Callbacks are a way to make sure a certain code doesn’t execute until another code has already finished execution.
+
+
+higher order function
+--------------------------------------------------
+ A higher order function is a function that takes one or more functions as arguments, or returns a function as its result.
+
+ list : Array => forEach, map, filter, find, reduce, some, every
+        Functions => bind, setTimeout, setInterval, Promise.then
+
+ - demo
+        // Higher-order function
+        function applyOperation(number, operation) {
+             return operation(number);
+        }
+
+        // Define some operations
+        function double(x) {
+             return x * 2;
+        }
+
+        function square(x) {
+             return x * x;
+        }
+
+        // Use the higher-order function with different operations
+        const num = 5;
+
+        console.log(applyOperation(num, double)); // Outputs: 10 (5 * 2)
+        console.log(applyOperation(num, square)); // Outputs: 25 (5 * 5)
+
+
+What is event handling and why use ?
+--------------------------------------------------
+events refer to user actions, such as such as clicking a button, minimizing the browser window, or submitting a form. Event handling in JavaScript and JavaScript frameworks allows us to respond to user actions and interactions and create dynamic and interactive websites.
+
+- why use ?
+    User Interaction: Allows your web application to respond to user actions like clicks, key presses, form submissions, mouse movements, and more.
+
+    Dynamic Updates: Enables you to update the UI or perform actions without requiring a full page reload, improving user experience and application performance.
+
+    Improved Usability: Makes web applications more interactive and engaging by providing immediate feedback or functionality based on user actions.
+
+    Enhanced Functionality: Enables complex behaviors such as form validation, dynamic content loading, animations, and interactive elements.
+
+
+what are asyncronous operation in javascript ?
+--------------------------------------------------
+Asynchronous operations in JavaScript allow code to execute without blocking the execution of other code. This is essential for handling tasks that take time to complete, such as network requests, file reading, or waiting for user input. Asynchronous operations enable smooth and responsive applications by allowing tasks to run concurrently.
+
+asynchronous operations are: Callbacks, Promises and async/await
+
+what are promises in javascript ?
+--------------------------------------------------
+A promise in JavaScript is an object that represents the eventual completion or failure of an asynchronous operation. It is used for handling asynchronous operations, such as making API calls or reading files
+
+- demo
+    const myPromise = new Promise((resolve, reject) => {
+    // Simulate an asynchronous operation
+        setTimeout(() => {
+            const success = true; // or false to simulate failure
+            if (success) {
+            resolve('Operation successful!');
+            } else {
+            reject('Operation failed.');
+            }
+        }, 1000); // 1 second delay
+    });
+
+what are classes and object in javascript ?
+--------------------------------------------------
+
+What is the purpose of "this" in javascript ?
+--------------------------------------------------
+
+What is hoisting in javascript ?
+--------------------------------------------------
+
+
+--------------------------------------------------
+
+
+--------------------------------------------------
+
+
+--------------------------------------------------
+
+
+--------------------------------------------------
+
+
+--------------------------------------------------
+
