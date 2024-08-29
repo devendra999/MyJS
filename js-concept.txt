@@ -309,6 +309,16 @@ Each object in JavaScript has a prototype property that refers to another object
     // Check the prototype of alice
     console.log(Object.getPrototypeOf(alice) === Person.prototype); // Outputs: true
 
+- another demo
+
+    let myName = "hitesh     "
+   let mychannel = "chai     "
+   String.prototype.trueLength = function() {
+       console.log(this.trim().length);
+   }
+   console.log(myName.trueLength()); // 6
+   console.log(mychannel.trueLength()); // 4
+
 
 --------------------------------------------------
 
