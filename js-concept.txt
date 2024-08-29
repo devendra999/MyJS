@@ -153,18 +153,161 @@ A promise in JavaScript is an object that represents the eventual completion or 
 
 what are classes and object in javascript ?
 --------------------------------------------------
+classes and objects are fundamental concepts used to create and manage structured data and functionality.
+
+1. Object
+      Objects in JavaScript are collections of key-value pairs. They are used to group related data and functions together, 
+      const person = {
+          name: 'Alice',
+          age: 30,
+          greet: function() {
+              console.log('Hello, ' + this.name);
+          }
+      };
+  
+      person.greet(); // Outputs: Hello, Alice
+  
+      // Using the new Object() Syntax: (Just learning purpose)
+      const person = new Object();
+      person.name = 'Bob';
+      person.age = 25;
+      person.greet = function() {
+          console.log('Hello, ' + this.name);
+      };
+  
+      person.greet(); // Outputs: Hello, Bob
+
+2. Classes
+Classes in JavaScript provide a more structured and traditional approach to creating objects and managing their data and behavior. They are syntactical sugar over JavaScript's existing prototype-based inheritance
+
+     class Person {
+       constructor(name, age) {
+         this.name = name;
+         this.age = age;
+       }
+     
+       greet() {
+         console.log('Hello, ' + this.name);
+       }
+     }
+     
+     const alice = new Person('Alice', 30);
+     alice.greet(); // Outputs: Hello, Alice
+
+
+
 
 What is the purpose of "this" in javascript ?
 --------------------------------------------------
+Alone, this refers to the global object.
+In a function, this refers to the global object.
+In a function, in strict mode, this is undefined.
+
+    "use strict";
+    let x = this; // this refer to window object
+
+    "use strict";
+    function myFunction() {
+        return this; // this is undefined
+    }
+
+    const person = {
+        firstName: "John",
+        lastName: "Doe",
+        id: 5566,
+        fullName : function() {
+          return this.firstName + " " + this.lastName; // this refer to person object
+        }
+      };
 
 What is hoisting in javascript ?
 --------------------------------------------------
+Hoisting in JavaScript is a behavior where variable and function declarations are moved to the top of their containing scope during the compilation phase, before the code is executed. This means that you can reference variables and functions before they are actually declared in the code.
 
 
+    1. Variable Hoisting:
+
+            console.log(myVar); // Outputs: undefined
+            var myVar = 5;
+            console.log(myVar); // Outputs: 5
+
+            console.log(myLet); // Throws ReferenceError: Cannot access 'myLet' before initialization
+            let myLet = 10;
+
+            console.log(myConst); // Throws ReferenceError: Cannot access 'myConst' before initialization
+            const myConst = 15;
+
+    2. Function Hoisting:
+
+            // Example with Function Declarations:
+            console.log(myFunction()); // Outputs: 'Hello'
+            function myFunction() {
+                 return 'Hello';
+            }
+
+            // Example with Function Expressions:
+            console.log(myFunc); // Outputs: undefined
+            var myFunc = function() {
+                 return 'Hello';
+            };
+
+    3. Class Hoisting:
+
+        const obj = new MyClass(); // Throws ReferenceError: Cannot access 'MyClass' before initialization
+        class MyClass {
+            constructor() {
+                console.log('Class instance created');
+            }
+        }
+
+
+Difference between function declaration and function Expression
 --------------------------------------------------
+    1. syntax
+    Function Declaration: function functionName() { ... }
+    Function Expression: const functionName = function() { ... }
+
+    2. hoisting
+            // Example with Function Declarations:
+            console.log(myFunction()); // Outputs: 'Hello'
+            function myFunction() {
+                 return 'Hello';
+            }
+
+            // Example with Function Expressions:
+            console.log(myFunc); // Outputs: undefined
+            var myFunc = function() {
+                 return 'Hello';
+            };
 
 
+prototypes
 --------------------------------------------------
+Prototype: Every JavaScript object has a prototype. The prototype is also an object and serves as a blueprint for the object, allowing it to inherit properties and methods from the prototype.
+
+Each object in JavaScript has a prototype property that refers to another object. This object can have properties and methods that are inherited by the original object.
+
+- demo
+
+    // Define a constructor function
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Add a method to the Person prototype
+    Person.prototype.greet = function() {
+        console.log('Hello, my name is ' + this.name);
+    };
+
+    // Create an instance of Person
+    const alice = new Person('Alice', 30);
+
+    // Call the prototype method
+    alice.greet(); // Outputs: Hello, my name is Alice
+
+    // Check the prototype of alice
+    console.log(Object.getPrototypeOf(alice) === Person.prototype); // Outputs: true
 
 
 --------------------------------------------------
