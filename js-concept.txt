@@ -320,11 +320,60 @@ Each object in JavaScript has a prototype property that refers to another object
    console.log(mychannel.trueLength()); // 4
 
 
+
+Curring function
 --------------------------------------------------
+Currying is a technique in JavaScript where a function that takes multiple arguments is transformed into a sequence of functions, each taking one argument. This allows you to call the function with fewer arguments at a time and build up to the final result.
 
+function curriedAdd(a) {
+    return function(b) {
+        return function(c) {
+            return a + b + c;
+        };
+    };
+}
+
+
+CallBack Hell 
+--------------------------------------------------
+Callback hell is a situation in JavaScript where multiple nested callbacks create deeply indented and hard-to-read code, making it difficult to manage and maintain. for solve this situation we can use promises.
+
+setTimeout(()=>{
+    console.log(`1️⃣ works is done`);    
+    setTimeout(()=>{
+        console.log(`2️⃣ works is done`); 
+        setTimeout(()=>{
+            console.log(`3️⃣ works is done`);  
+            setTimeout(()=>{
+                console.log(`4️⃣ works is done`); 
+                setTimeout(()=>{
+                    console.log(`5️⃣ works is done`);   
+                    setTimeout(()=>{
+                        console.log(`6️⃣ works is done`);    
+                    }, 1000) 
+                }, 1000)   
+            }, 1000)  
+        }, 1000)   
+    }, 1000)
+}, 1000)
+
+
+Object literals
+--------------------------------------------------
+object literal is a way to define and create objects using a straightforward and concise syntax. An object literal consists of a list of key-value pairs enclosed in curly braces.
+
+- demo 
+    1. let name = "Devendra"
+        let obj {
+            name // In case of name: name
+        }
+  
+    2. let n = "Student"
+        let obj {
+            [n] : Yahoo baba // here n is a student
+        }
+  
+    3. let name = "Devendra"
+       let fullName`my full name is ${name}`
 
 --------------------------------------------------
-
-
---------------------------------------------------
-
