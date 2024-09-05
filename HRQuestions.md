@@ -47,3 +47,8 @@ weakness
 work in teams
 sometimes over confidence
 
+
+leave reason for 
+------------------------------------------------------------
+turabit : When I joined the company I told hr I need 2 weeks leave in future. hr told me ok you can take. When I took permission for leave they were refused and I took leave and they were terminated me.
+
