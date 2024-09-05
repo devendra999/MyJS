@@ -50,6 +50,7 @@ sometimes over confidence
 
 leave reason for 
 ------------------------------------------------------------
-turabit : When I joined the company I told hr I need 2 weeks leave in future. hr told me ok you can take. When I took permission for leave they were refused and I took leave and they were terminated me.
-webcreta : After a few months, they were told me you have to come to the office twice a month on Saturday without any reason, so I left the company at that time.
+Azure    : Left the company due to lack of project and I want to improve my skils and knowledge
+turabit  : I was at Turabit solution for six months. I realized that the job wasn’t a good fit for my career goals. because there I was worked in angular JS old version
+webcreta : I was at Webcreta technology for Ten months. Hr told me 5 working days company, But after a few months, they were told me you have to come to the office twice a month on Saturday, so I left the company at that time.
 
