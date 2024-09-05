@@ -50,7 +50,7 @@ sometimes over confidence
 
 leave reason for 
 ------------------------------------------------------------
-Azure    : Left the company due to lack of project and I want to improve my skils and knowledge
+Azure    : Left the company due to lack of project, I sit free most of the time, and I want to improve my skils and knowledge
 
 turabit  : I was at Turabit solution for six months. I realized that the job wasn’t a good fit for my career goals. because there I was worked in angular JS old version
 
