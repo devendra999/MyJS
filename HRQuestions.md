@@ -51,4 +51,5 @@ sometimes over confidence
 leave reason for 
 ------------------------------------------------------------
 turabit : When I joined the company I told hr I need 2 weeks leave in future. hr told me ok you can take. When I took permission for leave they were refused and I took leave and they were terminated me.
+webcreta : After a few months, they were told me you have to come to the office twice a month on Saturday without any reason, so I left the company at that time.
 
