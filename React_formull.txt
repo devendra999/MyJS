@@ -17,6 +17,31 @@ useSyncExternalStore
 
 
 
+
+
+
+
+Difference between function and class componet
+---------------------------------------------------
+functional
+    - A functional component is just a plain JavaScript pure function that accepts props as an argument and returns a React element(JSX).	
+
+    - There is no render method used in functional components.	
+
+    - Constructors are not used.	
+
+class
+    - A class component requires you to extend from React. Component and create a render function that returns a React element.
+
+    - It must have the render() method returning JSX (which is syntactically similar to HTML)
+
+    - Constructor is used as it needs to store state. 
+
+
+
+
+
+
 Conditionally returning JSX 
 -----------------------------------------
 if (isPacked) {
