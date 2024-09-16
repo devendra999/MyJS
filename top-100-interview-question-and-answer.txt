@@ -834,3 +834,53 @@
             // JavaScript uses a Call Stack to track the functions in a program. The call stack works on the Last In, First Out (LIFO) principle. This means that the most recently called function will be the first to be completed. 
 
 </script>
+
+
+
+1. given a string, reverse each world in the sentence ?
+    
+    var str = "hello dev bro";
+    var savedString = str.split(" ").map((word) => {
+        return word.split('').reverse().join('');
+    });
+    var console.log(savedString.join(' '));
+
+
+2. How to check if an Object is an array or not ? Provide some code.
+    Array.isArray(elem);
+
+3. How to empty an array in javascript ? do not reset it to a new array and do not loop through to pop each value
+    var arr = [1,5,8,6,7,5,4]
+    arr.length = 0;
+
+4. how to check a number is an integer ?
+
+    var a = 12;
+    if(a%1 === 0) {
+        console.log("it is integer");
+    } else {
+        console.log("it not integer");
+    }
+
+    OR 
+
+    Number.isInteger(a);
+
+5. Make this work : duplicate([1,2,3,4]); // [1,2,3,4,1,2,3,4]
+
+    var array = [1,2,3,4];
+    function duplicate(array) {
+        return array.concat(array);
+    }
+
+6. write a javascript that reverse a number ?
+    function reverseKaro(num) {
+        return Number(num.toString().split('').reverse().join(''));
+    }
+
+7. write a javascript function that checkts wheather a passed string is palindrome or not ?
+
+
+8. write a javascript function that return a passed string with letters in alphabetical order
+
+9. 
