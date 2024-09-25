@@ -929,3 +929,77 @@
 
     // generate Odd  numbers
     Array.from({length:5}, (it, i) => i*2+1 )
+
+
+// 4 digit generate otp
+const r = Math.random();
+const otp = Math.round(r*9000+1000);
+
+
+
+// In arrow function this is undefined
+    function say () {
+        return this.name;
+    }
+
+    const tell = () => {
+        return this.name;
+    }
+
+    const person = {
+        name: 'john',
+        age: 23,
+        say,
+        tell
+    }
+
+    console.log(person.say()) //john
+    console.log(person.tell()) //undefined
+
+
+// Here array concated but object can change value
+    const obj = {x:1,y:2,z:3}
+    const newObj = {...obj, z: 4} // {x:1,y:2,z:4}
+
+    const obj = {x:1,y:2,z:3}
+    const newObj = {...obj, e: 4} // {x:1,y:2,z:3,e:4}
+
+
+// slice vs splice
+    // slice not updated original array, splice changed original array
+    // splice can also added value
+    const arr = ["a", "b", "c", "d", "e"];
+    const dd = arr.slice(1); // [ 'b', 'c', 'd', 'e' ]
+
+    const arr = ["a", "b", "c", "d", "e"];
+    const dd = arr.slice(2, 3); // [ 'c']
+
+
+// array sorting number or string
+    const arr = [1,4,3,2,7,2]
+    const arr2 = ['adc', 'aaa', 'acb']
+
+    arr.sort((a,b) => {
+        return a-b;
+    })
+    arr2.sort((a,b) => {
+        return (a>b)-(a<b);
+    })
+    console.log(arr); // [ 1, 2, 2, 3, 4, 7 ]
+    console.log(arr2); // [ 'aaa', 'acb', 'adc' ]
+
+    
+// tricky question
+    var b=1;
+    function outer() {
+        var b = 2;
+        function inner () {
+            console.log(b); // undefined
+            b++;
+            console.log(b);  // Nan
+            var b = 3;
+            console.log(b);  // 3
+        }
+        inner();
+    }
+    outer();
