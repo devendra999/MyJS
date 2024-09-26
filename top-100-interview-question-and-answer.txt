@@ -1003,3 +1003,23 @@ const otp = Math.round(r*9000+1000);
         inner();
     }
     outer();
+
+
+// bind vs call vs apply
+    function say(title="Mr") {
+        return title+' 'this.name;
+    }
+    const person = {
+        name: 'john',
+        age: 30
+    }
+
+    const tell = say.bind(person);
+    console.log(tell()); // function bind with new context
+
+    console.log(say.call(person, 'mrs')); // add new arg
+ 
+    console.log(say.apply(person, ['mrs']));   // add new arg in array
+
+
+    
