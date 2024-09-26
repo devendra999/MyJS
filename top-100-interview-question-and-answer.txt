@@ -40,8 +40,25 @@
 </script>
 
 <script>
-    //  let data = { name: "Devendra" };
-    //  console.log(delete data.name); // true // here data value delete hota he isisliye
+    // Delete
+            //  let data = { name: "Devendra" };
+            //  console.log(delete data.name); // true // here data value delete hota he isisliye
+        
+            var employe = {
+                company: 'xyz',
+                name: 'deve'
+            }
+            var charts = ['x', 'y', 'z', 'c', 'd']
+            delete employe.age;
+            console.log(employe.age)  // 10
+            
+            delete employe.name; // delete work only it's own object
+            console.log(employe); // {company: 'xyz'}
+            
+            delete charts[2];
+            console.log(charts) // ['x', 'y', '', 'c', 'd']
+    
+
 </script>
 
 <script>
