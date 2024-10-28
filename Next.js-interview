@@ -460,20 +460,20 @@ Event
 
 What is an event loop in JavaScript ?
 ---------------------------------------
-    the event loop is a fundamental mechanism that enables the asynchronous execution of code. It’s an essential part of the JavaScript runtime environment, allowing the language to handle non-blocking operations efficiently. The event loop is responsible for managing the execution of code, handling events, and maintaining the flow of control.
-    
-    Call Stack:
-        JavaScript uses a call stack to keep track of the currently executing function (where the program is in its execution).
-    Callback Queue:
-        Asynchronous operations, such as I/O operations or timers, are handled by the browser or Node.js runtime. When these operations are complete, corresponding functions (callbacks) are placed in the callback queue.
-    Event Loop:
-        The event loop continuously checks the call stack and the callback queue. If the call stack is empty, it takes the first function from the callback queue and pushes it onto the call stack for execution.
-    Execution:
-        The function on top of the call stack is executed. If this function contains asynchronous code, it might initiate further asynchronous operations.
-    Callback Execution:
-        When an asynchronous operation is complete, its callback is placed in the callback queue.
-    Repeat:
-        The event loop continues this process, ensuring that the call stack is always empty before taking the next function from the callback queue.
+    What is an event loop in JavaScript ?
+---------------------------------------
+The event loop is a core concept in JavaScript that enables non-blocking, asynchronous behavior in a single-threaded environment. Here’s a breakdown of how it works:
+
+How the Event Loop Works
+    1. Single Threaded: JavaScript executes in a single-threaded environment, meaning only one operation can run at a time. However, it can handle multiple operations by offloading tasks to the browser or Node.js APIs.
+
+    2. Call Stack: When functions are called, they are added to the call stack. The JavaScript engine executes functions from the top of the stack and removes them once they complete.
+
+   .3. Web APIs: Asynchronous functions (like setTimeout, HTTP requests, etc.) are sent to Web APIs (in the browser) or Node.js APIs. These functions run in the background, and when they complete, they send their callback functions to the callback queue.
+
+    4. Callback Queue: When the call stack is empty (all synchronous tasks are complete), the event loop checks the callback queue. If there are any callback functions waiting in the queue, it pushes them onto the call stack for execution.
+
+    5. Event Loop: The event loop continuously checks if the call stack is empty and moves tasks from the callback queue to the call stack. This allows JavaScript to manage asynchronous operations effectively without blocking the main execution thread.
 
 
 
