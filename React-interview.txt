@@ -175,7 +175,9 @@ medium level
     const node = this.myCallRef.current;
 
 8. What are hooks in React?
-    Hooks are a new addition in React 16.8. They let developers use state and other React features without writing a class. Hooks doesn’t violate any existing React concepts. Instead, Hooks provide a direct API to react concepts such as props, state, context, refs and life-cycle
+    In React, Hooks are functions that allow you to "hook into" React's state and lifecycle features from functional components. They were introduced in React 16.8 to make it easier to manage state, side effects, context, and other React features without needing to write class components. Hooks enable you to write more modular and reusable code in functional components.
+
+Before hooks, state and lifecycle methods could only be used in class components. Hooks eliminate this limitation, making functional components just as powerful and flexible as class components.
 
 9. Explain the useState hook in React?
     The most used hook in React is the useState() hook. It allows functional components to manipulate DOM elements before each render. Using this hook we can declare a state variable inside a function but only one state variable can be declared using a single useState() hook. Whenever the useState() hook is used, the value of the state variable is changed and the new variable is stored in a new cell in the stack.
