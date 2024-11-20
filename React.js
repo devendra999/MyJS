@@ -1,3 +1,11 @@
+virtual dom how work ?
+--------------------------------------------------------------------------------
+    lightweight copy of the real DOM in memory
+    
+    When a React app is first rendered, React creates a Virtual DOM based on the component tree.
+    React then compares the Virtual DOM with the real DOM to determine what changes need to be made.
+    The result of this comparison is a set of changes (or "diffs"), which are then applied to the real DOM.
+
 What is React js
 --------------------------------------------------------------------------------
     React is a JavaScript library for building user interfaces. React is used to build single - page applications. React allows us to create reusable UI components.
