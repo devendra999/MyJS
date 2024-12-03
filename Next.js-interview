@@ -790,6 +790,51 @@ Promises
 
 
 
+* difference between Context API and the useContext hook
+--------------------------------------------------------------------------
+The main difference between Context API and the useContext hook is that Context API can be used in both class and functional components, while the useContext hook is restricted to functional components: 
+
+
+
+
+* difference between forin and for of loop
+--------------------------------------------------------------------------
+forin - Iterates over keys or property names	
+        Suitable for iterating object properties
+        Iterates over array indices (not values)	
+        Objects, arrays, and other enumerable types	
+
+    demo
+        const person = { name: 'Alice', age: 25 };
+        for (let key in person) {
+            console.log(key);  // 'name' and 'age'
+            console.log(person[key]);  // 'Alice' and '25'
+        }
+    
+
+forof - Iterates over values of iterable objects
+Not suitable for iterating object properties
+Iterates over array values
+Arrays, strings, maps, sets, and other iterables
+
+
+
+* Differences Between for-in and for-of Statement in JavaScript
+--------------------------------------------------------------------------
+The main difference between map and forEach is that map returns a new array with the results of the function applied to each element, while forEach does not return anything. Both map and forEach can modify the original array if the callback function modifies its elements.8 Sept 2023
+
+// Using forEach
+const arr1 = [1, 2, 3];
+arr1.forEach(num => console.log(num * 2)); 
+// Output: 2, 4, 6 (prints each value but returns undefined)
+
+// Using map
+const arr2 = [1, 2, 3];
+const newArr = arr2.map(num => num * 2);
+console.log(newArr); 
+// Output: [2, 4, 6] (returns a new array with transformed values)
+
+
 
 
 
