@@ -181,7 +181,21 @@ console.log('' === false); // false
 
 ------------
 
+function outer() {
+  let count = 0;
+  return function inner() {
+    count++;
+    console.log(count);
+  };
+}
 
+const first = outer();
+const second = outer();
+
+first();  // 1
+first();  // 2
+second(); // 1
+first();  // 3
 
 ------------
 
