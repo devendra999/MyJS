@@ -725,7 +725,21 @@ However, when we stringify an object, it becomes "[object Object]". So what we a
 
 Then, we log a[b], which is actually a["[object Object]"]. We just set that to 456, so it returns 456.
 -------------------------
-
+<div onclick="console.log('first div')">
+  <div onclick="console.log('second div')">
+    <button onclick="console.log('button')">
+      Click!
+    </button>
+  </div>
+</div>
+note : An array of all nested elements.
+--------------------------------
+<div onclick="console.log('div')">
+    <p onclick="console.log('p')">
+      Click here!
+    </p>
+  </div>
+  note : p div
 -------------------------
 
 
