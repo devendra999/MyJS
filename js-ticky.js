@@ -534,6 +534,378 @@ first();  // 3
 
 
 
+https://github.com/lydiahallie/javascript-questions/blob/master/README.md
+
+function sayHi() {
+    console.log(name);
+    console.log(age);
+    var name = 'Lydia';
+    let age = 21;
+  }
+  
+  sayHi(); // undefined and ReferenceError
+
+
+
+-------------------------
+for (var i = 0; i < 3; i++) {
+    setTimeout(() => console.log(i), 1);
+  } // 3 3 3 
+  
+  for (let i = 0; i < 3; i++) {
+    setTimeout(() => console.log(i), 1);
+  } // 0 1 2
+
+-------------------------
+
+
++true; // 1
+!'Lydia'; // false
+
+
+-------------------------
+const bird = {
+    size: 'small',
+  };
+  
+  const mouse = {
+    name: 'Mickey',
+    small: true,
+  };
+
+// A: mouse.bird.size is not valid
+// B: mouse[bird.size] is valid // true
+// C: mouse[bird["size"]] is valid // true
+
+-------------------------
+
+let a = 3;
+let b = new Number(3);
+let c = 3;
+
+console.log(a == b); // true
+console.log(a === b); // false
+console.log(b === c); // false
+
+
+-------------------------
+
+let greeting;
+greetign = {}; 
+console.log(greetign); // {}
+
+-------------------------
+
+greetign = 3; 
+console.log(greetign); // 3
+
+-------------------------
+
+function Person(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+  const member = new Person('Lydia', 'Hallie');
+  Person.getFullName = function() {
+    return `${this.firstName} ${this.lastName}`;
+  };
+  console.log(member.getFullName()); // TypeError
+
+-------------------------
+
+    function Person(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    const member = new Person('Lydia', 'Hallie');
+    console.log(member); // Person { firstName: 'Lydia', lastName: 'Hallie' }
+
+-------------------------
+
+function Person(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+  
+  const member = new Person('Lydia', 'Hallie');
+  const sarah = Person('sarah', 'Tendulkar');
+
+  
+  console.log(member); // Person { firstName: 'Lydia', lastName: 'Hallie' }
+  console.log(sarah); // undefined
+
+-------------------------
+
+let number = 0;
+console.log(number++); // 0
+console.log(++number); // 2
+console.log(number); // 2
+
+-------------------------
+
+function checkAge(data) {
+    if (data === { age: 18 }) {
+      console.log('You are an adult!');
+    } else if (data == { age: 18 }) {
+      console.log('You are still an adult.');
+    } else {
+      console.log(`Hmm.. You don't have an age I guess`);
+    }
+  }
+  
+  checkAge({ age: 18 }); // This is why both { age: 18 } === { age: 18 } and { age: 18 } == { age: 18 } return false.
+
+-------------------------
+
+function getAge(...args) {
+    console.log(typeof args);  // object : The rest parameter (...args) lets us "collect" all remaining arguments into an array. An array is an object, so typeof args returns "object"
+  }
+  
+  getAge(21); 
+
+-------------------------
+
+function getAge() {
+    'use strict';
+    age = 21;
+    console.log(age);  // using 'use strict' get ReferenceError
+  }
+  
+  getAge();
+
+-------------------------
+
+const sum = eval('10*10+5');
+
+-------------------------
+sessionStorage.setItem('cool_secret', 123);
+-------------------------
+
+const obj = { 1: 'a', 2: 'b', 3: 'c' };
+const set = new Set([1, 2, 3, 4, 5]);
+
+obj.hasOwnProperty('1'); // true
+obj.hasOwnProperty(1); // true
+set.has('1'); // false
+set.has(1); // true
+
+-------------------------
+const obj = { a: 'one', b: 'two', a: 'three' };
+console.log(obj); // { a: "three", b: "two" }
+-------------------------
+
+for (let i = 1; i < 5; i++) {
+    if (i === 3) continue;
+    console.log(i);  // 1,2,4 : The continue statement skips an iteration if a certain condition returns true.
+  }
+
+-------------------------
+
+String.prototype.giveLydiaPizza = () => {
+    return 'Just give Lydia pizza already!';
+  };
+  
+  const name = 'Lydia';
+  
+  console.log(name.giveLydiaPizza())  // 'Just give Lydia pizza already!'
+
+-------------------------
+
+const a = {};
+const b = { key: 'b' };
+const c = { key: 'c' };
+
+a[b] = 123;
+a[c] = 456;
+
+console.log(a[b]); // 456
+note : Object keys are automatically converted into strings. We are trying to set an object as a key to object a, with the value of 123.
+
+However, when we stringify an object, it becomes "[object Object]". So what we are saying here, is that a["[object Object]"] = 123. Then, we can try to do the same again. c is another object that we are implicitly stringifying. So then, a["[object Object]"] = 456.
+
+Then, we log a[b], which is actually a["[object Object]"]. We just set that to 456, so it returns 456.
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
+-------------------------
+
+
+
+-------------------------
+
 
 
 
