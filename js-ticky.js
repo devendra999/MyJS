@@ -1,3 +1,240 @@
+given a string, reverse each word in the sentence
+----------------------
+    var str = "saare jahn se acha hindustan hamara"
+    var savedStr = str.split(" ").map((word) => word.split("").reverse().join(""))
+    console.log(savedStr.join(" "));
+
+
+how to check if an object is an array or not? provide some code
+----------------------
+    function checkArray(elem) {
+        return Array.isArray(elem);
+    }
+    console.log(checkArray([]));
+    console.log(checkArray({}));
+
+
+
+how to empty an array in javascript. do not reset it and loop
+----------------------
+    var array = ["hello", "world"];
+
+    array.length = 0;
+
+
+how would you check if a number is an intiger ?
+----------------------
+var a = 12;
+if(a % 1 === 0) {
+    console.log("integer")
+} else {
+    console.log("not integer")
+}
+
+
+make this work duplicate  duplicatearray[1,2,3,4,5,1,2,3,4,5]
+----------------------
+var a = [1,2,3]
+a.concat(a)
+
+
+write javascript function that reverse a number
+----------------------
+function numberReverse(num) {
+    return Number(num.toString().split("").reverse().join(""))
+}
+
+write javascript function that checks whether passed string is palindrom or not ?
+----------------------
+    function palindromChecker(str) {
+        var reversed = str.split("").reverse().join("");
+        if(reversed === str)return true
+        else return false
+    }
+    console.log(palindromChecker("poop"))
+    console.log(palindromChecker("loop"))
+
+
+
+write javascript function that return a passed string with letters in alphabetical order
+----------------------
+function stringAlphbet(str) {
+    return str.split("").sort().join("");
+}
+console.log(stringAlphbet("Devendra"))
+console.log(stringAlphbet("Hello"))
+
+
+write javascript function that accept  a string as a parameter and convert the first letter of each word of the string in uppercase 
+----------------------
+function capitaliseKaro(str) {
+    var allwords = str.split(" ").map((word) =>{
+        return  word.charAt(0).toUpperCase() + word.substring(1)
+    });
+    return allwords.join(" ")
+}
+
+capitaliseKaro("devendra kaise ho");
+
+
+write javascript function to get the number of occurences of each letter in specified string
+----------------------
+function occurencesStr(str) {
+    var occurences = {};
+    str.split("").forEach(function(elem) {
+        if(occurences.hasOwnProperty(elem) === false) {
+            occurences[elem] = 1;
+        } else {
+            occurences[elem]++;
+        }
+    })
+    return occurences;
+}
+console.log(occurencesStr("apple"));
+
+
+loop an array and add all numbers of it
+----------------------
+var arr = [1,5,6,8,7];
+
+var sum = 0;
+arr.forEach(function(elem) {
+    sum = sum + elem
+})
+
+
+in an array of numbers and strings, only add those numbers which are not strings
+----------------------
+var arr = ["dfdf", 12, "dfdf", 4, 5, "dfe", 3];
+var sum = 0;
+
+arr.forEach((function(elem) {
+    if(typeof elem === "number") sum = sum + elem
+}))
+
+loop an array of objects and remove all objects which don't have gender's value male
+----------------------
+var arr = [
+    {
+        name: "devendra",
+        gender: 'male'
+    },
+    {
+        name: "shivani",
+        gender: 'female'
+    },
+    {
+        name: "ashoki",
+        gender: 'nonspecified'
+    },
+    {
+        name: "avinya",
+        gender: 'female'
+    }
+]
+
+var newArr = arr.filter((e) => e.gender === 'male')
+
+write a javascript function clone an array
+----------------------
+function cloneArray(arr) {
+    return arr.map((e) => e)
+}
+
+var newArray = cloneArray([1,2,3]);
+
+
+write a javascript function which accept an argument and return the type
+note: there are six possible values that type of return : object,boolean, function, number, string and undefined
+----------------------
+function typeTeller(elem) {
+    return typeof elem;
+}
+
+console.log(typeTeller([]));
+console.log(typeTeller(12));
+console.log(typeTeller("12"));
+console.log(typeTeller(true));
+console.log(typeTeller(undefined));
+console.log(typeTeller(function(){}));
+
+
+write a javascript function to get the first element of an array. passing a parameter 'n' will return the first 'n' elements  of the array.
+----------------------
+function retrive(arr, n=1) {
+    if(n <= arr.length) {
+        for(var i = 0; i<n; i++) {
+            console.log(arr[i]);
+        }
+    } else {
+        console.log(n+ "to elements nahi he")
+    }
+}
+retrive([1,2,3,4,5], 4)
+
+
+write a javascript function to get the last element of an array. passing a parameter 'n' will return the last 'n' elements  of the array.
+----------------------
+function retrive(arr, n=1) {
+    if(n <= arr.length) {
+        for(var i = 0; i<n; i++) {
+            console.log(arr[arr.length - 1 - i]);
+        }
+    } else {
+        console.log(n+ "to elements nahi he")
+    }
+}
+retrive([1,2,3,4,5], 2)
+
+
+write a javascript function to find the most frequent item of an array // kon sa item jyada bar he
+----------------------
+function frequency(arr) {
+    var frq = {};
+    arr.forEach(function(elem) {
+        if(frq.hasOwnProperty(elem)) frq[elem]++;
+        else frq[elem] = 1;
+    })
+    var ans = Object.keys(frq).reduce(function(acc, num) {
+        return frq[acc] > frq[num] ? acc : num;
+    });
+    console.log(ans)
+}
+frequency([1,2,3,4,5,6,7,84,24,2,43,5,1,2,1,1,1,2]);
+
+
+write a javascript function to shuffle an array // position change karna
+----------------------
+function suffleKaro(arr) {
+    var totalSuffleArea = arr.length;
+    while(totalSuffleArea > 0) {
+        totalSuffleArea--;
+        var indexTobeExchanged = Math.floor(Math.random() * totalSuffleArea);
+        var temp = arr[totalSuffleArea];
+        arr[totalSuffleArea] = arr[indexTobeExchanged];
+        arr[indexTobeExchanged] = temp;
+    }
+    return arr;
+}
+console.log(suffleKaro([1,2,3,4,5,6,7]));
+
+
+write a javascript program to compute the union of two arrays 
+----------------------
+function union(arr1, arr2){
+    return [...new Set(arr1.concat(arr2))];
+}
+console.log(union([1,2,3,1,2], [5,1,2,4,6]))
+
+OR
+
+function union(arr1, arr2){
+    return [...new Set([...arr1, ...arr2])];
+}
+console.log(union([1,2,3,1,2], [5,1,2,4,6]))
+
+
+
 const obj = {
     a: 1,
     b: 2,
