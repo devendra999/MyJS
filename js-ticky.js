@@ -742,13 +742,137 @@ note : An array of all nested elements.
   note : p div
 -------------------------
 
+const person = { name: 'Lydia' };
 
+function sayHi(age) {
+  return `${this.name} is ${age}`;
+}
+
+console.log(sayHi.call(person, 21)); // Lydia is 21
+console.log(sayHi.bind(person, 21)); // function
+-------------------------
+function sayHi() {
+  return (() => 0)();
+}
+
+console.log(typeof sayHi()); // number : immideate function call and return return a number
 
 -------------------------
+console.log(typeof typeof 1); // number
 
 -------------------------
+(() => {
+  let x, y;
+  try {
+    throw new Error();
+  } catch (x) {
+    (x = 1), (y = 2);
+    console.log(x);  // 1 // This is the value of the local `x` inside the `catch` block
+  }
+  console.log(x); // undefined  // This is the value of the outer `x`, which was never assigned
+  console.log(y); // 2 // This is the value of `y`, which was set to 2 in the `catch` block
+})();
+
+-------------------------
+[...'Lydia']; // ["L", "y", "d", "i", "a"]
+
+-------------------------
+console.log(mul(2)(3)(4)); // output : 24
+-------------------------
+
+[] == ![]; // -> true
+
+true == []; // -> false
+true == ![]; // -> false
+
+false == []; // -> true
+false == ![]; // -> true
+
+// true is 'truthy' and represented by value 1 (number), 'true' in string form is NaN.
+true == "true"; // -> false
+false == "false"; // -> false
+
+// 'false' is not the empty string, so it's a truthy value
+!!"false"; // -> true
+!!"true"; // -> true
+
+"b" + "a" + +"a" + "a"; // -> 'baNaNa'
+
+"foo" + +"bar"; // -> 'fooNaN'
+
+NaN === NaN; // -> false
+
+Object.is(NaN, NaN); // -> true
+NaN === NaN; // -> false
+
+Object.is(-0, 0); // -> false
+-0 === 0; // -> true
+
+Object.is(NaN, 0 / 0); // -> true
+NaN === 0 / 0; // -> false
+
++![]          // -> 0
++!![]         // -> 1
+!![]          // -> true
+![]           // -> false
+[][[]]        // -> undefined
++!![] / +![]  // -> Infinity
+[] + {}       // -> "[object Object]"
++{}           // -> NaN
+
+[1, 2, 3] + [4, 5, 6]; // -> '1,2,34,5,6'
 
 
+[] == ''   // -> true
+[] == 0    // -> true
+[''] == '' // -> true
+[0] == 0   // -> true
+[0] == ''  // -> false
+[''] == 0  // -> true
+
+[null] == ''      // true
+[null] == 0       // true
+[undefined] == '' // true
+[undefined] == 0  // true
+
+[[]] == 0  // true
+[[]] == '' // true
+
+[[[[[[]]]]]] == '' // true
+[[[[[[]]]]]] == 0  // true
+
+[[[[[[ null ]]]]]] == 0  // true
+[[[[[[ null ]]]]]] == '' // true
+
+[[[[[[ undefined ]]]]]] == 0  // true
+[[[[[[ undefined ]]]]]] == '' // true
+
++true; // -> 1
+
+typeof NaN; // -> 'number'
+
+typeof []; // -> 'object'
+typeof null; // -> 'object'
+
+1 < 2 < 3; // -> true
+3 > 2 > 1; // -> false
+
+3  - 1  // -> 2
+3  + 1  // -> 4
+'3' - 1  // -> 2
+'3' + 1  // -> '31'
+
+'' + '' // -> ''
+[] + [] // -> ''
+{} + [] // -> 0
+[] + {} // -> '[object Object]'
+{} + {} // -> '[object Object][object Object]'
+
+'222' - -'111' // -> 333
+
+[4] * [4]       // -> 16
+[] * []         // -> 0
+[4, 4] * [4, 4] // NaN
 
 -------------------------
 
