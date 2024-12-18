@@ -525,6 +525,160 @@ first();  // 3
 
 
 ------------
+function outer() {
+  var x = 10;
+  
+  function inner() {
+    console.log(x);
+  }
+  
+  return inner;
+}
+
+var fn = outer();
+fn();  // 10
+
+
+---------------------
+function outer() {
+  var x = 10;
+  
+  setTimeout(function() {
+    console.log(x);
+  }, 0);
+  
+  x = 20;
+}
+
+outer(); // 20
+---------------------
+var a = 1;
+
+function foo() {
+  console.log(a); // undefined  - local scope
+  var a = 2;
+}
+
+foo();
+
+
+---------------------
+function outer() {
+  var x = 1;
+  
+  function inner() {
+    var x = 2;
+    console.log(x); // 2
+  }
+  
+  inner();
+  console.log(x); // 1
+}
+
+outer();
+
+
+---------------------
+
+function outer() {
+  var x = 1;
+  
+  function inner() {
+    console.log(x); // 2
+  }
+  
+  setTimeout(inner, 1000);
+  
+  x = 2;
+}
+
+outer();
+
+
+---------------------
+
+console.log(foo()); // Typeerror : foo is not a function
+
+var foo = function() {
+  return "Hello, World!";
+};
+console.log(foo()); // Hello, World!
+
+---------------------
+function createFunctions() {
+  var functions = [];
+  
+  for (var i = 0; i < 3; i++) {
+    functions[i] = function() {
+      console.log(i);
+    };
+  }
+  
+  return functions;
+}
+
+var funcs = createFunctions();
+funcs[0](); // 3
+funcs[1](); // 3
+funcs[2](); // 3
+
+---------------------
+function createFunctions() {
+  var functions = [];
+  
+  for (let i = 0; i < 3; i++) {
+    functions[i] = function() {
+      console.log(i);
+    };
+  }
+  
+  return functions;
+}
+
+var funcs = createFunctions();
+funcs[0](); // 0
+funcs[1](); // 1
+funcs[2](); // 2
+---------------------
+for (var i = 0; i < 3; i++) {
+  setTimeout(function() {
+    console.log(i);
+  }, 1000);
+}
+// output : 333
+
+for (let i = 0; i < 3; i++) {
+  setTimeout(function() {
+    console.log(i);
+  }, 1000);
+}
+// output : 012
+---------------------
+async function foo() {
+  console.log(1);
+  await bar();
+  console.log(2);
+}
+
+async function bar() {
+  console.log(3);
+  return new Promise(resolve => resolve());
+}
+
+foo();
+// output : 132
+---------------------
+console.log(a); // function return
+
+var a = 10;
+
+function a() {
+  console.log("Hello!");
+}
+
+---------------------
+
+---------------------
 
 
 ------------
@@ -534,7 +688,6 @@ first();  // 3
 
 
 
-https://github.com/lydiahallie/javascript-questions/blob/master/README.md
 
 function sayHi() {
     console.log(name);
