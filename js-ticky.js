@@ -933,3 +933,117 @@ console.log([, undefined, "a", "b"].sort()); // ["a", "b", undefined, empty]
 
 -------------------------
 
+  redux used
+------------------------------------------------
+1. Install Dependencies
+    npm install redux react-redux
+
+2. Create Redux Store:
+    import { createStore } from 'redux';
+
+    const initialState = {
+        value: 0,
+    };
+
+    function reducer(state = initialState, action) {
+        switch (action.type) {
+            case 'INCREMENT':
+                return { ...state, value: state.value + 1 };
+            case 'DECREMENT':
+                return { ...state, value: state.value - 1 };
+            default:
+                return state;
+        }
+    }
+                
+    const store = createStore(reducer);
+    export default store;
+                
+3. Provide Redux Store:
+    <Provider store={store}>
+        {children}
+    </Provider>
+
+4. Dispatch Actions in Components
+import { useDispatch, useSelector } from 'react-redux';
+
+const Counter = () => {
+    const dispatch = useDispatch();
+    const value = useSelector(state => state.value);
+    
+    return (
+        <div>
+        <p>{value}</p>
+        <button onClick={() => dispatch({ type: 'INCREMENT' })}>Increment</button>
+        <button onClick={() => dispatch({ type: 'DECREMENT' })}>Decrement</button>
+        </div>
+    );
+};
+
+export default Counter;
+
+
+
+context provider
+------------------------------------------------
+1. Create a Context: 
+2. Create a Context Provider
+3. Consume the Context in a Component: 
+4. Use the Provider in Your App
+
+    full example
+    ---------------
+    import React, { useState, useContext } from 'react';
+
+        // Step 1: Create Context
+        const MyContext = React.createContext();
+
+        // Step 2: Create Context Provider
+        const initialState = {
+            filterProducts: [],
+            gridView: true,
+        };
+        const MyContextProvider = ({ children }) => {
+        const [state, dispatch] = useReducer(reducer, initialState);
+        // OR
+        const [value, setValue] = useState('Hello, World!');
+
+        const setGridView = () => {
+            dispatch({ type: "SET_GRID_VIEW" });
+        };
+
+        return (
+                <MyContext.Provider value={{ value, setValue, setGridView }}>
+                {children}
+                </MyContext.Provider>
+            );
+        };
+
+        // Step 3: Consume the Context in a component
+        const MyComponent = () => {
+            const { value, setValue } = useContext(MyContext);
+
+
+            return (
+                <div>
+                <p>{value}</p>
+                <button onClick={() => setValue('New Value')}>Change Value</button>
+                </div>
+            );
+        };
+
+        // Step 4: Use Provider in the App
+        const App = () => {
+            return (
+                <MyContextProvider>
+                <MyComponent />
+                </MyContextProvider>
+            );
+        };
+
+        export default App;
+
+
+
+
+
