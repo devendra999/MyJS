@@ -1,8 +1,8 @@
 Tell me about your self ?
 ------------------------------------------------------------
 My name is devendra prajapati, I am from ahmedabad.
+I am Frontend Developer, I have seven years of experience as a frontend developer.
 I have completed PGDCA from IGNOU univercity.
-I have seven years of experience as a frontend developer.
 I am good in React, Next, HTMl, CSS, SCSS, Bootstrap, tailwind css, material ui, jquery, javascript
 coming to my family background there are five members in my family, My father work as a color contractor and my mother is housemaker, I have one brother and one sister
 My hobbies are internet surfing, listing music and playing cricket.
