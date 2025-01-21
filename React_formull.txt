@@ -1653,6 +1653,23 @@ Asynchronous callback function vs asynchronous function
   In general, browsers are not capable of reading JSX and only have the capacity to read pure JavaScript. The web browsers read JSX with the help of a transpiler. Transpilers are used to convert JSX into JavaScript. The transpiler used is called Babel
 
 
+Rendering
+--------------------------------------------
+CSR: Client side rendering 
+    In CSR, the web page's HTML is built and rendered in the browser (on the client's device). The browser downloads a basic HTML file, then loads JavaScript to fetch data and render the page dynamically.
+
+    Rendering happens on the client side, using JavaScript.
+
+SSR: Server side rendering - generate on each request
+    In SSR, the server creates the complete HTML for a page and sends it to the browser. This means the page is fully rendered before it reaches the client, allowing it to be displayed faster.
+
+    Rendering happens on the server, then sent to the client on each request.
+
+SSG: Static site Generated - generate on build time
+    SSG generates HTML at build time. The HTML files are pre-built and stored on a server, which means they load extremely fast when requested by a user.
+
+    html, css and js generate on build time
+    HTML is pre-built at build time and served statically
 
 
 
