@@ -17,10 +17,6 @@ useSyncExternalStore
 
 
 
-
-
-
-
 Difference between function and class componet
 ---------------------------------------------------
 functional
@@ -528,9 +524,7 @@ todos.js
 
 Difference between useMemo and useCallback hook
 -----------------------------------------------
-
-    useMemo: Used to memoize the result of a function.
-    useCallback: Used to memoize a function itself.
+  The useCallback and useMemo Hooks are similar. The main difference is that useMemo returns a memoized value and useCallback returns a memoized function.
     
      // Usage:
     
@@ -554,7 +548,7 @@ Difference between useMemo and useCallback hook
 
 useReducer hook
 -----------------------------------------
-// useReducer is very similar to useState, when we have more that one value we can use useReducer hook
+// useReducer is very similar to useState, when we have more that one value we can use useReducer hook. It allows for custom state logic.
 
 import { useReducer } from "react";
 
@@ -926,5 +920,749 @@ export default function App ()  {
     
     return <div>Size : {width}</div>
 }
+
+
+
+// =======================================================================================================================================
+// other js
+// =======================================================================================================================================
+
+
+
+closure
+------------------------------------------------------------------------------------------------------------------
+A closure is the combination of a function. 
+
+closure in action that is inner function can have access to the outer function variables/parameters as well as all the global variables.
+
+    closure example
+    ---------------
+    const outerFunc = (a) => {
+        let b = 10;
+        const innerFunc = () => {
+            let sum = a + b;
+        }
+        return innerFunc;  
+    }    
+
+    outerFunc(5)
+
+    lexical scoping example
+    ------------------------
+    const outerFunc = (a) => {
+        let b = 10;
+        const innerFunc = () => {
+            let sum = a + b;
+        }
+        innerFunc();  
+    }    
+
+    outerFunc(5)
+
+
+
+
+
+
+let const var - block scope
+--------------------------------------------------------
+    global scope – so you can access it everywhere (inside and outside functions).
+    var 
+        global and local scope
+        reassign, redeclare
+
+        function print() {
+            var number = 50
+            var square = number * number
+            console.log(square)
+        }
+        console.log(number) // ReferenceError: number is not defined, because of variable diclare in local scope
+
+        function print() {
+            var square1 = number * number
+            console.log(square1) // NaN
+
+            var number = 50
+
+            var square2 = number * number
+            console.log(square2) // 2500
+        }
+
+
+    let 
+        global, block and local scope
+        reassign, can not redeclare
+        You can find blocks in if, loop, switch
+        
+        let number = 50
+        function print() {
+            let square = number * number
+
+            if (number < 60) {
+                var largerNumber = 80
+                let anotherLargerNumber = 100
+
+                console.log(square)  // 2500
+            }
+
+            console.log(largerNumber) //80
+            console.log(anotherLargerNumber) // ReferenceError: anotherLargerNumber is not defined, because of block scope
+        }
+        console.log(largerNumber) // ReferenceError: largerNumber is not defined
+
+        let number = 50
+        let number = 100 // SyntaxError: Identifier 'number' has already been declared
+
+        console.log(number) // ReferenceError: Cannot access 'number' before initialization
+        let number = 50
+
+
+    const 
+        global, block and local scope
+        can not reassign, can not redclare, but object can modified 
+
+        const number = 50
+        number = 100 // TypeError: Assignment to constant variable
+
+
+
+
+
+
+
+Currying 
+----------------------------------------------------------
+Currying is a functional programming, that transforms the function of multiple arguments into several functions of a single argument in sequence. 
+
+    normal function
+    ---------------
+        function getSum(a) {
+            return function (b) {
+                return function (c) {
+                    console.log(a + b + c)
+                }
+            }
+        }
+        getSum(a)(b)(c)
+   
+    Fat arrow function
+    ---------------
+        const getSum = (a) => (b) => (c) => a+b+c;
+        getSum(a)(b)(c)
+
+
+
+
+Pure functions
+------------------------------------------------------------------------------------------------------------------
+Pure functions are functions that accept an input and return a value without modifying and data outside its predictible and don't modify and variable
+
+    var x = 10;
+    function add() {
+        return x+1;
+    }
+    add(10)
+
+
+
+The Async/Await
+------------------------------------------------------------------------------------------------------------------
+Async : To create an asynchronous function, you need to add the async keyword before your function name.
+Await : The await keyword basically makes JavaScript wait until the Promise object is resolved or rejected.
+
+    How to Handle Errors in Async/Await
+    -----------------------------------
+        async function runProcess() {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+                const json = await response.json();
+                console.log(json);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        With arrow function
+        -------------------
+        const runProcess = async () => {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+                const json = await response.json();
+                console.log(json);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+
+
+
+    Using Fatch
+    -----------
+    fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
+
+
+
+
+Promises
+------------------------------------------------------------------------------------------------------------------
+// A Promise represents an operation that hasn’t completed yet but is expected to in the future. It can be in one of three states:
+        1. Pending: The initial state, neither fulfilled nor rejected.
+        2. Fulfilled: The operation completed successfully.
+        3. Rejected: The operation failed
+
+    // Create a new Promise
+    let fetchData = new Promise((resolve, reject) => {
+        // Simulate a delay with setTimeout
+        setTimeout(() => {
+            const success = true; // Change to false to see the rejection scenario
+            
+            if (success) {
+                resolve("Data fetched successfully!"); // Operation was successful
+            } else {
+                reject("Failed to fetch data."); // Operation failed
+            }
+        }, 2000); // 2 seconds delay
+    });
+    
+    // Handle the Promise
+    fetchData
+        .then((message) => {
+            console.log(message); // This will run if the Promise is resolved
+        })
+        .catch((error) => {
+            console.error(error); // This will run if the Promise is rejected
+        });
+
+
+
+
+* difference between Context API and the useContext hook
+--------------------------------------------------------------------------
+The main difference between Context API and the useContext hook is that Context API can be used in both class and functional components, while the useContext hook is restricted to functional components: 
+
+
+
+
+* difference between forin and for of loop
+--------------------------------------------------------------------------
+forin - Iterates over keys or property names	
+        Suitable for iterating object properties
+        Iterates over array indices (not values)	
+        Objects, arrays, and other enumerable types	
+
+    demo
+        const person = { name: 'Alice', age: 25 };
+        for (let key in person) {
+            console.log(key);  // 'name' and 'age'
+            console.log(person[key]);  // 'Alice' and '25'
+        }
+    
+
+forof - Iterates over values of iterable objects
+Not suitable for iterating object properties
+Iterates over array values
+Arrays, strings, maps, sets, and other iterables
+
+
+
+* Differences Between for-in and for-of Statement in JavaScript
+--------------------------------------------------------------------------
+The main difference between map and forEach is that map returns a new array with the results of the function applied to each element, while forEach does not return anything. Both map and forEach can modify the original array if the callback function modifies its elements.8 Sept 2023
+
+// Using forEach
+const arr1 = [1, 2, 3];
+arr1.forEach(num => console.log(num * 2)); 
+// Output: 2, 4, 6 (prints each value but returns undefined)
+
+// Using map
+const arr2 = [1, 2, 3];
+const newArr = arr2.map(num => num * 2);
+console.log(newArr); 
+// Output: [2, 4, 6] (returns a new array with transformed values)
+
+
+
+
+
+this
+-----------------------------
+the this keyword refers to an object.
+Alone, this refers to the global object.
+In a function, this refers to the global object.
+In a function, in strict mode, this is undefined.
+
+
+    "use strict";
+    let x = this; // this refer to window object
+
+
+    "use strict";
+    function myFunction() {
+        return this; // this is undefined
+    }
+
+
+    const person = {
+        firstName: "John",
+        lastName: "Doe",
+        id: 5566,
+        fullName : function() {
+          return this.firstName + " " + this.lastName; // this refer to person object
+        }
+      };
+
+
+
+
+this
+-----------------------------
+the this keyword refers to an object.
+Alone, this refers to the global object.
+In a function, this refers to the global object.
+In a function, in strict mode, this is undefined.
+
+
+    "use strict";
+    let x = this; // this refer to window object
+
+
+    "use strict";
+    function myFunction() {
+        return this; // this is undefined
+    }
+
+
+    const person = {
+        firstName: "John",
+        lastName: "Doe",
+        id: 5566,
+        fullName : function() {
+          return this.firstName + " " + this.lastName; // this refer to person object
+        }
+      };
+
+
+
+
+Debouncing and Throttling
+-----------------------------
+Debouncing : Debouncing is a technique that delays the execution of a function until the user stops performing a certain action for a specified amount of time. 
+    For example, if you have a search bar that fetches suggestions from the backend as the user types, you can debounce the function that makes the API call, so that it only runs after the user stops typing for a few seconds. This way, you can avoid making too many API calls that might overload your server or return irrelevant results.
+
+    example
+    -------
+        // Simulated API function
+        function fetchDataFromApi() {
+            console.log("API call made");
+            // Replace this with your actual API call
+        }
+
+        // Debounce function
+        function debounce(func, delay) {
+            let timeoutId;
+            
+            return function() {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(func, delay);
+            };
+        }
+
+        // Create a debounced version of the API call function
+        const debouncedFetchData = debounce(fetchDataFromApi, 1000); // Debounce for 1 second (1000 milliseconds)
+
+        // Simulated event triggering API call
+        function handleUserInput() {
+            console.log("User input detected");
+            debouncedFetchData();
+        }
+
+        // Simulated user input event (e.g., button click)
+        handleUserInput(); // This will trigger API call after 1 second
+        handleUserInput(); // This will cancel the previous timer and start a new one, API call will be made after 1 second
+
+
+
+
+Throttling : Throttling is a technique that limits the execution of a function to once in every specified time interval.
+    For example, if you have a resize event handler that adjusts the layout of your page, you can throttle the function that updates the layout, so that it only runs once every 100ms.
+
+
+    example
+    -------
+
+        // Function to be throttled
+        function handleResize() {
+          console.log("Window resized");
+          // Your resizing logic goes here
+        }
+        
+        // Throttle function
+        function throttle(func, limit) {
+          let lastExecutionTime = 0;
+        
+          return function() {
+            const now = Date.now();
+            if (now - lastExecutionTime >= limit) {
+              func();
+              lastExecutionTime = now;
+            }
+          };
+        }
+        
+        // Throttle the resize event handler
+        const throttledResizeHandler = throttle(handleResize, 1000); // Throttle to at most one execution per second
+        
+        // Attach the throttled event handler to the window resize event
+        window.addEventListener("resize", throttledResizeHandler);
+        
+
+
+
+
+
+
+Middlewere
+----------------------------------
+Middleware is a request handler that allows you to intercept and manipulate requests and responses before they reach route handlers.
+Middleware is a crucial concept in many programming frameworks and libraries, particularly in web development. It sits between the incoming request and the outgoing response in the request-response cycle and allows you to perform various tasks such as request processing, authentication, logging, error handling, and more.
+
+
+
+
+
+
+
+setTimeout, setInterval and clearTimeout
+-------------------------------------------------------------
+setTimeout: setTimeout allows you to run a function after a certain amount of time has passed.
+            
+            setTimeout(function, milliseconds);
+
+            // With parameter or argument
+            setTimeout(function (param1, param2) {
+                // Code to be executed after the delay
+            }, delay);
+
+
+
+setInterval : setInterval is a function in JavaScript that is used to repeatedly execute a given function at a specified interval. 
+                
+                setInterval(myTimer, 1000);
+
+                function myTimer() {
+                    const date = new Date();
+                    document.getElementById("demo").innerHTML = date.toLocaleTimeString();
+                }
+
+
+clearTimeout : clearTimeout allows developers to clear and reset the timer created by the setTimeout() method.
+               
+                const myTimeout = setTimeout(myGreeting, 3000);
+
+                function myGreeting() {
+                 document.getElementById("demo").innerHTML = "Happy Birthday!"
+                }
+
+                function myStopFunction() {
+                 clearTimeout(myTimeout);
+                }
+
+
+
+
+Function declaration
+--------------------------------------------------------
+hoistedFunction(); // This works even though hoistedFunction is called before its declaration
+
+function hoistedFunction() {
+  console.log("This is a hoisted function");
+}
+
+
+
+Function expression
+--------------------------------------------------------
+notHoistedFunction(); // This will throw an error because notHoistedFunction is not defined at this point
+
+const notHoistedFunction = function() {
+  console.log("This is not a hoisted function");
+};
+
+
+
+var a = null;
+console.log(a == null) // true
+console.log(a == undefined) // true
+
+
+const
+The const declaration declares block-scoped local variables. 
+The value of a constant can't be changed through reassignment using the assignment operator,
+but if a constant is an object, its properties can be added, updated, or removed.
+
+
+
+The recursive call
+--------------------------------------------------------
+    The recursive call is what handles the function calling itself again. In the doSomething function, the recursive call is the line below.
+    expamle
+        function doSomething(n) {
+            if(n === 0) {
+            console.log("TASK COMPLETED!")
+            return
+            }
+            console.log("I'm doing something.")
+            doSomething(n - 1)
+        }
+        doSomething(3)
+
+
+What is an event loop in JavaScript ?
+---------------------------------------
+  The event loop is a core concept in JavaScript that enables non-blocking, asynchronous behavior in a single-threaded environment. Here’s a breakdown of how it works:
+
+  How the Event Loop Works
+      1. Single Threaded: JavaScript executes in a single-threaded environment, meaning only one operation can run at a time. However, it can handle multiple operations by offloading tasks to the browser or Node.js APIs.
+
+      2. Call Stack: When functions are called, they are added to the call stack. The JavaScript engine executes functions from the top of the stack and removes them once they complete.
+
+      .3. Web APIs: Asynchronous functions (like setTimeout, HTTP requests, etc.) are sent to Web APIs (in the browser) or Node.js APIs. These functions run in the background, and when they complete, they send their callback functions to the callback queue.
+
+      4. Callback Queue: When the call stack is empty (all synchronous tasks are complete), the event loop checks the callback queue. If there are any callback functions waiting in the queue, it pushes them onto the call stack for execution.
+
+      5. Event Loop: The event loop continuously checks if the call stack is empty and moves tasks from the callback queue to the call stack. This allows JavaScript to manage asynchronous operations effectively without blocking the main execution thread.
+
+
+Event
+-------------------------------
+    Events are "things" that happen to HTML elements. When JavaScript is used in HTML pages, JavaScript can react on these events
+
+
+Lazy Loading (next/dynamic)
+----------------------------------------
+    Lazy loading in Next.js helps improve the initial loading performance of an application by decreasing the amount of JavaScript needed to render a route.
+    
+    
+    'use client'
+     
+    import { useState } from 'react'
+    import dynamic from 'next/dynamic'
+     
+    // Client Components:
+    const ComponentA = dynamic(() => import('../components/A'), { loading: () => <h2>Loading...</h2>, ssr: false })
+     
+    export default function ClientComponentExample() {
+      const [showMore, setShowMore] = useState(false)
+     
+      return (
+        <>
+            <h1>Hello world</h1>
+            {/* Load on demand, only when/if the condition is met */}
+            <button onClick={() => setShowMore(!showMore)}>Load component a</button>
+    
+            {showMore && <ComponentB />}
+    
+        </>
+      )
+    }
+
+
+image
+-------------------------------
+    Benifit
+    - Size Optimization: Automatically serve correctly sized images for each device, using modern image formats like WebP and AVIF.
+    - Visual Stability: Prevent layout shift automatically when images are loading.
+    - Faster Page Loads: Images are only loaded when they enter the viewport using native browser lazy loading, with optional blur-up placeholders.
+    - Asset Flexibility: On-demand image resizing, even for images stored on remote servers 
+    
+
+virtual dom how work ?
+--------------------------------------------------------------------------------
+    lightweight copy of the real DOM in memory
+    
+    When a React app is first rendered, React creates a Virtual DOM based on the component tree.
+    React then compares the Virtual DOM with the real DOM to determine what changes need to be made.
+    The result of this comparison is a set of changes (or "diffs"), which are then applied to the real DOM.
+
+What is React js
+--------------------------------------------------------------------------------
+    React is a JavaScript library for building user interfaces. React is used to build single - page applications. React allows us to create reusable UI components.
+
+How does React Work?
+--------------------------------------------------------------------------------
+    React creates a VIRTUAL DOM in memory.
+    Instead of manipulating the browser's DOM directly, React creates a virtual DOM in memory, where it does all the necessary manipulating, before making the changes in the browser DOM.
+
+ES6
+--------------------------------------------------------------------------------
+    Classes
+    Arrow Functions
+    Variables(let, const, var)
+    Array Methods like .map()
+    Destructuring
+    Modules
+    Ternary Operator
+    Spread Operator
+
+what is JSX?
+--------------------------------------------------------------------------------
+    JSX stands for JavaScript XML.JSX allows us to write HTML in React. JSX makes it easier to write and add HTML in React. expression is {}
+
+React Components
+--------------------------------------------------------------------------------
+    Components are independent and reusable bits of code.They serve the same purpose as JavaScript functions, but work in isolation and return HTML.
+    Components come in two types, Class components and Function components, in this tutorial we will concentrate on Function components.
+
+Props
+--------------------------------------------------------------------------------
+    Props are arguments passed into React components. Props are passed to components via HTML attributes. props stands for properties.
+    Props are also how you pass data from one component to another, as parameters.
+
+    To do this without Context, we will need to pass the state as "props" through each nested component. This is called "prop drilling".
+
+React Events
+--------------------------------------------------------------------------------
+    Just like HTML DOM events, React can perform actions based on user events. React has the same events as HTML: click, change, mouseover etc.
+    React event handlers are written inside curly braces: onClick={shoot} instead of onClick="shoot()".
+
+keys or React List
+--------------------------------------------------------------------------------
+    Keys allow React to keep track of elements. the key should be a unique ID assigned to each item. As a last resort, you can use the array index as a key.
+    A key is a special attribute you should include when mapping over arrays to render data. Key prop helps React identify which items have changed, are added, or are removed.
+    
+
+
+framework vs library
+--------------------------------------------------------------------------------
+framework - flow already defined, in framework there are multiple library used
+library - flow defined by us, in library we cannot use framework
+
+
+
+What is the difference between Element and Component?
+--------------------------------------------------------------------------------
+    An Element is a plain object describing what you want to appear on the screen in terms of the DOM nodes or other components. Elements can contain other Elements in their props. Creating a React element is cheap. Once an element is created, it cannot be mutated.
+
+    Whereas a component can be declared in several different ways. It can be a class with a render() method or it can be defined as a function. In either case, it takes props as an input, and returns a JSX tree as the output:
+
+
+
+
+
+Controlled vs Uncontrolled Components in ReactJS
+--------------------------------------------------------------------------------
+    In React, Controlled components refer to the components where the state and behaviors are controlled by Parent components while Uncontrolled components are the ones having control of their own state and manage the behaviors on themselves.
+
+    Uncontrolled Components are the components that are not controlled by the React state and are handled by the DOM (Document Object Model). So in order to access any value that has been entered we take the help of refs.
+    
+
+
+        
+The asynchronous callback
+--------------------------------------------------------------------------------
+    The asynchronous callback is executed after the execution of the higher-order function.
+    Simply saying, the asynchronous callbacks are non-blocking: the higher-order function completes its execution without waiting for the callback. The higher-order function makes sure to execute the callback later on a certain event.
+
+    example
+    1. console.log('setTimeout() starts');
+        setTimeout(function later() {
+            console.log('later() called');
+        }, 2000);
+        console.log('setTimeout() completed');
+
+        // logs 'setTimeout() starts'
+        // logs 'setTimeout() completed'
+        // logs 'later() called' (after 2 seconds)
+
+
+
+Asynchronous callback function vs asynchronous function
+--------------------------------------------------------------------------------
+    The special keyword async placed before the function definition creates an asynchornous function:
+    setTimeout is Asynchronous callback function
+
+
+
+
+
+1. What is ReactJS?
+    ReactJS is a JavaScript library used to build reusable components for the view layer in MVC architecture. It is highly efficient and uses a virtual DOM to render components. It works on the client side and is written in JSX.
+
+2. What is Next js?
+    Next.js is a powerful and flexible React framework that enables developers to build server-rendered and statically generated web applications.
+
+
+
+20. What is StrictMode in React ?
+  The React StrictMode can be viewed as a helper component that allows developers to code efficiently and brings to their attention any suspicious code which might have been accidentally added to the application. The StrictMode can be applied to any section of the application, not necessarily to the entire application
+
+
+
+11. What is axios and how to use it in React?
+  Axios, which is a popular library is mainly used to send asynchronous HTTP requests to REST endpoints. This library is very useful to perform CRUD operations.
+
+
+10. Explain CORS in React?
+  In ReactJS, Cross-Origin Resource Sharing (CORS) refers to the method that allows you to make requests to the server deployed at a different domain. As a reference, if the frontend and backend are at two different domains, we need CORS there.
+
+
+3. What is the difference between useref and createRef in React ?
+  useRef
+      It is a hook.	
+      It uses the same ref throughout.	
+      It returns a mutable ref object.	
+      It is used in functional components.	
+
+  createRef
+      It is a function.
+      It creates a new ref every time.
+      It returns a read-only ref object.
+      It is used in class components.
+
+
+
+20. What are synthetic event in React?
+      In order to work as a cross-browser application, React has created a wrapper same as the native browser in order to avoid creating multiple implementations for multiple methods for multiple browsers, creating common names for all events across browsers. Another benefit is that it increases the performance of the application as React reuses the event object. 
+  
+  
+
+12. What is a react developer tool?
+      React Developer Tools is a Chrome DevTools extension for the React JavaScript library. A very useful tool, if you are working on React.js applications. This extension adds React debugging tools to the Chrome Developer Tools. It helps you to inspect and edit the React component tree that builds the page, and for each component, one can check the props, the state, hooks, etc.
+
+
+11. What is React Fragments?
+      when we are trying to render more than one root element we have to put the entire content inside the ‘div’ tag which is not loved by many developers. So since React 16.2 version, Fragments were introduced, and we use them instead of the extraneous ‘div’ tag. The following syntax is used to create fragment in react.
+
+
+
+8. What are hooks in React?
+      In React, Hooks are functions that allow you to "hook into" React's state and lifecycle features from functional components. They were introduced in React 16.8 to make it easier to manage state, side effects, context, and other React features without needing to write class components. Hooks enable you to write more modular and reusable code in functional components.
+  
+  Before hooks, state and lifecycle methods could only be used in class components. Hooks eliminate this limitation, making functional components just as powerful and flexible as class components.
+
+
+20. Explain one way data binding in React?
+  ReactJS uses one-way data binding which can be Component to View or View to Component. It is also known as one-way data flow
+
+
+8. How do browsers read JSX?
+  In general, browsers are not capable of reading JSX and only have the capacity to read pure JavaScript. The web browsers read JSX with the help of a transpiler. Transpilers are used to convert JSX into JavaScript. The transpiler used is called Babel
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
