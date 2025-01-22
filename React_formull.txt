@@ -1674,7 +1674,52 @@ SSG: Static site Generated - generate on build time
 
 
 
-
+javascript
+--------------------------------------------------
+1. What is Javascript and its purpose
+ 2. Explain what kind of application we can built using Javascript 
+3. What are variables and explain the rules to create a variable
+ 4. What are Data types
+ 5. Explain Primitive and Non Primitive Data type
+ 6. What is function in Javascript 
+7. Explain the Difference between callback and higherorder function in JS?
+ 8. What is difference between let ,cons and var
+ 9. What is spread operator
+ 10. What is Rest Parameter 
+11. What is promise in Javascript 
+12. Explain different States of Promise in Javascript 
+13. How to create a Promise
+ 14. What is difference between promise and callback in Javascript
+ 15. What is Callback
+ 16. What is higher order function in Javascript 
+17. Explain different types of function in Javascript 
+18. What is arrow function in Javascript 
+19. Why we use call, apply bind method in 
+20. Javascript
+ 21. How many way to create object in Javascript
+ 22. What are the array method , string method 
+23. What is difference between java and javascript 
+24. What is Null and undefined in javascript 
+25. What is setTimeOut and setInterval in Javascript
+ 26. What is sessionStorage, localStorage 
+27. What are is map, filter , reducer in javascript 
+28. What is closure in Javascript 
+29. What is housing in Javascript 
+30. What is the difference between array and object 
+31. What is the difference between number type and BigInt type
+ 32. What is the difference between call() and apply()
+ 33. What is DOM and DOM Manipulation 
+34. How to create element dynamically using Javascript 
+35. Explain Closures in Javascript 
+36. Explain different Scopes in Javascript 
+37. What is import and export 
+38. What is Destructing in the Javascript 
+39. Difference between Normal Functin and Arrow Function 
+40. Explain the difference between map() and filter() 
+41. Explain difference between map() and forEach() 
+42. What are events in Javascript
+ 43. What is null and undefined in Javascript 
+44. Explain the difference between == and ===
 
 
 
