@@ -372,9 +372,10 @@ object literal is a way to define and create objects using a straightforward and
         let obj {
             [n] : Yahoo baba // here n is a student
         }
+        console.log(obj) // it's also call object literal
   
     3. let name = "Devendra"
-       let fullName`my full name is ${name}`
+       let fullName`my full name is ${name}` // it's call object literal
 
 
 
@@ -385,6 +386,7 @@ stopPropagation and preventDefault
 The preventDefault method is used to prevent the default behaviour or action associated with the event from occurring.
 
 The stopPropagation method is used to stop the event from propagating (bubbling) up the DOM tree. By default, events bubble up from the target element to its ancestors, triggering event handlers on each ancestor. stopPropagation prevents this bubbling behavior.
+
 
 modules
 --------------------------------------------------------
@@ -413,8 +415,8 @@ The recursive call
 
 difference between closure and lexical scoping 
 -------------------------------------------------------
-A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). 
-In other words, a closure gives you access to an outer function’s scope from an inner function.
+A closure is the combination of a functions where inner function can access outer functins variables.
+the difference is closure return function and lexical scopping call function
 
         closure example
         ---------------
@@ -561,6 +563,8 @@ Await : The await keyword basically makes JavaScript wait until the Promise obje
 Promises
 ------------------------------------------------------------------------------------------------------------------
 // A Promise represents an operation that hasn’t completed yet but is expected to in the future. It can be in one of three states:
+// It allows you to work with asynchronous code in a more manageable way, by chaining .then() for success or .catch() for errors.
+
         1. Pending: The initial state, neither fulfilled nor rejected.
         2. Fulfilled: The operation completed successfully.
         3. Rejected: The operation failed
@@ -674,8 +678,9 @@ Throttling : Throttling is a technique that limits the execution of a function t
 
 Middlewere
 ----------------------------------
-Middleware is a request handler that allows you to intercept and manipulate requests and responses before they reach route handlers.
-Middleware is a crucial concept in many programming frameworks and libraries, particularly in web development. It sits between the incoming request and the outgoing response in the request-response cycle and allows you to perform various tasks such as request processing, authentication, logging, error handling, and more.
+Middleware is a request handler that processes and manipulate requests and responses before they reach route handlers or client.
+
+Middleware is a function or piece of code that sits between the request and the response in a web application. It can modify the request or the response, perform operations like authentication, logging, or data validation, and then pass control to the next middleware or route handler.
 
 
 
@@ -783,7 +788,7 @@ Main Method list
     
 JavaScript execution
 -------------------------------------------------------------
-1. global execution phase (this)
+1. global execution phase (this) or window object
 
 2. Creation(Memory) Phase : Variable and Function Declarations: During this phase, the JavaScript engine sets up memory space for variables and functions. Variables are initialized with undefined, and functions are stored in memory.
 Execution Phase:
@@ -813,4 +818,3 @@ Execution Phase:
         addNum - New variable environment + exetution thread
         result1 - 15
         result2 - 2
-
