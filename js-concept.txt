@@ -265,7 +265,10 @@ Difference between function declaration and function Expression
 --------------------------------------------------
     1. syntax
     Function Declaration: function functionName() { ... }
+        -  It is hoisted, meaning it can be called before it appears in the code because the function definition is moved to the top during the execution phase.
+
     Function Expression: const functionName = function() { ... }
+        - it is not hoisted, so you can only call it after the function expression has been assigned.
 
     2. hoisting
             // Example with Function Declarations:
@@ -275,7 +278,7 @@ Difference between function declaration and function Expression
             }
 
             // Example with Function Expressions:
-            console.log(myFunc); // Outputs: undefined
+            console.log(myFunc()); // Outputs: undefined
             var myFunc = function() {
                  return 'Hello';
             };
@@ -381,7 +384,7 @@ object literal is a way to define and create objects using a straightforward and
 
 
 
-stopPropagation and preventDefault
+preventDefault and stopPropagation
 --------------------------------------------------------
 The preventDefault method is used to prevent the default behaviour or action associated with the event from occurring.
 
@@ -569,28 +572,35 @@ Promises
         2. Fulfilled: The operation completed successfully.
         3. Rejected: The operation failed
 
-    // Create a new Promise
-    let fetchData = new Promise((resolve, reject) => {
-        // Simulate a delay with setTimeout
-        setTimeout(() => {
-            const success = true; // Change to false to see the rejection scenario
-            
-            if (success) {
-                resolve("Data fetched successfully!"); // Operation was successful
-            } else {
-                reject("Failed to fetch data."); // Operation failed
-            }
-        }, 2000); // 2 seconds delay
-    });
-    
-    // Handle the Promise
-    fetchData
-        .then((message) => {
-            console.log(message); // This will run if the Promise is resolved
-        })
-        .catch((error) => {
-            console.error(error); // This will run if the Promise is rejected
+        // Create a new Promise
+        let fetchData = new Promise((resolve, reject) => {
+            // Simulate a delay with setTimeout
+            setTimeout(() => {
+            fetch('https://jsonplaceholder.typicode.com/todos/1')
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json(); // Parse the JSON response
+                })
+                .then((data) => {
+                 resolve(data); // Resolve the promise with the fetched data
+                })
+                .catch((error) => {
+                   reject(`Failed to fetch data: ${error.message}`); // Reject if there's an error
+                });
+            }, 2000); // Simulate a delay of 2 seconds
         });
+        
+        // Using the promise
+        fetchData
+            .then((data) => {
+            console.log('Data fetched successfully:', data); // This will log the fetched data
+            })
+            .catch((error) => {
+            console.error(error); // Handle any rejection
+            });
+      
 
 
 
@@ -684,6 +694,50 @@ Middleware is a function or piece of code that sits between the request and the 
 
 
 
+Lazzy loading
+----------------------------------
+Lazy loading can be achieved by dynamically importing components only when they are needed, which can improve the initial page load performance. In Next.js, this can be done using next/dynamic.
+
+    // pages/index.js
+
+    import dynamic from 'next/dynamic';
+    import { useState } from 'react';
+
+    // Dynamically import the HeavyComponent
+    const LazyHeavyComponent = dynamic(() => import('../components/HeavyComponent'), {
+        ssr: false, // Disables server-side rendering for this component (optional)
+        loading: () => <p>Loading...</p>, // Optional loading spinner or message
+    });
+
+    export default function Home() {
+    const [show, setShow] = useState(false);
+
+    return (
+        <div>
+        <h1>Welcome to the Next.js Lazy Loading Demo</h1>
+        <button onClick={() => setShow((prev) => !prev)}>
+            Toggle Lazy Loaded Component
+        </button>
+
+        {show && <LazyHeavyComponent />}
+        </div>
+    );
+    }
+
+
+    // components/HeavyComponent.js
+
+    const HeavyComponent = () => {
+        return (
+        <div>
+            <h2>This is a heavy component!</h2>
+            <p>It takes time to load, and it's being lazily loaded.</p>
+        </div>
+        );
+    };
+    
+    export default HeavyComponent;
+  
 
 
 
@@ -698,6 +752,11 @@ setTimeout(function, milliseconds);
 setTimeout(function (param1, param2) {
     // Code to be executed after the delay
 }, delay);
+
+// simple
+setTimeout(() => {
+    console.log("This message appears after 2 seconds");
+  }, 2000); // 2000 milliseconds = 2 seconds
 
 
 
@@ -751,6 +810,43 @@ The reducer function takes four arguments:
 
 
 
+difference between forin and for of loop
+--------------------------------------------------------------------------
+forin - Iterates over keys or property names	
+        Suitable for iterating object properties
+        Iterates over array indices (not values)	
+        Objects, arrays, and other enumerable types	
+
+    demo
+        const person = { name: 'Alice', age: 25 };
+        for (let key in person) {
+            console.log(key);  // 'name' and 'age'
+            console.log(person[key]);  // 'Alice' and '25'
+        }
+    
+
+forof - Iterates over values of iterable objects
+Not suitable for iterating object properties
+Iterates over array values
+Arrays, strings, maps, sets, and other iterables
+
+
+
+* Differences Between map and forEach Statement in JavaScript
+--------------------------------------------------------------------------
+The main difference between map and forEach is that map returns a new array with the results of the function applied to each element, while forEach does not return anything. Both map and forEach can modify the original array if the callback function modifies its elements.8 Sept 2023
+
+// Using forEach
+const arr1 = [1, 2, 3];
+arr1.forEach(num => console.log(num * 2)); 
+// Output: 2, 4, 6 (prints each value but returns undefined)
+
+// Using map
+const arr2 = [1, 2, 3];
+const newArr = arr2.map(num => num * 2);
+console.log(newArr); 
+// Output: [2, 4, 6] (returns a new array with transformed values)
+
 
 
 
@@ -783,6 +879,8 @@ Main Method list
     // JSON.parese(), JSON.stringify(),
     
     
+
+
     
     
     
