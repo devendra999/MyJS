@@ -1,0 +1,281 @@
+1. checknotes function like atm machine
+    function checkNote(notesArray, amount) {
+      // Create an empty object to store the result
+      let result = {};
+
+      // Sort the array of notes in descending order to prioritize the highest denomination
+      notesArray.sort((a, b) => b - a);
+
+      // Loop through the notesArray and try to deduct the notes from the amount
+      for (let i = 0; i < notesArray.length; i++) {
+        // Check if the current note can be used (i.e., if the note's value is less than or equal to the remaining amount)
+        if (amount >= notesArray[i]) {
+          // Calculate how many of this note are needed
+          let count = Math.floor(amount / notesArray[i]);
+          
+          // Add this note and its count to the result object
+          result[notesArray[i]] = count;
+          
+          // Reduce the amount by the total value of the notes we've just deducted
+          amount -= count * notesArray[i];
+        }
+
+        // If the remaining amount is 0, no need to continue
+        if (amount === 0) break;
+      }
+
+      // Return the result if amount is 0, else return the error message
+      return amount === 0 ? result : 'Cannot dispense the exact amount with the available notes';
+    }
+
+    // Example usage:
+    let notesArray = [200, 100, 500, 1000];
+    let amount = 2700;
+    console.log(checkNote(notesArray, amount)); // This should output the note count object.
+
+------------------------------------------
+
+
+
+
+2. In JavaScript, how do you turn an Object into an Array []?
+    let obj = { id: "1", name: "user22", age: "26", work: "programmer" };
+
+    //Method 1: Convert the keys to Array using - Object.keys()
+    console.log(Object.keys(obj));
+    // ["id", "name", "age", "work"]
+
+    // Method 2 Converts the Values to Array using - Object.values()
+    console.log(Object.values(obj));
+    // ["1", "user22r", "26", "programmer"]
+
+    // Method 3 Converts both keys and values using - Object.entries()
+    console.log(Object.entries(obj));
+    //[["id", "1"],["name", "user22"],["age", "26"],["work", “programmer"]]
+
+
+
+------------------------------------------
+
+
+3. Write the code to find the vowels
+    const findVowels = str => {
+      let count = 0
+      const vowels = ['a', 'e', 'i', 'o', 'u']
+      for(let char of str.toLowerCase()) {
+        if(vowels.includes(char)) {
+          count++
+        }
+      }
+      return count
+    }
+    
+------------------------------------------
+
+
+4. what is outplut
+    let arr = [1, 2, 3, 4]; 
+    arr.splice(1, 2, 10, 20, 54, 121, 454); // first parameter is startIndex, second is remove Element index, rest is add overthere 
+    output: [1,  10, 20, 54, 121, 454,  4] 
+
+------------------------------------------
+
+
+4. what is outplut
+function sayHi() {
+  console.log(name); //undefined 
+  console.log(age); // ReferenceError
+  var name = 'Lydia';
+  let age = 21;
+}
+sayHi();
+
+
+
+------------------------------------------
+
+4. what is outplut
+const shape = {
+  radius: 10,
+  diameter() {
+    return this.radius * 2;
+  },
+  perimeter: () => 2 * Math.PI * this.radius,
+};
+
+console.log(shape.diameter());  // 20
+console.log(shape.perimeter()); // NaN - With arrow functions, the this keyword refers to its current surrounding scope, unlike regular functions! This means that when we call perimeter, it doesn't refer to the shape object, but to its surrounding scope (window for example).
+
+
+------------------------------------------
+
+4. what is outplut
+let a = 3;
+let b = new Number(3);
+let c = 3;
+// new Number() is a built-in function constructor. Although it looks like a number, it's not really a number: it has a bunch of extra features and is an object.
+console.log(a == b); // true
+console.log(a === b); // false
+console.log(b === c); // false
+
+
+------------------------------------------
+
+
+let greeting;
+greetign = {}; // Typo!
+console.log(greetign); // {}
+
+
+
+
+------------------------------------------
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
+const lydia = new Person('Lydia', 'Hallie');
+const sarah = Person('Sarah', 'Smith');
+
+console.log(lydia); // Person {firstName: "Lydia", lastName: "Hallie"}
+console.log(sarah); // undefined
+
+For sarah, we didn't use the new keyword. When using new, this refers to the new empty object we create. However, if you don't add new, this refers to the global object!
+------------------------------------------
+
+
+let number = 0;
+console.log(number++); // 0  
+console.log(++number); // 2
+console.log(number); // 2
+
+
+------------------------------------------
+
+
+function checkAge(data) {
+  if (data === { age: 18 }) {
+    console.log('You are an adult!');
+  } else if (data == { age: 18 }) {
+    console.log('You are still an adult.');
+  } else {
+    console.log(`Hmm.. You don't have an age I guess`);
+  }
+}
+
+checkAge({ age: 18 });
+
+// The two objects that we are comparing don't have that: the object we passed as a parameter refers to a different location in memory than the object we used in order to check equality.
+
+------------------------------------------
+function getAge(...args) {
+  console.log(typeof args);
+}
+
+getAge(21);
+// The rest parameter (...args) lets us "collect" all remaining arguments into an array. An array is an object, so typeof args returns "object"
+
+------------------------------------------
+function getAge() {
+  'use strict';
+  age = 21;
+  console.log(age); // ReferenceError
+}
+
+getAge();
+
+------------------------------------------
+const obj = { 1: 'a', 2: 'b', 3: 'c' };
+const set = new Set([1, 2, 3, 4, 5]);
+
+obj.hasOwnProperty('1'); //  true
+obj.hasOwnProperty(1); //  true
+set.has('1'); // false - in set get as a numeric
+set.has(1); // true
+
+------------------------------------------
+
+const obj = { a: 'one', b: 'two', a: 'three' };
+console.log(obj); // { a: "three", b: "two" }
+// If you have two keys with the same name, the key will be replaced. It will still be in its first position, but with the last specified value.
+------------------------------------------
+for (let i = 1; i < 5; i++) {
+  if (i === 3) continue;
+  console.log(i); // 1,2,4
+}
+
+------------------------------------------
+const person = { name: 'Lydia' };
+
+function sayHi(age) {
+  return `${this.name} is ${age}`;
+}
+
+console.log(sayHi.call(person, 21)); // D: Lydia is 21 
+console.log(sayHi.bind(person, 21)); // function
+// With both, we can pass the object to which we want the this keyword to refer to. However, .call is also executed immediately!
+// .bind. returns a copy of the function, but with a bound context! It is not executed immediately.
+------------------------------------------
+const numbers = [1, 2, 3];
+numbers[10] = 11;
+console.log(numbers); // [1, 2, 3, empty x 7, 11]
+------------------------------------------
+(() => {
+  let x, y;
+  try {
+    throw new Error();
+  } catch (x) {
+    (x = 1), (y = 2);
+    console.log(x); // 1
+  }
+  console.log(x); // undefined
+  console.log(y); // 2
+})();
+------------------------------------------
+let person = { name: 'Lydia' };
+const members = [person];
+person = null;
+
+console.log(members); // [{ name: "Lydia" }]
+// We are only modifying the value of the person variable, and not the first element in the array, since that element has a different (copied) reference to the object.
+------------------------------------------
+
+number 50 - https://github.com/lydiahallie/javascript-questions
+------------------------------------------
+------------------------------------------
+------------------------------------------
+------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
