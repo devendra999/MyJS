@@ -1,37 +1,30 @@
 1. checknotes function like atm machine
-    function checkNote(notesArray, amount) {
-      // Create an empty object to store the result
-      let result = {};
+    function getDenominations(checkNotes, amount) {
+        // Sort the denominations in descending order
+        checkNotes.sort((a, b) => b - a);
 
-      // Sort the array of notes in descending order to prioritize the highest denomination
-      notesArray.sort((a, b) => b - a);
+        // Initialize the result object to store the count of each note
+        let result = {};
 
-      // Loop through the notesArray and try to deduct the notes from the amount
-      for (let i = 0; i < notesArray.length; i++) {
-        // Check if the current note can be used (i.e., if the note's value is less than or equal to the remaining amount)
-        if (amount >= notesArray[i]) {
-          // Calculate how many of this note are needed
-          let count = Math.floor(amount / notesArray[i]);
-          
-          // Add this note and its count to the result object
-          result[notesArray[i]] = count;
-          
-          // Reduce the amount by the total value of the notes we've just deducted
-          amount -= count * notesArray[i];
+        // Loop through each note denomination
+        for (let note of checkNotes) {
+            // If the note can be used, determine how many times it can fit into the amount
+            if (amount >= note) {
+                let count = Math.floor(amount / note); // How many notes of this denomination
+                result[note] = count; // Store the count of this denomination in result
+                amount -= count * note; // Reduce the amount accordingly
+            }
         }
 
-        // If the remaining amount is 0, no need to continue
-        if (amount === 0) break;
-      }
-
-      // Return the result if amount is 0, else return the error message
-      return amount === 0 ? result : 'Cannot dispense the exact amount with the available notes';
+        // If amount is zero, return the result; otherwise, return an empty object (not enough notes)
+        return amount === 0 ? result : {};
     }
 
     // Example usage:
-    let notesArray = [200, 100, 500, 1000];
-    let amount = 2700;
-    console.log(checkNote(notesArray, amount)); // This should output the note count object.
+    const checkNotes = [1000, 200, 500, 100];
+    const amount = 2700;
+    console.log(getDenominations(checkNotes, amount));
+
 
 ------------------------------------------
 
@@ -246,7 +239,6 @@ number 50 - https://github.com/lydiahallie/javascript-questions
 ------------------------------------------
 ------------------------------------------
 ------------------------------------------
-
 
 
 
