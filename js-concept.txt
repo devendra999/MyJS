@@ -602,9 +602,20 @@ Promises
             });
       
 
-
-
-
+Difference between shallow and deep copy
+-----------------------------
+   A shallow copy means that only the top-level properties of an object are copied. If the object has nested objects (or arrays), the references to those nested objects are copied, not the actual data. This means that changes to the nested objects in the copy will also affect the original object because they both reference the same nested object.
+   
+   shallow copy method
+       1. const shallowCopy = Object.assign({}, original);
+       2. Spread operator ({ ...obj })
+   
+   
+   A deep copy creates a completely independent copy of the original object, including all nested objects or arrays. 
+   
+   deep copy method
+       1. JSON.parse(JSON.stringify(obj))
+   
 
 
 
