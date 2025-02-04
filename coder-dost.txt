@@ -1,0 +1,178 @@
+
+// ======================================================================================================
+// CODER DOST
+// ======================================================================================================
+array convert to Object
+-------------------------------
+const arr = ['a', 'b', 'c'];
+let obj = arr.reduce((a, it, i) => ({...a, [i]: it}), {})
+console.log(obj) // {1: 'a', 2: 'b', 3: 'c'}
+
+object convert to array
+-------------------------------
+
+
+what is keys
+-------------------------------
+
+React Transpiler
+-------------------------------
+
+
+
+find sustring and index number
+-------------------------------
+const str = "bhai bata kaisa he"
+// exists
+const result  str.includes('ai'); // true or false
+
+//exist where
+const result = str.indexOf('ai') // 2 - return first selected element index number
+
+
+Array.from()
+-------------------------------
+// want string convert to array
+console.log(Array.from('hello')) // [ 'h', 'e', 'l', 'l', 'o' ]
+
+// want iterate all array 
+const arr = [1,2,3];
+const result = Array.from(arr, it => it*2)
+console.log(result) // [2,4,6]
+
+// using length create array length and iterate over the length, here pring even number
+const result = Array.from({length: 5}, (it, i) => i*2)
+console.log(result); // [ 0, 2, 4, 6, 8 ]
+
+// here pring odd number
+console.log(Array.from({length: 5}, (it, i) => i*2+1))
+
+
+
+flushSync - state update immdiately
+-------------------------------
+flushSync(() => {
+    setState(true);
+})
+
+
+tricky question
+-------------------------------
+var length = 10;
+function fn(){
+    console.log(this.length);
+}
+var obj = {
+    length: 5,
+    method: function (fn) {
+        fn();
+        arguments[0]();
+    }
+}
+obj.method(fn, 1);
+
+
+scope tricky question
+-------------------------------
+(function(){
+    var x, y; // Declares two variables: x and y
+
+    try {
+        throw new Error(); // Throws an error, which will be caught by the catch block
+    } catch (x) { // Catches the error and assigns it to the variable 'x'
+        x = 1; // Inside the catch block, the variable 'x' (which is the error object) is overwritten to 1
+        y = 2; // Assigns the value 2 to the variable 'y'
+        console.log(x); // Prints '1', because 'x' is now 1 inside the catch block
+    }
+
+    console.log(x); // Prints 'undefined', because 'x' was only modified inside the catch block, outside it's still undefined
+    console.log(y); // Prints '2', because 'y' was defined in the catch block and is accessible outside it
+})
+
+
+hoisting trick question
+-------------------------------
+var b = 1;
+function outer() {
+    var b = 2;
+    function innter(){
+        b++;
+        console.log(b); // NaN
+        var b = 3;
+        console.log(b); //3
+    }
+    inner();
+}
+outer();
+
+
+factorical recursion function means 5*4*3*2*1
+-------------------------------
+function factorical (n) {
+    if(n == 1) return 1;
+    return n * factorical(n-1)
+}
+const f = factorical(5) // 120
+
+
+React secured
+-------------------------------
+React itself is secure when used properly, as it automatically escapes content to prevent common vulnerabilities like Cross-Site Scripting (XSS).
+
+
+
+floating point compare
+-------------------------------
+const result = 0.2+0.3 === 0.5 // false
+const result = 0.2*10+0.3*10 === 0.5*10 // true
+
+find duplicats
+-------------------------------
+const arr = ['2','3','2','6','7','2','3']
+
+// how many duplates are there so write function
+const hashMap = {};
+arr.forEach((it) => {
+    if(it in hashMap) {
+        hashMap[it]++;
+    } else {
+        hashMap[it] = 1;
+    }
+})
+
+
+
+delete
+-------------------------------
+// delete working only own property, if you defined using prototype so it's not delete it.
+Object.prototype.age = 15;
+var employe = {
+    company: 'xyz',
+    name: 'abc'
+}
+var chars = ["x","y","z","c","d","e"];
+
+delete employe.name
+console.log(employe) // {company: 'xyz'}
+
+delete chars[2]
+console.log(chars) // ["x","y"," ","c","d","e"]
+
+// using prototype it's not delete
+delete employe.age
+console.log(employe.age) // 10
+
+
+
+null ?? coalecing vs ||
+-------------------------------
+ var city = 0;
+ var place = city || 'NA';
+ console.log(place) // NA - because empty it's consider false value
+
+
+ var city = 0;
+ var place = city ?? 'NA';
+ console.log(place) // 0
+
+
