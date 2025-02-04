@@ -60,3 +60,24 @@ foo.func(); // 2
 
 
 
+
+write a program to find element occurrence in array
+write a program to remove duplicate item from an array
+
+write a program for following output: mul(2)(4)(6)
+
+write a program to mulitply two number without using multiply sign  in javascript
+write a program to make polyfill for map or reduce method in javascipt
+
+what will the output
+const firstName = fun();
+
+let name = "vivek"
+function fun(){
+    return `my ${name} is prjapati`
+}
+console.log(firstName)
+
+
+
+
