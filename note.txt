@@ -1,0 +1,62 @@
+var a = 10;
+var b = a;
+a = 20;
+
+console.log(b); // 10
+// The variable b is assigned the value of a before a is updated. Since JavaScript assigns primitive values by value, b gets a copy of a's value (10) and is unaffected by any later changes to a.
+
+----------------------------
+const obj = {
+  x: 10,
+  y: 20
+};
+
+const { x, ...rest } = obj;
+
+console.log(x); // 10
+console.log(rest); // { y: 20 }
+
+// Destructuring and Rest Operator: The x is destructured from the object and stored in a variable x. The rest operator (...rest) collects the remaining properties into a new object (rest), which in this case is { y: 20 }.
+
+
+----------------------------
+function outer() {
+  let a = 5;
+
+  function inner() {
+    console.log(a);
+  }
+
+  return inner;
+}
+
+const innerFunc = outer();
+innerFunc(); // 5
+
+// Closure: The inner function forms a closure that retains access to variables from its enclosing scope, even after the outer function has finished executing. Here, inner has access to the variable a from the outer function, so when innerFunc() is called, it logs 5.
+
+----------------------------
+const foo = {
+  bar: 1,
+  func: function() {
+    setTimeout(() => {
+      this.bar++;
+      console.log(this.bar);
+    }, 1000);
+  }
+};
+
+foo.func(); // 2
+
+// Arrow Function and this: The arrow function does not have its own this context; instead, it inherits this from its enclosing scope. Since foo.func() is invoked on the foo object, the arrow function inside setTimeout will have the same this as foo. Hence, this.bar refers to foo.bar, and after one second, it is incremented to 2, which is then logged.
+
+----------------------------
+
+----------------------------
+
+----------------------------
+
+----------------------------
+
+
+
