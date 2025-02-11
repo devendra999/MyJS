@@ -234,7 +234,7 @@ console.log(members); // [{ name: "Lydia" }]
 // We are only modifying the value of the person variable, and not the first element in the array, since that element has a different (copied) reference to the object.
 ------------------------------------------
 
-number 50 - https://github.com/lydiahallie/javascript-questions
+
 ------------------------------------------
 ------------------------------------------
 ------------------------------------------
@@ -246,6 +246,474 @@ number 50 - https://github.com/lydiahallie/javascript-questions
 
 
 
+var a = 10;
+var b = a;
+a = 20;
+
+console.log(b); // 10
+// The variable b is assigned the value of a before a is updated. Since JavaScript assigns primitive values by value, b gets a copy of a's value (10) and is unaffected by any later changes to a.
+
+----------------------------
+const obj = {
+  x: 10,
+  y: 20
+};
+
+const { x, ...rest } = obj;
+
+console.log(x); // 10
+console.log(rest); // { y: 20 }
+
+// Destructuring and Rest Operator: The x is destructured from the object and stored in a variable x. The rest operator (...rest) collects the remaining properties into a new object (rest), which in this case is { y: 20 }.
+
+
+----------------------------
+function outer() {
+  let a = 5;
+
+  function inner() {
+    console.log(a);
+  }
+
+  return inner;
+}
+
+const innerFunc = outer();
+innerFunc(); // 5
+
+// Closure: The inner function forms a closure that retains access to variables from its enclosing scope, even after the outer function has finished executing. Here, inner has access to the variable a from the outer function, so when innerFunc() is called, it logs 5.
+
+----------------------------
+const foo = {
+  bar: 1,
+  func: function() {
+    setTimeout(() => {
+      this.bar++;
+      console.log(this.bar);
+    }, 1000);
+  }
+};
+
+foo.func(); // 2
+
+// Arrow Function and this: The arrow function does not have its own this context; instead, it inherits this from its enclosing scope. Since foo.func() is invoked on the foo object, the arrow function inside setTimeout will have the same this as foo. Hence, this.bar refers to foo.bar, and after one second, it is incremented to 2, which is then logged.
+
+
+
+write a program to find element occurrence in array
+----------------------------
+function countOccurrences(arr) {
+  let occurrenceCount = {};
+
+  // Loop through the array and count occurrences of each element
+  for (let i = 0; i < arr.length; i++) {
+    let element = arr[i];
+    // If the element is already in the object, increment its count, otherwise set to 1
+    occurrenceCount[element] = occurrenceCount[element] ? occurrenceCount[element] + 1 : 1;
+  }
+
+  return occurrenceCount;
+}
+
+// Example usage
+let arr = [1, 2, 2, 3, 4, 4, 4, 5, 6, 1, 2];
+let result = countOccurrences(arr);
+console.log(result);
+
+
+
+
+write a program to remove duplicate item from an array
+----------------------------
+function removeDuplicates(arr) {
+    return [...new Set(arr)];
+}
+
+// Example usage
+let arr = [1, 2, 2, 3, 4, 4, 5, 6, 1];
+let result = removeDuplicates(arr);
+console.log(result);
+
+
+
+write a program for following output: mul(2)(4)(6)
+----------------------------
+function mul(x) {
+    let result = x;
+
+    // Returning a function that will accept the next value and accumulate the result
+    function inner(y) {
+        result *= y;  // Multiply the current result by the new value
+        return inner;  // Return the inner function to allow chaining
+    }
+    
+    // This is the base function that starts the chain
+    inner.toString = function() {
+        return result;  // Override the toString method to return the current result when logged
+    };
+    
+    return inner;
+}
+
+console.log(mul(2)(4)(6));  // This will output 48
+
+
+write a program to mulitply two number without using multiply sign  in javascript
+----------------------------
+function multiply(a, b) {
+    let result = 0;
+    
+    // Loop b times and add a to the result each time
+    for (let i = 0; i < Math.abs(b); i++) {
+        result += a;
+    }
+    
+    // If b is negative, negate the result
+    if (b < 0) {
+        result = -result;
+    }
+    
+    return result;
+}
+
+console.log(multiply(3, 4));  // Outputs 12
+console.log(multiply(5, -2)); // Outputs -10
+console.log(multiply(-3, -3)); // Outputs 9
+
+
+
+write a program to make polyfill for map or reduce method in javascipt
+----------------------------
+Array.prototype.myMap = function(callback, thisArg) {
+    const result = [];
+    
+    // Loop through each element in the array
+    for (let i = 0; i < this.length; i++) {
+        if (this.hasOwnProperty(i)) {
+            // Call the callback function with the current element
+            result.push(callback.call(thisArg, this[i], i, this));
+        }
+    }
+    
+    return result;
+};
+
+// Example Usage:
+const arr = [1, 2, 3];
+const mappedArr = arr.myMap((item) => item * 2);
+console.log(mappedArr);  // Output: [2, 4, 6]
+
+
+
+
+what will the output
+----------------------------
+const firstName = fun();
+
+let name = "vivek"
+function fun(){
+    return `my ${name} is prjapati`
+}
+console.log(firstName) // ReferenceError: Cannot access 'name' before initialization
+
+
+
+[1, 2, 3].map(num => {
+  if (typeof num === 'number') return;
+  return num * 2;
+});
+// [undefined, undefined, undefined] - However, we don’t return a value. When we don’t return a value from the function, the function returns undefined. For every element in the array, the function block gets called, so for each element we return undefined.
+
+------------------------------------------
+
+function getInfo(member, year) {
+  member.name = 'Lydia';
+  year = '1998';
+}
+
+const person = { name: 'Sarah' };
+const birthYear = '1997';
+
+getInfo(person, birthYear);
+
+console.log(person, birthYear); // { name: "Lydia" }, "1997"
+
+------------------------------------------
+function greeting() {
+  throw 'Hello world!';
+}
+
+function sayHi() {
+  try {
+    const data = greeting();
+    console.log('It worked!', data);
+  } catch (e) {
+    console.log('Oh no an error:', e);
+  }
+}
+
+sayHi(); // Oh no an error: Hello world!
+
+// With the throw statement, we can create custom errors. With this statement, you can throw exceptions. An exception can be a string, a number, a boolean or an object. In this case, our exception is the string 'Hello world!'. 
+
+// With the catch statement, we can specify what to do if an exception is thrown in the try block. An exception is thrown: the string 'Hello world!'. e is now equal to that string, which we log. This results in 'Oh an error: Hello world!'.
+
+------------------------------------------
+function Car() {
+  this.make = 'Lamborghini';
+  return { make: 'Maserati' };
+}
+
+const myCar = new Car();
+console.log(myCar.make); // Maserati
+// When a constructor function is called with the new keyword, it creates an object and sets the this keyword to refer to that object. By default, if the constructor function doesn't explicitly return anything, it will return the newly created object.
+
+//In this case, the constructor function Car explicitly returns a new object with make set to "Maserati", which overrides the default behavior. Therefore, when new Car() is called, the returned object is assigned to myCar, resulting in the output being "Maserati" when myCar.make is accessed.
+
+------------------------------------------
+function Car() {
+  this.make = 'Lamborghini';
+}
+
+const myCar = new Car();
+console.log(myCar.make);  // Lamborghini
+------------------------------------------
+(() => {
+  let x = (y = 10);
+})();
+
+console.log(typeof x); // undefined - beacuse of block scope
+console.log(typeof y); // number
+
+// let x = (y = 10); is actually shorthand for:
+// y = 10;
+// let x = y;
+
+------------------------------------------
+// counter.js
+  let counter = 10;
+  export default counter;
+
+// index.js
+  import myCounter from './counter';
+  myCounter += 1;
+
+  console.log(myCounter); // Error
+
+  // An imported module is read-only: you cannot modify the imported module. Only the module that exports them can change its value.
+------------------------------------------
+const name = 'Lydia';
+age = 21;
+
+console.log(delete name); // false
+console.log(delete age); // true
+// The delete operator returns a boolean value: true on a successful deletion, else it'll return false. However, variables declared with the var, const, or let keywords cannot be deleted using the delete operator.
+------------------------------------------
+const numbers = [1, 2, 3, 4, 5];
+const [y] = numbers;
+
+console.log(y); // 1
+
+// [a, b] = [1, 2]; here a's value is 1 and b value is 2
+// [y, z] = [1, 2, 3, 4, 5]; here y value is 1 and z value is 2
+------------------------------------------
+const user = { name: 'Lydia', age: 21 };
+const admin = { admin: true, ...user };
+
+console.log(admin); // { admin: true, name: "Lydia", age: 21 }
+------------------------------------------
+const person = { name: 'Lydia' };
+
+Object.defineProperty(person, 'age', { value: 21 });
+
+console.log(person); // { name: "Lydia", age: 21 }
+console.log(Object.keys(person)); // ["name"]
+// With the defineProperty method, we can add new properties to an object, or modify existing ones. When we add a property to an object using the defineProperty method, they are by default not enumerable. The Object.keys method returns all enumerable property names from an object, in this case only "name".
+
+------------------------------------------
+const settings = {
+  username: 'lydiahallie',
+  level: 19,
+  health: 90,
+};
+
+const data = JSON.stringify(settings, ['level', 'health']);
+console.log(data); // {"level":19, "health":90}
+
+------------------------------------------
+let num = 10;
+
+const increaseNumber = () => num++;
+const increasePassedNumber = number => number++;
+
+const num1 = increaseNumber();
+const num2 = increasePassedNumber(num1);
+
+console.log(num1);
+console.log(num2);
+
+------------------------------------------
+
+const value = { number: 10 };
+
+const multiply = (x = { ...value }) => {
+  console.log((x.number *= 2));
+};
+
+multiply();  // 20
+multiply();  // 20
+multiply(value);  // 20
+multiply(value);  // 40
+console.log(value) // 40 
+
+------------------------------------------
+[1, 2, 3, 4].reduce((x, y) => console.log(x, y));
+// The value of the accumulator is equal to the previously returned value of the callback function. If you don't pass the optional initialValue argument to the reduce method, the accumulator is equal to the first element on the first call.
+
+// On the first call, the accumulator (x) is 1, and the current value (y) is 2. We don't return from the callback function, we log the accumulator, and the current values: 1 and 2 get logged.
+
+// If you don't return a value from a function, it returns undefined. On the next call, the accumulator is undefined, and the current value is 3. undefined and 3 get logged.
+
+// On the fourth call, we again don't return from the callback function. The accumulator is again undefined, and the current value is 4. undefined and 4 get logged.
+
+------------------------------------------
+console.log(Number(2) === Number(2)); // true
+console.log(Boolean(false) === Boolean(false)); // true
+console.log(Symbol('foo') === Symbol('foo')); // false
+//Every Symbol is entirely unique. The purpose of the argument passed to the Symbol is to give the Symbol a description. The value of the Symbol is not dependent on the passed argument. As we test equality, we are creating two entirely new symbols: the first Symbol('foo'), and the second Symbol('foo'). These two values are unique and not equal to each other, Symbol('foo') === Symbol('foo') returns false.
+
+------------------------------------------
+function addToList(item, list) {
+  return list.push(item);
+}
+
+const result = addToList('apple', ['banana']);
+console.log(result); // 2
+// The .push() method returns the length of the new array! Previously, the array contained one element (the string "banana") and had a length of 1. After adding the string "apple" to the array, the array contains two elements, and has a length of 2. This gets returned from the addToList function.
+
+// The push method modifies the original array. If you wanted to return the array from the function rather than the length of the array, you should have returned list after pushing item to it.
+------------------------------------------
+const box = { x: 10, y: 20 };
+
+Object.freeze(box);
+
+const shape = box;
+shape.x = 100;
+
+console.log(shape); // { x: 10, y: 20 }
+------------------------------------------
+function sum(a, b) {
+  return a + b;
+} // yes it is pure function
+------------------------------------------
+const add = () => {
+  const cache = {};
+  return num => {
+    if (num in cache) {
+      return `From cache! ${cache[num]}`;
+    } else {
+      const result = num + 10;
+      cache[num] = result;
+      return `Calculated! ${result}`;
+    }
+  };
+};
+
+const addFunction = add(); 
+console.log(addFunction(10)); // Calculated! 20 
+console.log(addFunction(10)); // From cache! 20
+console.log(addFunction(5 * 2)); // From cache! 20
+
+------------------------------------------
+
+var status = '😎';
+
+setTimeout(() => {
+  const status = '😍';
+
+  const data = {
+    status: '🥑',
+    getStatus() {
+      return this.status;
+    },
+  };
+
+  console.log(data.getStatus()); // "🥑"
+  console.log(data.getStatus.call(this)); // "😎"
+}, 0);
+// With the call method, we can change the object to which the this keyword refers. In functions, the this keyword refers to the the object that the function belongs to. We declared the setTimeout function on the global object, so within the setTimeout function, the this keyword refers to the global object. On the global object, there is a variable called status with the value of "😎". When logging this.status, "😎" gets logged.
+
+------------------------------------------
+const person = {
+  name: 'Lydia',
+  age: 21,
+};
+
+let city = person.city;
+city = 'Amsterdam';
+
+console.log(person); // { name: "Lydia", age: 21 }
+
+------------------------------------------
+const person = {
+  name: 'Lydia',
+  age: 21,
+};
+
+let city = person.city = 'Amsterdam';
+console.log(person); // { name: "Lydia", age: 21, city: "Amsterdam" }
+------------------------------------------
+function checkAge(age) {
+  if (age < 18) {
+    const message = "Sorry, you're too young.";
+  } else {
+    const message = "Yay! You're old enough!";
+  }
+
+  return message;
+}
+
+console.log(checkAge(21)); // ReferenceError
+// Variables with the const and let keywords are block-scoped. A block is anything between curly brackets ({ }). In this case, the curly brackets of the if/else statements. You cannot reference a variable outside of the block it's declared in, a ReferenceError gets thrown.
+------------------------------------------
+console.log('I want pizza'[0]); // 1
+------------------------------------------
+function sum(num1, num2 = num1) {
+  console.log(num1 + num2);
+}
+
+sum(10); // 20
+------------------------------------------
+function giveLydiaPizza() {
+  return 'Here is pizza!';
+}
+
+const giveLydiaChocolate = () =>
+  "Here's chocolate... now go hit the gym already.";
+
+console.log(giveLydiaPizza.prototype); // { constructor: ...}
+console.log(giveLydiaChocolate.prototype); //  undefined
+// Regular functions, such as the giveLydiaPizza function, have a prototype property, which is an object (prototype object) with a constructor property. Arrow functions however, such as the giveLydiaChocolate function, do not have this prototype property. undefined gets returned when trying to access the prototype property using giveLydiaChocolate.prototype.
+------------------------------------------
+function nums(a, b) {
+  if (a > b) console.log('a is bigger');
+  else console.log('b is bigger');
+  return
+  a + b;
+}
+console.log(nums(4, 2)); // a is bigger undefined
+console.log(nums(1, 2)); // b is bigger undefined
+------------------------------------------
+const person = {
+  name: 'Lydia',
+  age: 21,
+};
+
+for (const [x, y] of Object.entries(person)) {
+  console.log(x, y); //name Lydia and age 21
+
+}
+------------------------------------------
 
 
 
