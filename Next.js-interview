@@ -702,6 +702,56 @@ Currying is a functional programming, that transforms the function of multiple a
 
 
 
+difference between shallow and deep copy 
+----------------------------------------------------------
+Shallow Copy: Makes a new copy of the outer object, but if that object has other objects inside it (like a list inside a list), the inner objects are shared between the original and the copy. So, changing something inside the copy's inner objects will also change the original.
+
+Deep Copy: Makes a new copy of the entire object, including all the objects inside it. The original and the copy are completely independent, so changes to the copy won't affect the original, and vice versa.
+
+note: The JSON.parse() and JSON.stringify() approach wont work with objects containing methods, undefined, RegExp, Date, Map, Set, Symbol, or circular references.
+
+
+Example
+    // 1. Shallow copy using Object.assign() or spread syntax
+        const original = {
+            name: 'Alice',
+            details: {
+                age: 25,
+                country: 'USA'
+            }
+        };
+
+        // Shallow copy using spread operator
+        const shallowCopy = { ...original };
+
+        // Modify the nested object in shallow copy
+        shallowCopy.details.age = 30;
+
+        console.log(original.details.age); // Output: 30 (because the nested object is shared)
+        console.log(shallowCopy.details.age); // Output: 30
+
+
+    // 2. Deep copy using JSON methods
+        const original = {
+            name: 'Alice',
+            details: {
+                age: 25,
+                country: 'USA'
+            }
+        };
+
+        // Deep copy using JSON methods
+        const deepCopy = JSON.parse(JSON.stringify(original));
+
+        // Modify the nested object in deep copy
+        deepCopy.details.age = 30;
+
+        console.log(original.details.age); // Output: 25 (original is unaffected)
+        console.log(deepCopy.details.age);  // Output: 30
+
+
+
+
 
 Pure functions
 ------------------------------------------------------------------------------------------------------------------
