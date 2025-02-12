@@ -51,6 +51,19 @@
 ------------------------------------------
 
 
+2. In JavaScript, how do you turn an array into an object {}?
+const array = ['1', 'user22', '26', 'programmer'];
+
+const object = array.reduce((acc, value, index) => {
+  acc[index] = value;
+  return acc;
+}, {});
+
+console.log(object);
+// Output: { '0': '1', '1': 'user22', '2': '26', '3': 'programmer' }
+
+------------------------------------------
+
 3. Write the code to find the vowels
     const findVowels = str => {
       let count = 0
