@@ -30,10 +30,20 @@ What is React js
     React is a JavaScript library for building user interfaces. React is used to build single - page applications. React allows us to create reusable UI components.
 
     
-Create react app
---------------------------------------------------------------------------------
-    npx create-react-app my-react-app
+What are components in React?
+---------------------------------------------------
+A component in React is a reusable, self-contained piece of UI that returns JSX (HTML + JavaScript). Components make React apps modular and easy to maintain.
 
+
+
+What is JSX, and why is it used in React?
+---------------------------------------------------
+JSX is converted into React.createElement() calls using Babel, which transforms JSX into JavaScript.
+
+
+Lifting State Up in React
+---------------------------------------------------
+In React, lifting state up means moving state from a child component to a common parent component so that multiple components can share and manage the same data.
 
 How does React Work?
 --------------------------------------------------------------------------------
