@@ -1,3 +1,21 @@
+What is a key in React?
+--------------------------------------------------------------------------------
+    A key is a special attribute in React that helps identify each element in a list. It must be unique among siblings. Keys help React efficiently update and render UI elements.
+
+    React uses a diffing algorithm to compare the Virtual DOM before and after updates:
+        1. With keys: React quickly finds which items changed, were added, or removed.
+        2. Without keys: React may re-render everything, causing performance issues.
+
+
+React Hook (Simple Definition) ?
+--------------------------------------------------------------------------------
+    A React Hook is a special function that lets you use React features (like state and lifecycle methods) inside functional components without needing a class.
+
+    useState → Adds state to functional components.
+    useEffect → Runs side effects (like fetching data or updating the DOM).
+
+    
+
 virtual dom how work ?
 --------------------------------------------------------------------------------
     lightweight copy of the real DOM in memory
@@ -6,13 +24,16 @@ virtual dom how work ?
     React then compares the Virtual DOM with the real DOM to determine what changes need to be made.
     The result of this comparison is a set of changes (or "diffs"), which are then applied to the real DOM.
 
+
 What is React js
 --------------------------------------------------------------------------------
     React is a JavaScript library for building user interfaces. React is used to build single - page applications. React allows us to create reusable UI components.
 
+    
 Create react app
 --------------------------------------------------------------------------------
     npx create-react-app my-react-app
+
 
 How does React Work?
 --------------------------------------------------------------------------------
@@ -46,6 +67,7 @@ Props
 
     To do this without Context, we will need to pass the state as "props" through each nested component. This is called "prop drilling".
 
+    
 React Events
 --------------------------------------------------------------------------------
     Just like HTML DOM events, React can perform actions based on user events. React has the same events as HTML: click, change, mouseover etc.
@@ -72,6 +94,7 @@ React Form
     <input type="text" name="username" value={inputs.username || ""} onChange={handleChange} />
     <input type="number" name="age" value={inputs.age || ""} onChange={handleChange} />
 
+        
 React Router
 --------------------------------------------------------------------------------
     React Router DOM is an npm package that enables you to implement dynamic routing in a web app. It allows you to display pages and allow users to navigate them. It is a fully-featured client and server-side routing library for React. React Router Dom is used to build single-page applications i.e. applications that have many pages or components but the page is never refreshed instead the content is dynamically fetched based on the URL. This process is called Routing and it is made possible with the help of React Router Dom.
