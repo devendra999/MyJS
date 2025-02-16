@@ -1029,6 +1029,53 @@ closure in action that is inner function can have access to the outer function v
 
 
 
+difference between rest and spread operator
+-------------------------------------------
+rest : Used in function parameters to collect multiple arguments into a single array(also known as "rest parameters").
+Used in destructuring to collect the remaining properties into an object or array.
+
+    // in function
+    function sum(...numbers) { // rest
+        return numbers.reduce((acc, num) => acc + num, 0);
+    }
+
+    // Object destructuring
+    const person = { name: 'Alice', age: 25, country: 'USA' };
+    const { name, ...rest } = person;
+    console.log(name); // Alice
+    console.log(rest); // { age: 25, country: 'USA' }
+
+    // Array destructuring
+    const numbers = [1, 2, 3, 4];
+    const [first, ...restNumbers] = numbers;
+    console.log(first); // 1
+    console.log(restNumbers); // [2, 3, 4]
+
+
+spread: Used in function calls to spread the elements of an array into individual arguments.
+Used in object or array literals to copy or combine objects / arrays.
+
+    // in function
+    function greet(firstName, lastName) {
+        console.log(`Hello, ${firstName} ${lastName}!`);
+    }
+
+    const names = ['Alice', 'Smith'];
+    greet(...names); // Output: Hello, Alice Smith!
+
+
+    // Object spread
+    const person = { name: 'Alice', age: 25 };
+    const updatedPerson = { ...person, country: 'USA' };
+    console.log(updatedPerson); // { name: 'Alice', age: 25, country: 'USA' }
+
+    // Array spread
+    const numbers = [1, 2, 3];
+    const newNumbers = [...numbers, 4, 5];
+    console.log(newNumbers); // [1, 2, 3, 4, 5]
+
+
+
 
 let const var - block scope
 --------------------------------------------------------
