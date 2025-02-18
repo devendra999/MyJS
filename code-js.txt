@@ -29,6 +29,36 @@
 ------------------------------------------
 
 
+2. Find first unique character
+function findFirstUniqueCharacter(str) {
+  // Create an object to store the count of each character
+  let charCount = {};
+
+  // Count the occurrences of each character using for...of
+  for (let char of str) {
+    let lowerChar = char.toLowerCase();  // Convert to lowercase for case-insensitivity
+    charCount[lowerChar] = (charCount[lowerChar] || 0) + 1;
+  }
+
+  // Loop through the string again to find the first unique character
+  for (let char of str) {
+    let lowerChar = char.toLowerCase();  // Convert to lowercase for case-insensitivity
+    if (charCount[lowerChar] === 1) {
+      return char;
+    }
+  }
+
+  // Return null if no unique character is found
+  return null;
+}
+
+// Example usage
+console.log(findFirstUniqueCharacter('dDevendra')); // Output: 'v'
+
+
+------------------------------------------
+
+
 
 
 2. In JavaScript, how do you turn an Object into an Array []?
