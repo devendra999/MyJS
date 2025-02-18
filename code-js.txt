@@ -120,6 +120,760 @@ console.log(array);
   console.log(findVowels('devendra')) // { e: 2, a: 1 }
 ------------------------------------------
 
+1. Find the Second Largest Number in an Array
+
+function findSecondLargest(arr) {
+    // Remove duplicates to handle repeated values
+    arr = [...new Set(arr)];
+
+    // Sort the array in descending order
+    arr.sort((a, b) => b - a);
+
+    // Return the second largest number, or null if there is no second largest
+    return arr.length >= 2 ? arr[1] : null;
+}
+
+// Example usage:
+const numbers = [12, 35, 1, 10, 34, 1];
+const secondLargest = findSecondLargest(numbers);
+console.log(secondLargest);  // Output: 34
+
+
+-----------------------------------------------
+
+2. Check for Anagram (Write a function to check if two strings are anagrams (i.e., they contain the same characters, but possibly in different orders). Ignore spaces and case differences.)
+
+console.log(isAnagram('listen', 'silent')); // Output: true
+console.log(isAnagram('hello', 'world')); // Output: false
+
+
+function isAnagram(str1, str2) {
+    // Remove spaces and convert to lowercase for case-insensitive comparison
+    str1 = str1.replace(/\s+/g, '').toLowerCase();
+    str2 = str2.replace(/\s+/g, '').toLowerCase();
+
+    // If the lengths of the strings are different, they cannot be anagrams
+    if (str1.length !== str2.length) {
+        return false;
+    }
+
+    // Sort the characters of both strings and compare them
+    const sortedStr1 = str1.split('').sort().join('');
+    const sortedStr2 = str2.split('').sort().join('');
+
+    return sortedStr1 === sortedStr2;
+}
+
+// Example usage:
+console.log(isAnagram('listen', 'silent')); // Output: true
+console.log(isAnagram('hello', 'world'));   // Output: false
+
+
+
+
+-----------------------------------------------
+
+
+3. Count the Number of Vowels in a String
+
+console.log(countVowels('Hello World')); // Output: 3
+
+function countVowels(str) {
+    // Define the vowels
+    const vowels = 'aeiouAEIOU';
+    let count = 0;
+
+    // Loop through the string and count vowels
+    for (let char of str) {
+        if (vowels.includes(char)) {
+            count++;
+        }
+    }
+
+    return count;
+}
+
+// Example usage:
+console.log(countVowels('Hello World')); // Output: 3
+
+
+-----------------------------------------------
+
+4. Reverse a String Without Using Built-in Functions
+console.log(reverseString('Hello')); // Output: 'olleH'
+
+function reverseString(str) {
+    return str.split('').reverse().join('');
+}
+
+// Example usage:
+console.log(reverseString('Hello')); // Output: 'olleH'
+
+-----------------------------------------------
+
+5. Find the Missing Number in an Array
+
+console.log(findMissing([1, 2, 4, 5])); // Output: 3
+
+function findMissing(arr) {
+  const n = arr.length + 1; // The full length should be one more than the current length
+  const expectedSum = (n * (n + 1)) / 2; // Sum of numbers from 1 to n using the formula (n * (n + 1)) / 2
+  const actualSum = arr.reduce((sum, num) => sum + num, 0); // Sum of the numbers in the array
+  return expectedSum - actualSum; // The difference will give the missing number
+}
+
+console.log(findMissing([1, 2, 4, 5])); // Output: 3
+
+
+-----------------------------------------------
+// Find the Longest String in an Array
+
+function findLongestString(arr) {
+    // If the array is empty, return an empty string
+    if (arr.length === 0) {
+      return "";
+    }
+  
+    // Use the reduce method to find the longest string
+    const longest = arr.reduce((longestStr, currentStr) => {
+      // Compare the length of the current string with the longest string
+      return currentStr.length > longestStr.length ? currentStr : longestStr;
+    });
+  
+    return longest; // Return the longest string
+  }
+  
+  // Example usage:
+  const strings = ["apple", "banana", "kiwi", "strawberry", "orange"];
+  const longestString = findLongestString(strings);
+  console.log(longestString); // Output: "strawberry"
+  
+-----------------------------------------------
+
+7. Find the Longest Substring Without Repeating Characters
+console.log(longestUniqueSubstring("abcabcbb")); // Output: 3 (substring "abc")
+
+function longestUniqueSubstring(str) {
+    let start = 0;
+    let maxLength = 0;
+    let seenChars = new Map();
+
+    for (let end = 0; end < str.length; end++) {
+        const char = str[end];
+        
+        // If the character is already in the map, move the start pointer
+        if (seenChars.has(char)) {
+            start = Math.max(seenChars.get(char) + 1, start);
+        }
+        
+        // Update the character's most recent index in the map
+        seenChars.set(char, end);
+        
+        // Calculate the length of the current substring and update the maxLength
+        maxLength = Math.max(maxLength, end - start + 1);
+    }
+
+    return maxLength;
+}
+
+// Test the function
+console.log(longestUniqueSubstring("abcabcdb")); // Output: 4 (substring "abcd")
+
+
+-----------------------------------------------
+
+8. Check if a Number is Prime
+console.log(isPrime(7)); // Output: true
+console.log(isPrime(10)); // Output: false
+
+
+function isPrime(num) {
+    if (num <= 1) {
+        return false; // 0 and 1 are not prime numbers
+    }
+
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+            return false; // num is divisible by i, so it's not prime
+        }
+    }
+
+    return true; // num is prime
+}
+
+// Test the function
+console.log(isPrime(7));  // Output: true
+console.log(isPrime(10)); // Output: false
+
+
+
+-----------------------------------------------
+
+10. Remove Duplicate Characters from a String
+console.log(removeDuplicates('aabbccdeff')); // Output: 'abcdef'
+
+function removeDuplicates(str) {
+    // Create a Set to store unique characters
+    let uniqueChars = new Set(str);
+    
+    // Convert the Set back to a string
+    return [...uniqueChars].join('');
+}
+
+console.log(removeDuplicates('aabbccdeff')); // Output: 'abcdef'
+
+
+-----------------------------------------------
+
+1. Find the Factorial of a Number
+console.log(factorial(5)); // Output: 120 (5*4*3*2*1)
+
+//  The function uses recursion to calculate the factorial.
+
+function factorial(num) {
+    // Base case: if num is 0 or 1, return 1
+    if (num === 0 || num === 1) {
+        return 1;
+    }
+    
+    // Recursive case: num * factorial of (num - 1)
+    return num * factorial(num - 1);
+}
+
+console.log(factorial(5)); // Output: 120
+
+
+-----------------------------------------------
+
+2. Find the Frequency of Each Character in a String
+console.log(charFrequency('apple')); // Output: {a: 1, p: 2, l: 1, e: 1}
+
+function charFrequency(str) {
+    let freq = {};
+
+    // Loop through each character in the string
+    for (let char of str) {
+        // If the character is not already in the freq object, add it with value 1
+        // Otherwise, increment its value by 1
+        freq[char] = (freq[char] || 0) + 1;
+    }
+
+    return freq;
+}
+
+console.log(charFrequency('apple')); // Output: {a: 1, p: 2, l: 1, e: 1}
+
+
+-----------------------------------------------
+
+6. Find the Common Elements Between Two Arrays
+console.log(findCommonElements([1, 2, 3], [2, 3, 4])); // Output: [2, 3]
+
+
+function findCommonElements(arr1, arr2) {
+  // Use filter() to get common elements between arr1 and arr2
+  return arr1.filter(element => arr2.includes(element));
+}
+
+// Example usage:
+console.log(findCommonElements([1, 2, 3], [2, 3, 4]));  // Output: [2, 3]
+
+
+-----------------------------------------------
+
+12. Find the First Repeated Character in a String
+console.log(firstRepeatedCharacter('abcbdca')); // Output: 'b'
+
+function firstRepeatedCharacter(str) {
+  // Create an empty Set to track the characters we've seen
+  let seen = new Set();
+
+  // Loop through each character in the string
+  for (let char of str) {
+    // If the character is already in the Set, it's the first repeated character
+    if (seen.has(char)) {
+      return char;
+    }
+    // Otherwise, add the character to the Set
+    seen.add(char);
+  }
+
+  // If no repeated character is found, return null or a message
+  return null;
+}
+
+// Example usage:
+console.log(firstRepeatedCharacter('abcbdca'));  // Output: 'b'
+
+-----------------------------------------------
+
+14. Find All Divisors of a Number
+console.log(findDivisors(12)); // Output: [1, 2, 3, 4, 6, 12]
+
+function findDivisors(num) {
+  let divisors = [];
+  
+  // Loop through numbers from 1 to num
+  for (let i = 1; i <= num; i++) {
+    // Check if i is a divisor of num
+    if (num % i === 0) {
+      divisors.push(i); // If so, add i to the divisors array
+    }
+  }
+
+  return divisors;
+}
+
+// Example usage:
+console.log(findDivisors(12)); // Output: [1, 2, 3, 4, 6, 12]
+
+
+-----------------------------------------------
+16. Find the Longest Word in a String
+console.log(longestWord('The quick brown fox')); // Output: 'quick'
+
+function longestWord(str) {
+  // Split the string into an array of words
+  let words = str.split(' ');
+
+  // Initialize a variable to store the longest word
+  let longest = '';
+
+  // Loop through the words and update the longest word
+  for (let word of words) {
+    if (word.length > longest.length) {
+      longest = word;
+    }
+  }
+
+  return longest;
+}
+
+// Example usage:
+console.log(longestWord('The quick brown fox')); // Output: 'quick'
+
+
+-----------------------------------------------
+17. Count the Number of Even and Odd Numbers in an Array
+console.log(countEvenOdd([1, 2, 3, 4, 5])); // Output: { even: 2, odd: 3 }
+
+function countEvenOdd(arr) {
+  let result = { even: 0, odd: 0 };  // Initialize counters for even and odd numbers
+
+  // Loop through the array and check each number
+  for (let num of arr) {
+    if (num % 2 === 0) {
+      result.even++;  // Increment even count if the number is even
+    } else {
+      result.odd++;   // Increment odd count if the number is odd
+    }
+  }
+
+  return result;  // Return an object with the count of even and odd numbers
+}
+
+// Example usage:
+console.log(countEvenOdd([1, 2, 3, 4, 5]));  // Output: { even: 2, odd: 3 }
+
+
+-----------------------------------------------
+18. Find the Index of the First Occurrence of a Character
+Write a function to return the index of the first occurrence of a character in a string. If not found, return -1.
+
+console.log(firstIndex('hello', 'l')); // Output: 2
+
+function firstIndex(str, char) {
+    return str.indexOf(char);
+  }
+  
+  console.log(firstIndex('hello', 'l')); // Output: 2
+  
+
+
+-----------------------------------------------
+20. Find the Longest Consecutive Sequence in an Array
+Write a function that finds the length of the longest consecutive sequence of numbers in an unsorted array.
+
+console.log(longestConsecutiveSequence([100, 4, 200, 1, 3, 2])); // Output: 4 (1, 2, 3, 4)
+
+function longestConsecutiveSequence(nums) {
+    if (nums.length === 0) return 0;
+  
+    // Sort the array
+    nums.sort((a, b) => a - b);
+  
+    let longest = 1;
+    let currentStreak = 1;
+  
+    for (let i = 1; i < nums.length; i++) {
+      // If the current number is the same as the previous, skip it
+      if (nums[i] === nums[i - 1]) continue;
+  
+      // If the current number is consecutive to the previous one, increase the streak
+      if (nums[i] === nums[i - 1] + 1) {
+        currentStreak++;
+      } else {
+        // Otherwise, reset the streak
+        longest = Math.max(longest, currentStreak);
+        currentStreak = 1;
+      }
+    }
+  
+    // Check the last streak
+    return Math.max(longest, currentStreak);
+  }
+  
+  console.log(longestConsecutiveSequence([100, 4, 200, 1, 3, 2])); // Output: 4 (1, 2, 3, 4)
+  
+
+-----------------------------------------------
+// Flatten Nested Arrays
+
+function flattenArray(arr) {
+    return arr.reduce((flat, item) => flat.concat(Array.isArray(item) ? flattenArray(item) : item), []);
+}
+
+const nestedArray = [1, [2, [3, 4], 5], [6, 7], 8];
+const flattened = flattenArray(nestedArray);
+
+console.log(flattened); // Output: [1, 2, 3, 4, 5, 6, 7, 8]
+
+
+-----------------------------------------------
+17. Capitalize First Letter of Each Word
+function capitalizeFirstLetterOfEachWord(str) {
+    // Split the string into words using space as a separator
+    const words = str.split(' ');
+  
+    // Capitalize the first letter of each word and keep the rest of the letters in lowercase
+    const capitalizedWords = words.map(word => {
+      // Capitalize the first letter and combine with the rest of the word
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    });
+  
+    // Join the words back into a single string with spaces between them
+    return capitalizedWords.join(' ');
+  }
+  
+  // Example usage:
+  const result = capitalizeFirstLetterOfEachWord("hello world from javascript");
+  console.log(result); // Output: "Hello World From Javascript"
+  
+
+-----------------------------------------------
+// 18. Convert String to Camel Case
+function convertToCamelCase(str) {
+    // Split the string into words using non-alphanumeric characters as separators (e.g., spaces, underscores, hyphens)
+    const words = str.split(/[^a-zA-Z0-9]+/);
+  
+    // Convert the first word to lowercase and capitalize the first letter of subsequent words
+    const camelCaseString = words.map((word, index) => {
+      if (index === 0) {
+        // The first word remains in lowercase
+        return word.toLowerCase();
+      } else {
+        // Capitalize the first letter of the subsequent words and make the rest lowercase
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      }
+    }).join('');
+  
+    return camelCaseString;
+  }
+  
+  // Example usage:
+  const result = convertToCamelCase("convert-to camel_case-example");
+  console.log(result); // Output: "convertToCamelCaseExample"
+
+-----------------------------------------------
+// Convert Object to Query String
+  function objectToQueryString(obj) {
+    // Create an array of key-value pairs, where each pair is encoded as a string "key=value"
+    const queryString = Object.keys(obj)
+      .map(key => {
+        // Encode both key and value to handle special characters like spaces or & symbols
+        return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
+      })
+      .join('&'); // Join all pairs with '&' to form the full query string
+  
+    return queryString;
+  }
+  
+  // Example usage:
+  const params = {
+    name: "Alice",
+    age: 25,
+    city: "New York"
+  };
+  
+  const queryString = objectToQueryString(params);
+  console.log(queryString); // Output: "name=Alice&age=25&city=New%20York"
+
+-----------------------------------------------
+// Count Words in a String
+function countWords(str){
+    let a = str.split(' ');
+    console.log(a.length);
+}
+
+const wordCount = countWords("Hello world! This is a test.");
+console.log(wordCount); // Output: 6
+-----------------------------------------------
+  // Find Index of Object by Key in Array
+
+  function findIndexByKey(arr, key, value) {
+    // Use the findIndex method to search for the index of the object
+    const index = arr.findIndex(obj => obj[key] === value);
+  
+    return index; // If the object is found, it returns the index, otherwise returns -1
+  }
+  
+  // Example usage:
+  const users = [
+    { id: 1, name: "Alice" },
+    { id: 2, name: "Bob" },
+    { id: 3, name: "Charlie" }
+  ];
+  
+  // Find index of object with name "Bob"
+  const index = findIndexByKey(users, "name", "Bob");
+  console.log(index); // Output: 1
+  
+  // Try finding an object that doesn't exist
+  const missingIndex = findIndexByKey(users, "name", "Eve");
+  console.log(missingIndex); // Output: -1
+
+-----------------------------------------------
+// Get Random Item from Array
+
+function getRandomItem(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+-----------------------------------------------
+// 50. Remove Item by Index from Array
+
+function removeItemByIndex(arr, index) {
+  arr.splice(index, 1);
+  return arr;
+}
+
+-----------------------------------------------
+// 66. Remove Whitespace from String
+function countWords(str){
+    let a = str.trim();
+    let b = a.split(' ');
+    console.log(b.join(''));
+}
+
+countWords('dfd df df df     ');
+-----------------------------------------------
+// Check if Array Contains All Values
+
+function containsAllValues(arr, values) {
+    // Check if every value in the 'values' array is included in the 'arr'
+    return values.every(value => arr.includes(value));
+  }
+  
+  // Example usage:
+  const array = [1, 2, 3, 4, 5];
+  const valuesToCheck = [2, 4];
+  
+  console.log(containsAllValues(array, valuesToCheck)); // Output: true
+  
+  const valuesToCheck2 = [2, 6];
+  console.log(containsAllValues(array, valuesToCheck2)); // Output: false
+-----------------------------------------------
+// Remove All Occurrences of an Item in Array
+
+function removeAllOccurrences(arr, item) {
+    // Use the filter method to return a new array without the specified item
+    return arr.filter(element => element !== item);
+  }
+  
+  // Example usage:
+  const array = [1, 2, 3, 4, 2, 5, 2];
+  const updatedArray = removeAllOccurrences(array, 2);
+  console.log(updatedArray); // Output: [1, 3, 4, 5]
+  
+-----------------------------------------------
+// Find the Average of an Array
+function findAverage(arr) {
+    
+    // If the array is empty, return NaN (not a number) since average can't be calculated
+    if (arr.length === 0) {
+      return NaN;
+    }
+  
+    // Calculate the sum of all elements in the array
+    const sum = arr.reduce((total, current) => total + current, 0);
+  
+    // Calculate and return the average by dividing the sum by the number of elements
+    const average = sum / arr.length;
+  
+    return average;
+  }
+  
+  // Example usage:
+  const numbers = [10, 20, 30, 40, 50, 60];
+  const average = findAverage(numbers);
+  console.log(average); // Output: 30
+
+-----------------------------------------------
+// random number
+/**
+ * Generates a random 4-digit number
+ * @returns {number} A random 4-digit number
+ */
+function generateRandomFourDigit() {
+    // Generate a random number between 1000 and 9999
+    const randomNumber = Math.floor(Math.random() * 9000) + 1000;
+  
+    // Return the generated 4-digit number
+    return randomNumber;
+  }
+  
+  // Example usage:
+  const random4Digit = generateRandomFourDigit();
+  console.log("Random 4-digit number:", random4Digit);
+
+-----------------------------------------------
+//11. Find Object by Key in Array
+
+// Function to find an object by a specific key-value pair
+function findObjectByKey(arr, key, value) {
+    return arr.find(obj => obj[key] === value);
+}
+
+// Array of objects (this could be any dataset)
+const users = [
+    { id: 1, name: "Alice", age: 25, email: "alice@example.com" },
+    { id: 2, name: "Bob", age: 30, email: "bob@example.com" },
+    { id: 3, name: "Charlie", age: 35, email: "charlie@example.com" },
+    { id: 4, name: "Diana", age: 28, email: "diana@example.com" }
+];
+
+// 1. Find by name
+const userByName = findObjectByKey(users, "name", "Bob");
+console.log("User with name 'Bob':", userByName);
+
+// 2. Find by age
+const userByAge = findObjectByKey(users, "age", 35);
+console.log("User with age 35:", userByAge);
+
+// 3. Find by email
+const userByEmail = findObjectByKey(users, "email", "alice@example.com");
+console.log("User with email 'alice@example.com':", userByEmail);
+
+// 4. Find by id (unique identifier)
+const userById = findObjectByKey(users, "id", 4);
+console.log("User with ID 4:", userById);
+
+// 5. Case where no match is found
+const userNotFound = findObjectByKey(users, "name", "Eve");
+console.log("User with name 'Eve':", userNotFound); // undefined, because there's no user named 'Eve'
+
+// 6. Using with different key
+const userWithLongEmail = findObjectByKey(users, "email", "charlie@example.com");
+console.log("User with email 'charlie@example.com':", userWithLongEmail);
+
+
+
+-----------------------------------------------
+// Repeat a String N Times
+
+/**
+ * Repeats a string N times.
+ * @param {string} str - The string to repeat.
+ * @param {number} n - The number of times to repeat the string.
+ * @returns {string} The string repeated N times.
+ */
+function repeatString(str, n) {
+    // If n is less than or equal to 0, return an empty string
+    if (n <= 0) {
+      return '';
+    }
+  
+    // Use the repeat() method to repeat the string N times
+    return str.repeat(n);
+  }
+  
+  // Example usage:
+  const repeatedString = repeatString("hello ", 3);
+  console.log(repeatedString); // Output: "hello hello hello "
+  
+-----------------------------------------------
+// check year is leap year or not
+/**
+ * Checks if a given year is a leap year.
+ * @param {number} year - The year to check.
+ * @returns {boolean} True if the year is a leap year, false otherwise.
+ */
+function isLeapYear(year) {
+    // A year is a leap year if:
+    // 1. It is divisible by 4, and
+    // 2. It is not divisible by 100, unless it is also divisible by 400.
+    
+    if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+      return true; // It is a leap year
+    } else {
+      return false; // It is not a leap year
+    }
+  }
+  
+  // Example usage:
+  console.log(isLeapYear(2020)); // Output: true
+  console.log(isLeapYear(2021)); // Output: false
+  console.log(isLeapYear(2000)); // Output: true
+  console.log(isLeapYear(1900)); // Output: false
+  
+-----------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// logical output
 
 4. what is outplut
     let arr = [1, 2, 3, 4]; 
