@@ -79,6 +79,23 @@ function findLastUniqueChar(str) {
 console.log(findLastUniqueChar("swiss")); // Output: "i"
 console.log(findLastUniqueChar("aabbcc")); // Output: null
 ------------------------------------------
+3 Find nested array highest amount
+let array1 = [[2, 3, 8], [4, 8, 19], [2, 5, 1]];
+// output [8, 19, 5]
+
+
+let array1 = [[2, 3, 8], [4, 8, 19], [2, 5, 1]];
+let result = [];
+
+for (let i = 0; i < array1.length; i++) {
+  // Find the maximum number in the current sub-array
+  let maxInSubArray = Math.max(...array1[i]);
+  result.push(maxInSubArray);
+}
+
+console.log(result);  // Output: [8, 19, 5]
+
+------------------------------------------
 
 
 
