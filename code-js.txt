@@ -96,6 +96,32 @@ for (let i = 0; i < array1.length; i++) {
 console.log(result);  // Output: [8, 19, 5]
 
 ------------------------------------------
+3.1 Find nested array highest amount without js method
+let array1 = [[2, 3, 8], [4, 8, 19], [2, 5, 1]];
+
+// Create an empty result array to store the highest values from each nested array
+let result = [];
+
+// Iterate over each nested array
+for (let i = 0; i < array1.length; i++) {
+    let currentArray = array1[i];
+    let max = currentArray[0]; // Start with the first element as the initial max value
+    
+    // Iterate over each element in the current nested array to find the highest value
+    for (let j = 1; j < currentArray.length; j++) {
+        if (currentArray[j] > max) {
+            max = currentArray[j];
+        }
+    }
+    
+    // Push the maximum value of the current nested array into the result array
+    result.push(max);
+}
+
+// Output the result array
+console.log(result); // Output: [8, 19, 5]
+
+------------------------------------------
 
 
 
