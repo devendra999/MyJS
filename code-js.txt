@@ -152,6 +152,12 @@ const array = obj.reduce((acc, value, index) => {
   return acc;
 }, {});
 
+let obj = {};
+for(let num in array) {
+    obj[num] = array[num]
+}
+
+console.log(obj);
 console.log(array);
 // Output: { '0': '1', '1': 'user22', '2': '26', '3': 'programmer' }
 
