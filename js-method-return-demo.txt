@@ -282,3 +282,128 @@ console.log(arr); // [3, 4, 3, 4]
 console.log(copied); // [3, 4, 3, 4]
 Each of these methods directly modifies the original array and returns either the modified array or a specific value related to the modification (like the removed element or the new length)
 
+
+
+
+
+
+
+
+
+
+
+Common Object Methods in JavaScript:
+------------------------------------------------------------------------------------
+
+Object.keys()
+Description: Returns an array of a given object's own enumerable property names.
+Return: Array of strings (keys of the object).
+Example:
+const obj = { name: "Alice", age: 25 };
+const keys = Object.keys(obj);
+console.log(keys); // ["name", "age"]
+
+
+
+
+
+Object.values()
+Description: Returns an array of a given object's own enumerable property values.
+Return: Array of values.
+Example:
+const obj = { name: "Alice", age: 25 };
+const values = Object.values(obj);
+console.log(values); // ["Alice", 25]
+Object.entries()
+
+Description: Returns an array of an object's own enumerable string-keyed property [key, value] pairs.
+Return: Array of arrays (each array contains [key, value] pairs).
+Example:
+const obj = { name: "Alice", age: 25 };
+const entries = Object.entries(obj);
+console.log(entries); // [["name", "Alice"], ["age", 25]]
+
+
+
+
+
+Object.assign()
+
+Description: Copies the values of all enumerable own properties from one or more source objects to a target object.
+Return: The target object.
+Example:
+const obj1 = { name: "Alice" };
+const obj2 = { age: 25 };
+const merged = Object.assign({}, obj1, obj2);
+console.log(merged); // { name: "Alice", age: 25 }
+
+
+
+
+Object.freeze()
+
+Description: Freezes an object, making it immutable (cannot be changed).
+Return: The frozen object.
+Example:
+const obj = { name: "Alice", age: 25 };
+Object.freeze(obj);
+obj.age = 30; // This won't change the object because it's frozen.
+console.log(obj); // { name: "Alice", age: 25 }
+
+
+
+
+Object.seal()
+
+Description: Seals an object, preventing new properties from being added and marking all existing properties as non-configurable.
+Return: The sealed object.
+Example:
+const obj = { name: "Alice", age: 25 };
+Object.seal(obj);
+obj.age = 30; // Allowed, because existing properties can be modified.
+obj.city = "New York"; // Not allowed, new properties cannot be added.
+console.log(obj); // { name: "Alice", age: 30 }
+
+
+
+Object.hasOwn()
+
+Description: Checks if an object has a property as its own (not in the prototype chain).
+Return: true if the property is an own property of the object, otherwise false.
+Example:
+const obj = { name: "Alice", age: 25 };
+console.log(obj.hasOwn("name")); // true
+console.log(obj.hasOwn("city")); // false
+
+
+
+
+Object.is()
+
+Description: Compares two values to determine if they are the same value.
+Return: true if the values are the same, otherwise false.
+Example:
+const obj1 = { name: "Alice" };
+const obj2 = { name: "Alice" };
+console.log(Object.is(obj1, obj2)); // false (because they are different objects)
+console.log(Object.is(NaN, NaN));   // true (NaN is equal to NaN)
+
+
+
+
+
+Object.fromEntries()
+
+Description: Transforms a list of key-value pairs into an object.
+Return: An object created from the given entries.
+Example:
+const entries = [["name", "Alice"], ["age", 25]];
+const obj = Object.fromEntries(entries);
+console.log(obj); // { name: "Alice", age: 25 }
+Object.prototype.toString()
+
+Description: Returns a string representing the object.
+Return: A string representation of the object.
+Example:
+const obj = { name: "Alice", age: 25 };
+console.log(obj.toString()); // [object Object]
