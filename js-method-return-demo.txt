@@ -1,0 +1,284 @@
+Here is a list of JavaScript methods that do not change the original array, along with a brief description of what they return and a demo for each:
+-------------------------------------------------------------------------------------------------------
+
+1. map()
+Description: Creates a new array populated with the results of calling a provided function on every element in the array.
+Returns: A new array with modified elements, leaving the original array unchanged.
+Example:
+const originalArray = [1, 2, 3, 4];
+const newArray = originalArray.map(x => x * 2);
+
+console.log(originalArray); // [1, 2, 3, 4]
+console.log(newArray); // [2, 4, 6, 8]
+
+
+
+2. filter()
+Description: Creates a new array with all elements that pass the test implemented by the provided function.
+Returns: A new array with the elements that pass the condition, leaving the original array unchanged.
+Example:
+const originalArray = [1, 2, 3, 4, 5];
+
+const newArray = originalArray.filter(x => x > 2);
+
+console.log(originalArray); // [1, 2, 3, 4, 5]
+console.log(newArray); // [3, 4, 5]
+
+
+
+3. concat()
+Description: Combines two or more arrays and returns a new array.
+Returns: A new array that contains the elements from the original arrays, leaving the original arrays unchanged.
+Example:
+const array1 = [1, 2];
+const array2 = [3, 4];
+
+const newArray = array1.concat(array2);
+
+console.log(array1); // [1, 2]
+console.log(array2); // [3, 4]
+console.log(newArray); // [1, 2, 3, 4]
+
+
+
+
+
+4. slice()
+Description: Returns a shallow copy of a portion of an array into a new array object.
+Returns: A new array containing the sliced part of the original array, leaving the original array unchanged.
+Example:
+const originalArray = [1, 2, 3, 4, 5];
+
+const newArray = originalArray.slice(1, 4);
+
+console.log(originalArray); // [1, 2, 3, 4, 5]
+console.log(newArray); // [2, 3, 4]
+
+
+
+
+
+
+5. join()
+Description: Combines all elements of an array into a single string, with an optional separator.
+Returns: A new string, leaving the original array unchanged.
+Example:
+const originalArray = ['Hello', 'World'];
+
+const joinedString = originalArray.join(' ');
+
+console.log(originalArray); // ['Hello', 'World']
+console.log(joinedString); // 'Hello World'
+
+
+
+
+6. reverse()
+Description: Reverses the elements of an array in place but does not change the original array.
+Returns: A new array with the elements reversed (if you avoid modifying the original array in-place).
+Example (To not change original array):
+const originalArray = [1, 2, 3, 4];
+
+const newArray = [...originalArray].reverse();
+
+console.log(originalArray); // [1, 2, 3, 4]
+console.log(newArray); // [4, 3, 2, 1]
+
+
+
+
+7. find()
+Description: Returns the value of the first element in the array that satisfies the provided testing function.
+Returns: The first element that satisfies the condition (or undefined if no element is found), leaving the original array unchanged.
+Example:
+const originalArray = [5, 10, 15, 20];
+
+const foundElement = originalArray.find(x => x > 10);
+
+console.log(originalArray); // [5, 10, 15, 20]
+console.log(foundElement); // 15
+
+
+
+8. includes()
+Description: Determines whether an array contains a certain element.
+Returns: true or false, leaving the original array unchanged.
+Example:
+const originalArray = [1, 2, 3, 4];
+
+const containsThree = originalArray.includes(3);
+
+console.log(originalArray); // [1, 2, 3, 4]
+console.log(containsThree); // true
+
+
+
+
+9. indexOf()
+Description: Returns the index of the first occurrence of a specified element in an array.
+Returns: The index of the element (or -1 if not found), leaving the original array unchanged.
+Example:
+const originalArray = ['apple', 'banana', 'cherry'];
+
+const index = originalArray.indexOf('banana');
+
+console.log(originalArray); // ['apple', 'banana', 'cherry']
+console.log(index); // 1
+
+
+
+10. some()
+Description: Tests whether at least one element in the array passes the provided function.
+Returns: true if any element satisfies the function, false otherwise, leaving the original array unchanged.
+Example:
+const originalArray = [1, 2, 3, 4];
+
+const hasEvenNumber = originalArray.some(x => x % 2 === 0);
+
+console.log(originalArray); // [1, 2, 3, 4]
+console.log(hasEvenNumber); // true
+
+
+
+
+11. every()
+Description: Tests whether all elements in the array pass the provided function.
+Returns: true if all elements satisfy the condition, false otherwise, leaving the original array unchanged.
+Example:
+const originalArray = [2, 4, 6, 8];
+
+const allEven = originalArray.every(x => x % 2 === 0);
+
+console.log(originalArray); // [2, 4, 6, 8]
+console.log(allEven); // true
+
+
+
+
+12. reduce()
+Description: Executes a reducer function on each element of the array (from left to right) to reduce it to a single value.
+Returns: A single value (of the specified type), leaving the original array unchanged.
+Example:
+const originalArray = [1, 2, 3, 4];
+
+const sum = originalArray.reduce((acc, curr) => acc + curr, 0);
+
+console.log(originalArray); // [1, 2, 3, 4]
+console.log(sum); // 10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Here is a list of JavaScript array methods that modify the original array, along with what they return:
+-------------------------------------------------------------------------------------------------------
+1.push()
+Description: Adds one or more elements to the end of an array.
+Return Value: Returns the new length of the array.
+Example:
+const arr = [1, 2, 3];
+const length = arr.push(4);
+console.log(arr); // [1, 2, 3, 4]
+console.log(length); // 4
+
+
+
+
+2.pop()
+Description: Removes the last element from an array.
+Return Value: Returns the element that was removed.
+Example:
+const arr = [1, 2, 3];
+const removed = arr.pop();
+console.log(arr); // [1, 2]
+console.log(removed); // 3
+
+
+
+3.shift()
+Description: Removes the first element from an array.
+Return Value: Returns the element that was removed.
+Example:
+const arr = [1, 2, 3];
+const removed = arr.shift();
+console.log(arr); // [2, 3]
+console.log(removed); // 1
+
+
+
+4.unshift()
+Description: Adds one or more elements to the beginning of an array.
+Return Value: Returns the new length of the array.
+Example:
+const arr = [1, 2, 3];
+const length = arr.unshift(0);
+console.log(arr); // [0, 1, 2, 3]
+console.log(length); // 4
+
+
+
+5.splice()
+Description: Changes the content of an array by removing, replacing, or adding elements.
+Return Value: Returns an array of the removed elements.
+Example:
+const arr = [1, 2, 3, 4];
+const removed = arr.splice(1, 2, 5, 6);
+console.log(arr); // [1, 5, 6, 4]
+console.log(removed); // [2, 3]
+
+
+
+
+6.sort()
+Description: Sorts the elements of an array in place.
+Return Value: Returns the sorted array (the array itself).
+Example:
+const arr = [3, 1, 2];
+const sorted = arr.sort();
+console.log(arr); // [1, 2, 3]
+console.log(sorted); // [1, 2, 3]
+
+
+
+
+7.reverse()
+Description: Reverses the order of the elements in an array.
+Return Value: Returns the reversed array (the array itself).
+Example:
+const arr = [1, 2, 3];
+const reversed = arr.reverse();
+console.log(arr); // [3, 2, 1]
+console.log(reversed); // [3, 2, 1]
+
+
+
+8.fill()
+Description: Changes all elements in an array to a static value, from a start index to an end index.
+Return Value: Returns the modified array (the array itself).
+Example:
+const arr = [1, 2, 3];
+const filled = arr.fill(0);
+console.log(arr); // [0, 0, 0]
+console.log(filled); // [0, 0, 0]
+
+
+9.copyWithin()
+Description: Shallow copies a portion of an array to another location in the array.
+Return Value: Returns the modified array (the array itself).
+Example:
+const arr = [1, 2, 3, 4];
+const copied = arr.copyWithin(0, 2, 4);
+console.log(arr); // [3, 4, 3, 4]
+console.log(copied); // [3, 4, 3, 4]
+Each of these methods directly modifies the original array and returns either the modified array or a specific value related to the modification (like the removed element or the new length)
+
