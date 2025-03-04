@@ -240,8 +240,61 @@ console.log(isAnagram('listen', 'silent')); // Output: true
 console.log(isAnagram('hello', 'world'));   // Output: false
 
 
+-----------------------------------------------
+how can I all name push in single array using this json
+---
+const arrayOfObjects = [
+    {
+        name: "Alice",
+        age: 25,
+        hobbies: ["reading", "traveling", "swimming"],  // Subnested list 1
+        address: {
+            street: "123 Main St",
+            name: 'Alice 2',
+            city: "Wonderland",
+            zip: "12345",
+            previousAddresses: [     // Subnested list 2 inside an object
+                { street: "456 Oak Rd", city: "Dreamland", zip: "67890", name: "Alice 3" },
+                { street: "789 Pine Ln", city: "Fantasy City", zip: "11223" }
+            ]
+        }
+    },
+    {
+        name: "Bob",
+        age: 30,
+        hobbies: ["gaming", "hiking"],  // Subnested list 3
+        address: {
+            street: "101 Maple Ave",
+            name: 'Bob 2',
+            city: "Fairyland",
+            zip: "54321",
+            previousAddresses: [     // Subnested list 4 inside an object
+                { street: "102 Cedar Blvd", city: "Utopia", zip: "99887" }
+            ]
+        }
+    }
+];
 
+---
+const names = [];
 
+array.forEach((e) =>{
+    names.push(e.name);
+    
+    if(e.address.name) {
+        names.push(e.address.name);
+    };
+    
+    if(e.address.previousAddresses) {
+        e.address.previousAddresses.map((u) => {
+            if(u.name) {
+                names.push(u.name)
+            }
+        })
+    };
+} )
+
+console.log(names);
 -----------------------------------------------
 
 
