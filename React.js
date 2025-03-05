@@ -1,3 +1,43 @@
+
+dependency - used for production buid
+dev-dependency - when we work with developer and remove when production build
+
+
+
+if components name are same and import both in single file what we do?
+login for loginUser
+login for adminUser
+
+import {Login} from './loginUser'
+import {Login as AdminUser} from './AdminUser'
+
+
+
+what is difference between state variable and variable
+normal variable when update, that cannot re-render the component, 
+when state variable update, that re-render the component
+
+
+what is ternary operator
+in jsx we cannot write if and else condition so we use ternary operator
+
+
+useTransiton
+
+drive state or drive variable
+
+can we make a component in other make component
+yes we can make component, but we cannot do it beacuse our application make slow
+
+can we use title tag in react - yes
+if we have in single page multiple component called so what display in title
+so in that page last component title can show
+
+get dynamic id using useParams
+
+
+
+
 What is a key in React?
 --------------------------------------------------------------------------------
     A key is a special attribute in React that helps identify each element in a list. It must be unique among siblings. Keys help React efficiently update and render UI elements.
