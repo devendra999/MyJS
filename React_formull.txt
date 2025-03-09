@@ -993,6 +993,144 @@ export default function App ()  {
 // other js
 // =======================================================================================================================================
 
+event delegation
+---------------------------------
+Event delegation is a powerful pattern that takes advantage of event bubbling. It simplifies code, improves performance, and ensures event listeners work for dynamically added elements. 🚀
+
+    When to Use Event Delegation
+    ✅ When elements are dynamically added or removed.
+    ✅ When handling many child elements (e.g., lists, tables, grids).
+    ✅ When optimizing performance and memory usage.
+
+
+Browser api
+---------------------------------
+A Browser API (Application Programming Interface) is a set of built-in functions and objects provided by web browsers that allow developers to interact with various features of the browser and the web page. 
+
+    1. DOM (Document Object Model) API
+    2. BOM (Browser Object Model) API
+    3. Fetch API (Networking)
+    4. Storage APIs
+    5. Notification API
+
+
+
+Tools and techniques for debugging React applications?
+---------------------------------
+    🔹 1️⃣ React Developer Tools (React DevTools)
+    🔹 🔟 Error Handling with try-catch
+    🔹 2️⃣ Console Logging (console.log)
+    🔹 4️⃣ React Strict Mode
+    🔹 5️⃣ Using the Debugger Statement
+    🔹 6️⃣ Browser Developer Tools (Chrome DevTools)
+    🔹 7️⃣ Redux DevTools (For Redux Apps)
+
+
+
+code-splitting
+---------------------------------
+Dividing the app into smaller bundles	
+Breaks JavaScript files into chunks	
+Improves bundle size & performance	
+
+
+Webpack
+---------------------------------
+Webpack is a module bundler that helps React applications bundle, optimize, and serve JavaScript, CSS, images, and other assets efficiently.
+
+    🔹 Why Webpack in React?
+    ✅ Bundling: Combines multiple JavaScript files into one.
+    ✅ Code Splitting: Loads only the required code, reducing the initial load time.
+    ✅ Asset Optimization: Minifies JS, CSS, and images for faster performance.
+    ✅ Tree Shaking: Removes unused code to make the app smaller.
+
+
+
+lazzy loading
+---------------------------------
+Lazy Loading is a technique where resources (components, images, or data) are loaded only when they are needed, instead of loading everything at once.
+Works for components, images, and data
+Reduces unnecessary loading
+
+import React, { Suspense } from "react";
+
+// Lazy load the component
+const LazyComponent = React.lazy(() => import("./LazyComponent"));
+
+function App() {
+  return (
+    <div>
+      <h1>React Lazy Loading Demo</h1>
+      
+      {/* Suspense provides a fallback while the component loads */}
+      <Suspense fallback={<h2>Loading Component...</h2>}>
+        <LazyComponent />
+      </Suspense>
+    </div>
+  );
+}
+
+export default App;
+
+
+LazyComponent.js
+    function LazyComponent() {
+    return <h2>This is a lazily loaded component! 🎉</h2>;
+    }
+
+    export default LazyComponent;
+
+
+
+
+javascript prototype and inheritance
+---------------------------------
+In JavaScript, every object has an internal property called [[Prototype]], which refers to another object. objects can inherit properties and methods from other objects using a prototype chain. Prototype inheritance allows objects to share methods without copying them.
+
+// Constructor function
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+// Adding a method to the prototype
+Person.prototype.greet = function() {
+    console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+};
+
+// Creating instances
+const person1 = new Person("Alice", 25);
+const person2 = new Person("Bob", 30);
+
+// Calling the inherited method
+person1.greet(); // Hello, my name is Alice and I am 25 years old.
+person2.greet(); // Hello, my name is Bob and I am 30 years old.
+
+
+
+agile technology
+---------------------------------
+In an Agile environment, various technologies and tools are used to support development processes.
+
+1. 1️⃣ Version Control & Collaboration
+	- Git (GitHub, GitLab, Bitbucket) – For source code management
+	- JIRA / Trello / Azure DevOps – For Agile project tracking (Scrum/Kanban)
+
+2. 2️⃣ CI/CD (Continuous Integration & Deployment)
+	- GitHub Actions, Jenkins, CircleCI, GitLab CI/CD – Automate testing & deployment
+	
+3. 3️⃣ Code Quality & Testing
+	- ESLint / Prettier / Husky – Code linting & formatting
+	- Jest, React Testing Library, Cypress – Unit & UI testing
+	- SonarQube – Code quality checks
+
+4. 4️⃣ Agile Development in React
+	- Storybook – Component-driven development
+
+5. 5️⃣ Cloud & Hosting
+	- Vercel / Netlify / AWS Amplify – For fast React app deployment
+	- Firebase / Supabase – Serverless backend
+
 
 
 closure
