@@ -1802,6 +1802,41 @@ What is the difference between Element and Component?
 
 
 
+difference between package.jsand package-lock.js
+--------------------------------------------------------------------------------
+package
+    - Lists dependencies and scripts needed for the project.
+    - Specifies semantic versioning (e.g., ^1.2.3 or ~1.2.3).
+    - Used to share the project setup with others.
+
+package-lock
+    - Locks the exact versions of installed dependencies.
+    - Stores exact versions (18.2.0, 1.0.5)
+    - Helps in reproducible builds.
+
+
+
+difference between dependency and dev-dependency
+--------------------------------------------------------------------------------
+1️⃣ dependencies – Required for the app to run.
+                - These packages are needed at runtime (when the app is running).
+                - Used in both development and production environments.
+                - react, react-router-dom, axios, redux, material ui, tailwind css
+
+2️⃣ devDependencies – Required only for development and testing.
+                    - Only needed during development (not in production).
+                    - Includes tools for testing, linting, and bundling.
+                    - eslint, jest, webpack, babel, typescript
+
+
+how to update package
+--------------------------------------------------------------------------------
+1. npm install <package-name>@latest
+2. npm update react
+3. yarn upgrade react
+4. npm install -g npm-check-updates (all packages)
+
+
 
 
 Controlled vs Uncontrolled Components in ReactJS
