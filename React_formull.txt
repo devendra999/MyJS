@@ -993,6 +993,11 @@ export default function App ()  {
 // other js
 // =======================================================================================================================================
 
+what is micro frontend
+---------------------------------
+Working with Micro Frontends in a React application allows you to break a large application into smaller, independent modules, each owned by a different team. These modules can be developed, deployed, and updated separately, improving scalability and maintainability.
+
+
 event delegation
 ---------------------------------
 Event delegation is a powerful pattern that takes advantage of event bubbling. It simplifies code, improves performance, and ensures event listeners work for dynamically added elements. 🚀
