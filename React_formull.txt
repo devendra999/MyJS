@@ -1577,7 +1577,37 @@ Throttling : Throttling is a technique that limits the execution of a function t
         
 
 
+split
+-----------------------------------
+The split() method is used to split a string into an array of substrings based on a specified delimiter. it does not change original string or array
+	let text = "Hello World JavaScript";
+	let words = text.split(" ");
+	console.log(words); 
+	// ["Hello", "World", "JavaScript"]
 
+
+splice and slice
+-----------------------------------
+splice() – Add/Remove Elements (Modifies Original Array)
+	let arr = [1, 2, 3, 4, 5];
+	// Remove elements (start index = 1, delete 2 elements)
+	let removed = arr.splice(1, 2);
+	console.log(arr); // [1, 4, 5]  (Original array is modified)
+	console.log(removed); // [2, 3]  (Removed elements)
+
+
+slice() – Extracts a Portion of an Array (Returns New Array)
+	let arr = [1, 2, 3, 4, 5];
+	// Extract elements from index 1 to 3 (not including index 3)
+	let newArr = arr.slice(1, 3);
+	console.log(newArr); // [2, 3] (New array)
+	console.log(arr); // [1, 2, 3, 4, 5] (Original remains unchanged)
+
+
+
+what is hooks
+-----------------------------------
+	Hooks are special functions in React that let you use state and lifecycle features inside functional components, without needing class components. They 	were introduced in React 16.8 to simplify state management and side effects.
 
 
 
