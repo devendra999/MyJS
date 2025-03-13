@@ -1,0 +1,109 @@
+What is Cypress, and how does it differ from Selenium?
+---------------------------------------------------------------------
+Cypress is a JavaScript-based end-to-end testing framework designed for modern web applications. It is primarily used for UI automation, API testing, and component testing. Cypress runs directly in the browser, providing fast, reliable, and flake-free test execution.
+
+cypress : JavaScript (Node.js) only	
+selenium : Multiple languages (Java, Python, C#, JS, etc.)
+
+
+How do you set up a Cypress test project from scratch?
+---------------------------------------------------------------------
+1. npm install cypress --save-dev  # Install Cypress as a dev dependency
+2. npx cypress open
+3. cypress/e2e - folder in project
+
+How does Cypress handle asynchronous operations?
+---------------------------------------------------------------------
+
+What is the Cypress Test Runner, and how does it work?
+---------------------------------------------------------------------
+
+Write a Cypress test case to verify a login functionality.
+---------------------------------------------------------------------
+
+How would you handle API testing in Cypress?
+---------------------------------------------------------------------
+
+How do you deal with flaky tests in Cypress?
+---------------------------------------------------------------------
+
+How do you use Cypress Fixtures, and why are they useful?
+---------------------------------------------------------------------
+
+What are Cypress Custom Commands, and when should you use them?
+---------------------------------------------------------------------
+
+How do you execute Cypress tests in a CI/CD pipeline?
+---------------------------------------------------------------------
+
+What are the different types of Cypress commands?
+---------------------------------------------------------------------
+
+What is the difference between cy.get() and cy.contains()?
+---------------------------------------------------------------------
+
+How do you handle dynamic elements in Cypress?
+---------------------------------------------------------------------
+
+What are aliases in Cypress, and how do you use them?
+---------------------------------------------------------------------
+
+How does Cypress support debugging?
+---------------------------------------------------------------------
+
+
+
+
+How do you handle timeouts and waits in Cypress?
+---------------------------------------------------------------------
+
+How would you automate login functionality using Cypress?
+---------------------------------------------------------------------
+
+Explain how you would test form submission in Cypress.
+---------------------------------------------------------------------
+
+How do you handle browser alerts, popups, and confirm dialogs?
+---------------------------------------------------------------------
+
+How do you handle file uploads in Cypress?
+---------------------------------------------------------------------
+
+How do you handle timeouts and waits in Cypress?
+---------------------------------------------------------------------
+
+How do you test responsiveness in Cypress?
+---------------------------------------------------------------------
+
+How do you handle multiple tabs or windows in Cypress?
+---------------------------------------------------------------------
+
+
+
+
+
+
+
+What is the difference between cy.intercept() and cy.request()?
+
+How do you stub or mock API responses in Cypress?
+
+What are Cypress custom commands, and how do you create them?
+
+How do you handle authentication tokens in API testing?
+
+How do you generate test reports in Cypress?
+
+
+
+npx cypress open
+npx cypress run
+
+
+scripts": {
+  "start": "react-scripts start",
+  "test:e2e": "cypress open",
+  "test:e2e:headless": "cypress run"
+}
+
+what is differrent between Run with Cypress UI and Run in Headless Mode (CI/CD compatible)
