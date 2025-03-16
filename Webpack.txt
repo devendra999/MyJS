@@ -1,0 +1,294 @@
+1. What is Webpack?
+Answer: Webpack is a module bundler for JavaScript applications. It processes files like JavaScript, CSS, and images, and bundles them into optimized static assets for deployment.
+
+
+2. What are the core concepts of Webpack?
+Answer: Webpack has the following core concepts:
+
+    Entry: The entry point of the application (e.g., index.js).
+    Output: Specifies where the bundled files should be placed.
+    Loaders: Help process different file types (e.g., Babel for JS, CSS loaders for styles).
+    Plugins: Extend Webpack’s functionality (e.g., HtmlWebpackPlugin, CleanWebpackPlugin).
+    Mode: Can be development, production, or none, affecting optimization.
+
+
+4. How do you configure Webpack?
+Answer: You create a webpack.config.js file with configuration settings like:
+
+    module.exports = {
+        entry: './src/index.js',
+        output: {
+            filename: 'bundle.js',
+            path: __dirname + '/dist',
+        },
+        mode: 'development',
+    };
+
+
+5. What are Webpack Loaders? Give an example.
+Answer: Loaders allow Webpack to process non-JavaScript files (e.g., CSS, images).
+Example: Using babel-loader to transpile JavaScript:
+    module.exports = {
+        module: {
+            rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: 'babel-loader',
+            },
+            ],
+        },
+    };
+
+
+6. What are Webpack Plugins? Give an example.
+Answer: Plugins enhance Webpack’s functionality (e.g., optimizing assets, injecting HTML).
+Example: Using HtmlWebpackPlugin:
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+    module.exports = {
+        plugins: [
+            new HtmlWebpackPlugin({
+            template: './src/index.html',
+            }),
+        ],
+    };
+
+7. What is Code Splitting in Webpack?
+Answer: Code splitting helps break large JavaScript files into smaller chunks to improve performance.
+Example using import() for dynamic imports:
+import('./module.js').then((module) => {
+    module.default();
+  });
+  
+
+8. How do you optimize Webpack build time?
+    - Use cache-loader or babel-loader with caching.
+    - Use splitChunks for better caching.
+    - Enable thread-loader for parallel processing.
+    - Set mode: 'production' to enable optimizations.
+
+
+9. What is Tree Shaking in Webpack?
+Answer: Tree shaking removes unused code during the bundling process. It works best with ES6 modules (import/export).
+
+
+10. How do you enable Hot Module Replacement (HMR) in Webpack?
+Answer: HMR updates modules without a full page reload.
+Example configuration
+const webpack = require('webpack');
+
+module.exports = {
+  devServer: {
+    hot: true,
+    contentBase: './dist',
+  },
+  plugins: [new webpack.HotModuleReplacementPlugin()],
+};
+
+
+11. How do you handle environment-specific configurations in Webpack?
+Answer: Use webpack-merge to combine base, development, and production configurations.
+
+    const { merge } = require('webpack-merge');
+    const common = require('./webpack.common.js');
+
+    module.exports = merge(common, {
+      mode: 'production',
+    });
+
+12. How can you analyze Webpack bundle size?
+Answer: Use webpack-bundle-analyzer plugin:
+cmd - npm install webpack-bundle-analyzer --save-dev
+
+Example 
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
+module.exports = {
+  plugins: [new BundleAnalyzerPlugin()],
+};
+
+
+13. What is Webpack’s devtool option used for?
+Answer: It controls source map generation for debugging.
+Examples:
+devtool: 'source-map' (Full source maps, best for debugging).
+devtool: 'eval-source-map' (Faster rebuilds, useful for development).
+
+
+
+16. What is Module Federation in Webpack?
+Module Federation (introduced in Webpack 5) allows multiple applications to share dependencies at runtime. It enables micro-frontends, where different teams can build and deploy parts of an application independently.
+const { ModuleFederationPlugin } = require('webpack').container;
+
+module.exports = {
+  plugins: [
+    new ModuleFederationPlugin({
+      name: 'app1',
+      remotes: {
+        app2: 'app2@http://localhost:3001/remoteEntry.js',
+      },
+      shared: ['react', 'react-dom'],
+    }),
+  ],
+};
+
+
+17. How do you handle caching in Webpack for long-term performance?
+    1. Use content hashing in filenames:
+    Example
+    output: {
+        filename: '[name].[contenthash].js',
+    }
+
+    2. Enable splitChunks for better caching:
+    Example
+    optimization: {
+        splitChunks: {
+          chunks: 'all',
+        },
+      }
+    
+    3. Set cache: true in Webpack for faster builds.
+
+
+19. What are Webpack Aliases, and why are they useful?
+Aliases help shorten import paths, making them cleaner and more manageable.
+
+const path = require('path');
+
+module.exports = {
+  resolve: {
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components/'),
+    },
+  },
+};
+
+// Now, instead of: 
+// import Button from '../../components/Button';
+// You can use:
+// import Button from '@components/Button';
+
+
+20. How can you enable Webpack Bundle Splitting for better performance?
+Use the splitChunks option to separate common dependencies: This creates separate bundles for frequently used libraries (e.g., React, Lodash).
+
+optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
+
+
+22. How does Webpack handle circular dependencies?
+Webpack does not break when encountering circular dependencies but can cause unexpected behavior like partially initialized modules.
+Use circular-dependency-plugin to detect them:
+
+const CircularDependencyPlugin = require('circular-dependency-plugin');
+
+module.exports = {
+  plugins: [
+    new CircularDependencyPlugin({
+      failOnError: true,
+    }),
+  ],
+};
+
+
+23. What are the different types of Webpack Loaders?
+
+    - JavaScript Loaders: babel-loader, ts-loader (for transpiling ES6+ or TypeScript).
+    - CSS & Style Loaders: style-loader, css-loader, sass-loader.
+    - File Loaders: file-loader, url-loader (for images, fonts).
+    - JSON & Data Loaders: json-loader, csv-loader, xml-loader.
+
+  EXample css loaders
+
+    module.exports = {
+        module: {
+            rules: [
+                {
+                    test: /\.css$/,
+                    use: ['style-loader', 'css-loader'],
+                },
+            ],
+        },
+    };
+  
+
+24. How can you use Webpack to bundle TypeScript files?
+Install TypeScript and ts-loader: - npm install typescript ts-loader --save-dev
+
+module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: 'ts-loader',
+          exclude: /node_modules/,
+        },
+      ],
+    },
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js'],
+    },
+  };
+
+  
+
+29. How can you use Webpack to serve a development server with auto-reloading?
+Use webpack-dev-server: - npm install webpack-dev-server --save-dev
+module.exports = {
+    devServer: {
+      contentBase: './dist',
+      hot: true,
+    },
+  };
+
+and run this cmd - npx webpack serve
+
+
+25. What is the difference between file-loader and url-loader in Webpack?
+1. file-loader: Moves files to the output directory and returns a URL.
+  Example
+  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.(png|jpg|gif)$/,
+          use: 'file-loader',
+        },
+      ],
+    },
+  };
+  
+
+2. url-loader: Converts smaller files to Base64 strings to reduce HTTP requests.
+  Example
+  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.(png|jpg|gif)$/,
+          use: {
+            loader: 'url-loader',
+            options: {
+              limit: 8192, // Convert images <8KB to Base64
+            },
+          },
+        },
+      ],
+    },
+  };
+  
+
+
+
+
+
+
+
+
+
+
