@@ -100,6 +100,33 @@ class
     - Constructor is used as it needs to store state. 
 
 
+--
+By default, an element's width and height only include the content, excluding padding and border.
+
+.box {
+  width: 200px;
+  height: 100px;
+  padding: 20px;
+  border: 10px solid black;
+  box-sizing: content-box; /* Default */
+}
+
+👉 Total width = 200px (content) + 40px (padding) + 20px (border) = 260px
+👉 Total height = 100px (content) + 40px (padding) + 20px (border) = 160px
+
+Issue: This can break layouts if the total size exceeds expectations.
+
+border-box
+.box {
+  width: 200px;
+  height: 100px;
+  padding: 20px;
+  border: 10px solid black;
+  box-sizing: border-box;
+}
+👉 Total width = 200px (includes padding & border)
+👉 Total height = 100px (includes padding & border)
+
 
 
 
