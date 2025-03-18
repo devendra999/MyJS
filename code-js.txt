@@ -27,6 +27,30 @@
 
 
 ------------------------------------------
+one by one value add and show that value in array
+const array = [1, 5, 3, 7, 8];
+output: [1,6,9,16,24]
+
+
+const array = [1, 5, 3, 7, 8];
+let sum = 0;
+const output = array.map(num => sum += num);
+console.log(output); // [1, 6, 9, 16, 24]
+
+without js method ----
+const array = [1, 5, 3, 7, 8];
+let sum = 0;
+const output = [];
+
+for (let i = 0; i < array.length; i++) {
+  sum += array[i];
+  output.push(sum);
+}
+
+console.log(output); // [1, 6, 9, 16, 24]
+
+
+------------------------------------------
 
 
 2. Find first unique character
