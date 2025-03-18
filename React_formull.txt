@@ -7,13 +7,8 @@ useReducer hook
 useContext hook
 memo
 useMemo hook
-useDebugValue
-useDeferredValue
 useTransition
 useLayoutEffect
-useImperativeHandle
-useInsertionEffect
-useSyncExternalStore
 
 
 HOC Main demo
@@ -86,7 +81,7 @@ HOC Main demo
 Difference between function and class componet
 ---------------------------------------------------
 functional
-    - A functional component is just a plain JavaScript pure function that accepts props as an argument and returns a React element(JSX).	
+- A functional component is just a plain JavaScript pure function that accepts props as an argument and returns a React element(JSX).	
 
     - There is no render method used in functional components.	
 
@@ -100,7 +95,8 @@ class
     - Constructor is used as it needs to store state. 
 
 
---
+Contexnt box and border box
+---------------------------------------------------
 By default, an element's width and height only include the content, excluding padding and border.
 
 .box {
@@ -126,6 +122,17 @@ border-box
 }
 👉 Total width = 200px (includes padding & border)
 👉 Total height = 100px (includes padding & border)
+
+
+
+What is the data-* Attribute in React?
+-----------------------------------------
+The data-* attribute in HTML allows you to store custom metadata in elements. In React, it's useful for passing information without needing state or props.
+
+  why use
+  ✅ Lightweight: No need for extra state or props.
+  ✅ Easier Event Handling: Pass dynamic values in event listeners.
+  ✅ Useful for Event Delegation: Helps identify clicked elements.
 
 
 
@@ -761,98 +768,6 @@ useContext hook
 
 
 
-
-useDebugValue
------------------------------------------
-// useDebugValue is a React Hook that lets you add a label to a custom Hook in React DevTools.
-
-import { useDebugValue } from "react";
-
-function useOnlineStatus() {
-  useDebugValue(isOnline ? "Online" : "Offline");
-}
-
-
-useDeferredValue
------------------------------------------
-// React 18 comes with a number of concurrent features that you can just start using in your existing codebase as there is no concurrent mode anymore. One such feature is the new useDeferedValue hook so lets take a look.
-// useDeferredValue is a React Hook that lets you defer updating a part of the UI.
-// jab variable ki value bar bar change ho rahi ho, to ui print hone me time lagta he, us solution ke liye deffered value use hota he, deffered value bar bar update nahi hota he jab last me variable update hota he tab vo last me ui update karta he, jisse performance badti he
-
-App.tsx
--------
-    import React, { useDeferredValue, useState } from "react";
-    import { Products } from "./List";
-
-    function App() {
-      const [value, setValue] = useState("");
-      const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        setValue(e.target.value);
-      };
-
-      const deferredValue = useDeferredValue(value);
-      const isStale = deferredValue !== value;
-
-      return (
-        <div>
-          <input
-            style={{ color: isStale ? "dimgray" : "black" }}
-            value={value}
-            onChange={handleChange}
-          />
-          <Products searchTerm={deferredValue} />
-        </div>
-      );
-    }
-
-    export default App;
-
-Products.tsx
-------------
-    import { useMemo } from "react";
-
-    export function Products({ searchTerm }: { searchTerm: string }) {
-      const items = useMemo(() => {
-        return [...Array(10000)].map(
-          () =>
-            (searchTerm ? searchTerm + " " : "") + Math.floor(Math.random() * 10000)
-        );
-      }, [searchTerm]);
-
-      return <List items={items} />;
-    }
-
-
-List.tsx
---------
-    /**
-     * This component is intentionally designed to be slow
-     * - bad keys
-     * - inline styles
-     */
-    function List({ items }: { items: string[] }) {
-      return (
-        <div>
-          {items.map((product, i) => (
-            <div
-              key={i + product}
-              style={{
-                margin: "1rem 0",
-                backgroundColor: "lightskyblue",
-                borderRadius: "4px",
-                boxShadow: "0 1px 4px rgba(0, 0, 0, 0.25)",
-                padding: "10px",
-              }}
-            >
-              {product}
-            </div>
-          ))}
-        </div>
-      );
-    }
-
-
-
 useTransition
 -----------------------------------------
 // useTransition is a React Hook that lets you update the state without blocking the UI.
@@ -905,7 +820,7 @@ const LayoutEffect = () => {
     if (num === 0) setNum(5 + Math.random() * 50);
   }, [num]);
   console.log("🚀 ~ file: LayoutEffect.jsx ~ line 9 ~ LayoutEffect ~ num", num);
-
+  
   return (
     <>
       <h2>{num}</h2>
@@ -917,103 +832,14 @@ const LayoutEffect = () => {
 export default LayoutEffect;
 
 
-
-useImperativeHandle
+Where use useLayoutEffect and useEffect
 -----------------------------------------
-// parent component can Access the child component functions, variables using useImperativeHandle.
-// formulla : useImperativeHandle(ref, createHandle, dependencies?)
+useLayoutEffect
+  - Measuring DOM elements or modifie them (e.g., width, height)
+  - Synchronous animations
 
-Parent.js
---------
-        import React, {forwordRef} from 'react';
-        import Child from './Child';
-
-        function Parent (props, ref) {
-            const ref = useRef();
-            return <div>
-                <Child ref={ref} />
-                <div>Parent Component</div>
-                <button onClick={ref.current.sayHi()}>click</button>
-            </div>
-        }
-        export default Parent;
-
-
-
-Child.js
---------
-        import React, {useImperativeHandle, forwordRef} from 'react';
-
-        function Child (props, ref) {
-            useImperativeHandle(ref, () => ({ 
-                sayHi,
-            }));
-
-            const sayHi = () => {
-                console.log("Hi, Everyone");
-            }
-            return <div>Child Component</div>
-        }
-        export default forwordRef(Child);
-
-
-
-useInsertionEffect
------------------------------------------
-// useInsertionEffect allows inserting elements into the DOM before any layout effects fire.
-// Formulla : useInsertionEffect(setup, dependencies?)
-
-import {  useEffect, useInsertionEffect, useLayoutEffect, useState } from "react";
-
-const UseInsertionEffectHook = () => {
-    const [theme,setTheme] = useState('dark')
-    
-    useInsertionEffect(() => {
-        const styleRule = getStyleRule(theme);
-
-        document.head.appendChild(styleRule);
-
-        return () => document.head.removeChild(styleRule)
-    },[theme])
-
-    return <button onClick={() => setTheme(theme === 'dark' ? 'white' : 'dark')}>Change theme</button>
-}
-
-const getStyleRule = theme =>{
-    const tag = document.createElement('style')
-    tag.innerHTML = `
-        html,button {
-            color : ${theme === 'dark' ? 'white' : 'black'};
-            background-color : ${theme === 'dark' ? 'black' : 'white'};
-            border : 1px solid ${theme === 'dark' ? 'white' : 'black'};
-        }
-
-    `
-
-    return tag
-}
-
-export default UseInsertionEffectHook
-
-
-
-useSyncExternalStore
------------------------------------------
-// useSyncExternalStore is a React Hook that lets you subscribe to an external store.
-// Fromulla : const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)
-
-import React, {useSyncExternalStore} from 'react';
-
-export default function App ()  {
-
-    const width = useSyncExternalStore((listner) => {
-        window.addEventListener('resize', listner)
-        return window.removeEventListener('resize', listner)
-    }, () => window.innerWidth);
-    
-    return <div>Size : {width}</div>
-}
-
+useEffect
+  - API calls, logging	
 
 
 // =======================================================================================================================================
@@ -1502,9 +1328,10 @@ boundFunction();
 
 
 
-* Differences Between for-in and for-of Statement in JavaScript
+* Differences Between map and forEach Statement in JavaScript
 --------------------------------------------------------------------------
-The main difference between map and forEach is that map returns a new array with the results of the function applied to each element, while forEach does not return anything. Both map and forEach can modify the original array if the callback function modifies its elements.8 Sept 2023
+The main difference between map and forEach is that map returns a new array with the results of the function applied to each element, 
+while forEach does not return anything. using forEach can modify the original array if the callback function modifies its elements.8 Sept 2023
 
 // Using forEach
 const arr1 = [1, 2, 3];
@@ -1528,16 +1355,17 @@ Alone, this refers to the global object.
 In a function, this refers to the global object.
 In a function, in strict mode, this is undefined.
 
+    console.log(this); // In browsers: window
 
     "use strict";
     let x = this; // this refer to window object
 
 
-    "use strict";
-    function myFunction() {
-        return this; // this is undefined
+    function showThis() {
+      console.log(this);
     }
-
+    
+    showThis(); // window (without strict mode) | undefined (with strict)
 
     const person = {
         firstName: "John",
@@ -1549,36 +1377,40 @@ In a function, in strict mode, this is undefined.
       };
 
 
+      5️⃣ this in an Arrow Function
+        🔹 Arrow functions do not have their own this.
+        🔹 Instead, they inherit this from their lexical scope (where they are defined).
+
+        const person = {
+          name: "Alice",
+          greet: function() {
+            const arrowFunc = () => {
+              console.log(this.name);
+            };
+            arrowFunc();
+          }
+        };
+        
+        person.greet(); // "Alice"
 
 
-this
+        6️⃣ this in an Event Listener
+        document.querySelector("button").addEventListener("click", function() {
+          console.log(this); // The clicked button element
+        });
+        
+
+
+
+difference null and undefined
 -----------------------------
-the this keyword refers to an object.
-Alone, this refers to the global object.
-In a function, this refers to the global object.
-In a function, in strict mode, this is undefined.
+null
+      - Intentional absence of value	
+      - object (typeof null)	
 
-
-    "use strict";
-    let x = this; // this refer to window object
-
-
-    "use strict";
-    function myFunction() {
-        return this; // this is undefined
-    }
-
-
-    const person = {
-        firstName: "John",
-        lastName: "Doe",
-        id: 5566,
-        fullName : function() {
-          return this.firstName + " " + this.lastName; // this refer to person object
-        }
-      };
-
-
+undefined
+      - Value is not assigned
+      - undefined (typeof undefined)
 
 
 Debouncing and Throttling
@@ -2048,7 +1880,8 @@ Asynchronous callback function vs asynchronous function
 
 
 8. How do browsers read JSX?
-  In general, browsers are not capable of reading JSX and only have the capacity to read pure JavaScript. The web browsers read JSX with the help of a transpiler. Transpilers are used to convert JSX into JavaScript. The transpiler used is called Babel
+  In general, browsers are not capable of reading JSX and only have the capacity to read pure JavaScript. The web browsers read JSX with the help of a transpiler.
+   Transpilers are used to convert JSX into JavaScript. The transpiler used is called Babel
 
 
 Rendering
@@ -2118,9 +1951,6 @@ javascript
 42. What are events in Javascript
  43. What is null and undefined in Javascript 
 44. Explain the difference between == and ===
-
-
-
 
 
 
