@@ -1413,6 +1413,13 @@ undefined
       - undefined (typeof undefined)
 
 
+difference shallow copy and deep copy
+-----------------------------
+A shallow copy creates a new object, but it still references nested objects from the original.
+A deep copy creates a completely independent copy, including all nested objects. JSON.parse(JSON.stringify(array))
+
+
+
 Debouncing and Throttling
 -----------------------------
 Debouncing : Debouncing is a technique that delays the execution of a function until the user stops performing a certain action for a specified amount of time. 
