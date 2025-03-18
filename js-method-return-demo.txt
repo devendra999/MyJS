@@ -262,25 +262,29 @@ console.log(reversed); // [3, 2, 1]
 
 
 
-8.fill()
-Description: Changes all elements in an array to a static value, from a start index to an end index.
-Return Value: Returns the modified array (the array itself).
-Example:
-const arr = [1, 2, 3];
-const filled = arr.fill(0);
-console.log(arr); // [0, 0, 0]
-console.log(filled); // [0, 0, 0]
+
+8. splice()
+✅ splice() modifies the original array and also returns the removed elements.
+const numbers = [1, 2, 3, 4, 5];
+
+// Remove 2 elements starting from index 1
+const removed = numbers.splice(1, 2);
+
+console.log(numbers); // [1, 4, 5] (original array changed)
+console.log(removed); // [2, 3] (removed elements)
 
 
-9.copyWithin()
-Description: Shallow copies a portion of an array to another location in the array.
-Return Value: Returns the modified array (the array itself).
-Example:
-const arr = [1, 2, 3, 4];
-const copied = arr.copyWithin(0, 2, 4);
-console.log(arr); // [3, 4, 3, 4]
-console.log(copied); // [3, 4, 3, 4]
-Each of these methods directly modifies the original array and returns either the modified array or a specific value related to the modification (like the removed element or the new length)
+
+
+9. forEach() loop
+const numbers = [1, 2, 3, 4];
+
+numbers.forEach((num, index, arr) => {
+  arr[index] = num * 2; // Modifying the original array
+});
+
+console.log(numbers); // [2, 4, 6, 8] (original array is changed)
+
 
 
 
