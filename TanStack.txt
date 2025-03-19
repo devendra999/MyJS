@@ -1,0 +1,198 @@
+
+What is TanStack Query?
+-------------------------------------------------
+  TanStack Query (formerly React Query) is a powerful data-fetching and state management library for React applications. It simplifies fetching, caching, synchronizing, and updating server state in React applications.
+
+
+Why Use TanStack Query?
+-------------------------------------------------
+  ✅ Auto-caching: Caches data and automatically updates it when needed.
+  ✅ Background fetching: Keeps data fresh by refetching it in the background.
+  ✅ Automatic retries: Retries failed requests based on configuration.
+  ✅ Optimistic updates: Improves UI responsiveness.
+  ✅ Pagination & infinite scrolling: Handles paginated data easily.
+  ✅ Works with any API: Supports REST, GraphQL, and more.
+
+
+
+
+How to use
+-------------------------------------------------
+  1. Install TanStack Query
+    npm install @tanstack/react-query
+
+
+  2. Set Up the QueryClientProvider
+    Wrap your application with QueryClientProvider in index.tsx or App.tsx.
+
+    import React, { use } from "react";
+    import ReactDOM from "react-dom";
+    import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+    import App from "./App";
+
+    const queryClient = new QueryClient();
+
+    ReactDOM.render(
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>,
+      document.getElementById("root")
+    );
+
+
+    3. Fetch Data Using useQuery
+      Use useQuery to fetch data inside a component.
+
+      import { useQuery } from "@tanstack/react-query";
+      import axios from "axios";
+
+      const fetchProducts = async () => {
+        const { data } = await axios.get("https://dummyjson.com/products");
+        return data;
+      };
+
+      const Products = () => {
+        const { data, isLoading, isError } = useQuery({
+          queryKey: ["products"],
+          queryFn: fetchProducts,
+        });
+
+        if (isLoading) return <p>Loading...</p>;
+        if (isError) return <p>Error fetching data!</p>;
+
+        return (
+          <div>
+            <h2>Products</h2>
+            <ul>
+              {data.products.map((product: any) => (
+                <li key={product.id}>{product.title}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      };
+
+      export default Products;
+
+
+
+      4. Mutate Data Using useMutation
+        For POST, PUT, DELETE requests, use useMutation.
+      
+        import { useMutation, useQueryClient } from "@tanstack/react-query";
+        import axios from "axios";
+
+        const addProduct = async (newProduct: any) => {
+          const { data } = await axios.post("https://dummyjson.com/products/add", newProduct);
+          return data;
+        };
+
+        const AddProduct = () => {
+          const queryClient = useQueryClient();
+
+          const mutation = useMutation({
+            mutationFn: addProduct,
+            onSuccess: () => {
+              queryClient.invalidateQueries(["products"]); // Refresh product list
+            },
+          });
+
+          return (
+            <button onClick={() => mutation.mutate({ title: "New Product" })}>
+              Add Product
+            </button>
+          );
+        };
+
+        export default AddProduct;
+
+
+
+
+
+Key Hooks in TanStack Query
+-------------------------------------------------
+    useQuery	-  Fetch and cache data
+    useMutation	-  Handle POST, PUT, DELETE operations
+    useQueryClient	-  Manually invalidate or refetch queries
+
+
+
+
+
+
+with Pagination
+-------------------------------------------------
+        1. update API
+          import { useQuery } from "@tanstack/react-query";
+          import axios from "axios";
+          
+          const fetchProducts = async ({ queryKey }: any) => {
+            const [_key, { page, limit }] = queryKey;
+            const skip = (page - 1) * limit; // Calculate offset
+          
+            const { data } = await axios.get("https://dummyjson.com/products", {
+              params: { limit, skip },
+            });
+          
+            return data;
+          };
+          
+          const useProducts = (page: number, limit: number) => {
+            return useQuery({
+              queryKey: ["products", { page, limit }],
+              queryFn: fetchProducts,
+              keepPreviousData: true, // Keeps previous page data while loading new data
+            });
+          };
+        
+        2. create pagination ui component
+          import { useState } from "react";
+          import useProducts from "./useProducts";
+          
+          const ProductList = () => {
+            const [page, setPage] = useState(1);
+            const limit = 10; // Items per page
+          
+            const { data, isLoading, isError } = useProducts(page, limit);
+          
+            if (isLoading) return <p>Loading...</p>;
+            if (isError) return <p>Error loading products.</p>;
+          
+            return (
+              <div>
+                <ul>
+                  {data.products.map((product: any) => (
+                    <li key={product.id}>{product.title} - ${product.price}</li>
+                  ))}
+                </ul>
+          
+                <button
+                  disabled={page === 1}
+                  onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+                >
+                  Previous
+                </button>
+          
+                <span> Page {page} </span>
+          
+                <button
+                  disabled={data.total <= page * limit}
+                  onClick={() => setPage((prev) => prev + 1)}
+                >
+                  Next
+                </button>
+              </div>
+            );
+          };
+          
+          export default ProductList;
+          
+
+
+
+
+
+
+
+
