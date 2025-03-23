@@ -846,6 +846,36 @@ useEffect
 // other js
 // =======================================================================================================================================
 
+how to make react app from scratch
+---------------------------------
+
+1. Set Up the Project
+	- Install Node.js and NPM
+	- npx create-react-app
+
+2. Develop the App (Build Components)
+	- Build Components: Start building your React components in the /src directory. Each component should have a clear responsibility and be reusable.
+	- Add Styles: Use plain CSS or tailwind css or scss
+	- State Management: As your app grows, you may need to manage the state using useState, useReducer, or even state management libraries like Redux.
+
+4. Optimize for Production
+	- Build the App: Once you’re done with the development, it’s time to create a production-ready build. - 
+		- cmd : npm run build
+		This will create a build/ folder that contains an optimized version of your app (minified JS, optimized assets, etc.).
+
+5. Choose a Deployment Method
+	Option 2: Deploy on Vercel (Easy) or Netlify or heroku
+	Create an Account: Sign up at Vercel.
+	Connect to GitHub: Push your code to a GitHub repository.
+	Deploy: Click "New Project" and connect to your GitHub repo.
+	Configure: Vercel automatically detects that it’s a React app, but ensure the build command is npm run build and the output folder is build/.
+	Deploy: Click "Deploy" and Vercel will give you a live URL.
+
+6. Set Up Continuous Deployment (Optional but Recommended)
+	Once your app is pushed to a GitHub repository, you can set up Continuous Deployment (CD) with services like GitHub Actions (for CI/CD) or Netlify/Vercel.
+	Every time you push new code to your GitHub repo, the platform will rebuild and redeploy the app automatically.
+
+
 what is micro frontend
 ---------------------------------
 Working with Micro Frontends in a React application allows you to break a large application into smaller, independent modules, each owned by a different team. These modules can be developed, deployed, and updated separately, improving scalability and maintainability.
