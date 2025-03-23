@@ -1052,6 +1052,17 @@ closure in action that is inner function can have access to the outer function v
     outerFunc(5)
 
 
+local storage and session storage
+-------------------------------------------
+local Storage : 
+Data stored in localStorage persists even after the browser is closed or the tab is refreshed.
+Shared across all tabs and windows of the same origin	
+
+session Storage :
+Data stored in sessionStorage is only available for the duration of the page session.
+Specific to a single tab or window
+The data is cleared when the browser tab is closed or the window is refreshed.
+
 
 
 
