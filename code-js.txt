@@ -76,21 +76,21 @@ let a = [2, 5, 6, 3, 8, 2, 6, 4];
 // Output: [5, 2, 3, 6, 2, 8, 4, 6]
 
 
-function swapPairs(arr) {
-    let result = [...arr]; // Create a copy to avoid modifying the original array
+const swapPairs = (arr) => {
+    const result = [...arr]; // Copy array to avoid modifying original
+    let newResult = [];
 
-    for (let i = 0; i < arr.length - 1; i += 2) {
-        // Swap adjacent elements
-        [result[i], result[i + 1]] = [result[i + 1], result[i]];
+    for (let i = 0; i < result.length - 1; i += 2) {
+        newResult.push(result[i + 1], result[i]); // Push elements separately
     }
 
-    return result;
-}
+    console.log(newResult);
+};
 
-// Example usage:
 let a = [2, 5, 6, 3, 8, 2, 6, 4];
-console.log(swapPairs(a)); 
+swapPairs(a);
 // Output: [5, 2, 3, 6, 2, 8, 4, 6]
+
 
 
 ------------------------------------------
