@@ -72,6 +72,20 @@ for (let i = 1; i <= 4; i++) {  // Loop for 4 rows
 }
 
 ------------------------------------------
+let a = [2, 5, 6, 3, 8, 2, 6, 4];
+// Output: [5, 2, 3, 6, 2, 8, 4, 6]
+
+
+let oddIndices = a.filter((_, index) => index % 2 !== 0); // Get odd index elements
+let evenIndices = a.filter((_, index) => index % 2 === 0); // Get even index elements
+
+let result = [...oddIndices, ...evenIndices];
+
+console.log(result);
+// Output: [5, 2, 3, 6, 2, 8, 4, 6]
+
+------------------------------------------
+
 
 
 2. Find first unique character
