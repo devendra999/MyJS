@@ -1,0 +1,351 @@
+1. Chained Promises with Resolve & Reject
+Promise.resolve(1)
+  .then((res) => {
+    console.log(res);
+    return 2;
+  })
+  .then((res) => {
+    console.log(res);
+    throw new Error(3);
+  })
+  .catch((err) => {
+    console.log(err.message);
+    return 4;
+  })
+  .then(console.log);
+output : 1,2,3,4
+
+--------------------
+2. Resolve vs Reject Execution Order
+Promise.resolve("A")
+  .then((res) => {
+    console.log(res);
+    return Promise.reject("B");
+  })
+  .catch((err) => {
+    console.log(err);
+    return "C";
+  })
+  .then(console.log);
+output : A,B,B
+--------------------
+3. Promise Rejection without Catch
+Promise.reject("Error")
+  .then(() => console.log("Resolved"))
+  .finally(() => console.log("Finally"));
+
+OUTPUT : Finally, (Uncaught Error: Error)
+
+--------------------
+4. Handling Multiple Promises with Race Condition
+Promise.race([
+    new Promise((resolve) => setTimeout(() => resolve("A"), 500)),
+    new Promise((resolve) => setTimeout(() => resolve("B"), 100)),
+    new Promise((resolve) => setTimeout(() => resolve("C"), 200)),
+  ]).then(console.log);
+OUTPUT : B  
+Promise.race() resolves with the first fulfilled promise.
+--------------------
+5. Async/Await with Try-Catch
+async function test() {
+    try {
+      throw new Error("Oops!");
+    } catch (error) {
+      console.log("Caught:", error.message);
+    }
+  }
+  test();
+  console.log("After Async");
+OUTPUT: Caught: Oops!, After Async  
+--------------------
+6. Double .catch() Handling
+Promise.reject("Error")
+  .catch((err) => {
+    console.log("First Catch:", err);
+    throw new Error("New Error");
+  })
+  .catch((err) => console.log("Second Catch:", err.message));
+OUTPUT
+First Catch: Error
+Second Catch: New Error
+
+--------------------
+8. Async Function without Await
+async function test() {
+    return "Hello";
+  }
+  console.log(test());
+OUTPUT : Promise {<fulfilled>: "Hello"}  
+--------------------
+9. Nested Promises with Rejection
+Promise.resolve()
+  .then(() => {
+    console.log("A");
+    return Promise.reject("B");
+  })
+  .catch((err) => {
+    console.log(err);
+    return "C";
+  })
+  .then(console.log);
+OUTPUT: A,B,C
+
+--------------------
+10. Resolving a Promise Twice
+let promise = new Promise((resolve) => {
+    resolve("A");
+    resolve("B");
+  });
+  promise.then(console.log);
+OUTPUT : A
+A Promise can only resolve once.
+--------------------
+11. Promise with Synchronous Execution
+let promise = new Promise((resolve) => {
+    console.log("A");
+    resolve("B");
+  });
+  promise.then(console.log);
+  console.log("C");
+OUTPUT A,C,B  
+
+--------------------
+12. Multiple Async/Await Functions
+async function first() {
+    console.log(1);
+    await second();
+    console.log(2);
+  }
+  
+  async function second() {
+    console.log(3);
+  }
+  
+  first();
+  console.log(4);
+OUTPUT : 1,3,4,2  
+--------------------
+13. setTimeout with Microtasks
+setTimeout(() => console.log("A"), 0);
+Promise.resolve().then(() => console.log("B"));
+console.log("C");
+OUTPUT  :C,B,A
+--------------------
+14. await with Promise Rejection
+async function test() {
+  try {
+    await Promise.reject("Error");
+  } catch (e) {
+    console.log("Caught:", e);
+  }
+}
+test();
+console.log("End");
+OUTPUT : Caught: Error, End
+--------------------
+15. setTimeout inside Async Function
+async function test() {
+  console.log("Start");
+  setTimeout(() => console.log("Timeout"), 0);
+  console.log("End");
+}
+test();
+console.log("After Call");
+OUTPUT : Start, End, After Call, Timeout
+--------------------
+
+--------------------
+
+--------------------
+--------------------
+
+--------------------
+
+
+
+
+
+----------------------------------------------------
+
+1. Event Loop & setTimeout
+console.log("A");
+setTimeout(() => console.log("B"), 0);
+console.log("C");
+Output? : A, C, B
+
+
+
+2. Promise and setTimeout
+console.log("A");
+setTimeout(() => console.log("B"), 0);
+Promise.resolve().then(() => console.log("C"));
+console.log("D");
+Output? : A, D, C, B
+
+
+
+3. Microtasks vs Macrotasks
+setTimeout(() => console.log("setTimeout"), 0);
+Promise.resolve().then(() => console.log("Promise"));
+console.log("Sync");
+Output? : Sync, Promise, setTimeout
+
+
+
+4. Order of Execution
+setTimeout(() => console.log("A"), 0);
+Promise.resolve().then(() => console.log("B")).then(() => console.log("C"));
+console.log("D");
+Output? : D, B, C, A
+
+
+
+5. Nested setTimeout
+setTimeout(() => {
+    console.log("A");
+    setTimeout(() => console.log("B"), 0);
+}, 0);
+setTimeout(() => console.log("C"), 0);
+Output? : A, C, B
+
+
+
+6. Async/Await and setTimeout
+async function test() {
+    console.log("A");
+    await new Promise(resolve => setTimeout(resolve, 0));
+    console.log("B");
+}
+test();
+console.log("C");
+Output? : A, C, B
+
+
+
+9. Multiple Promises
+Promise.resolve().then(() => {
+    console.log("A");
+    return Promise.resolve("B");
+}).then(console.log);
+Output? : A, B
+
+
+
+10. Exception inside setTimeout
+setTimeout(() => {
+    throw new Error("Oops!");
+}, 0);
+console.log("After Timeout");
+Output? : After Timeout, (Uncaught Error: Oops!)
+
+
+
+11. Multiple await calls
+async function test() {
+    console.log("A");
+    await Promise.resolve();
+    console.log("B");
+    await Promise.resolve();
+    console.log("C");
+}
+test();
+console.log("D");
+Output? : A, D, B, C
+
+
+
+12. Order of async functions
+async function first() {
+    console.log(1);
+    await second();
+    console.log(2);
+}
+async function second() {
+    console.log(3);
+}
+first();
+console.log(4);
+Output? : 1, 3, 4, 2
+
+
+
+13. Promise inside setTimeout
+setTimeout(() => {
+    console.log("A");
+    Promise.resolve().then(() => console.log("B"));
+}, 0);
+console.log("C");
+Output? : C, A, B
+
+
+
+14. async function inside Promise
+new Promise(async (resolve) => {
+    console.log(1);
+    await null;
+    console.log(2);
+    resolve();
+}).then(() => console.log(3));
+console.log(4);
+Output? : 1, 4, 2, 3
+
+
+
+15. Async function returning a value
+async function test() {
+    return "A";
+}
+test().then(console.log);
+console.log("B");
+Output? : B, A
+
+
+
+16. Mixing Async and Regular Functions
+async function test() {
+    console.log(1);
+    return 2;
+}
+test().then(console.log);
+console.log(3);
+Output? : 1, 3, 2
+
+
+
+17. Multiple Promises and setTimeout
+Promise.resolve().then(() => console.log("A"));
+setTimeout(() => console.log("B"), 0);
+Promise.resolve().then(() => console.log("C"));
+console.log("D");
+Output? : D, A, C, B
+
+
+
+18. Double then call
+Promise.resolve("A").then((res) => {
+    console.log(res);
+    return "B";
+}).then(console.log);
+Output? : A, B
+
+
+
+19. Awaiting a setTimeout
+async function test() {
+    console.log("A");
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log("B");
+}
+test();
+console.log("C");
+Output? : A, C, (after 1 sec) B
+
+
+
+20. Nested Promises and Microtasks
+Promise.resolve().then(() => {
+    console.log("A");
+    return new Promise(resolve => resolve("B"));
+}).then(console.log);
+Output? : A, B
+
