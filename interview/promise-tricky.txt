@@ -27,7 +27,7 @@ Promise.resolve("A")
     return "C";
   })
   .then(console.log);
-output : A,B,B
+output : A,B,C
 --------------------
 3. Promise Rejection without Catch
 Promise.reject("Error")
