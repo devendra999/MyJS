@@ -565,60 +565,26 @@ useCallback Hook
 
 Callback.js
 -----------
-    import { useCallback, useState } from "react";
-    import Todos from "../components/Todos";
+const Child = React.memo(({ onClick }) => {
+  console.log("Child render");
+  return <button onClick={onClick}>Click me</button>;
+});
 
-    const Callbackhook = () => {
-      const [count, setCount] = useState(0);
-      const [todos, setTodos] = useState([]);
+const Parent = () => {
+  const [count, setCount] = useState(0);
 
-      const increment = () => {
-        setCount(count + 1);
-      };
+  // Memoizing the function
+  const handleClick = useCallback(() => {
+    setCount((prevCount) => prevCount + 1);
+  }, []); // Empty dependency array ensures the function doesn't get recreated
 
-      const addTodo = useCallback(() => {
-        setTodos((prev) => [...prev, `new Entry`]);
-      }, [todos]);
-
-      // const addTodo = () => {
-      //   setTodos((prev) => [...prev, `new Entry`]);
-      // };
-
-      // subscribe to thapa technical
-
-      return (
-        <>
-          <Todos todos={todos} addTodo={addTodo} />
-          <hr />
-          <div>
-            Count: {count}
-            <button onClick={increment}>+</button>
-          </div>
-        </>
-      );
-    };
-
-    export default Callbackhook;
-
-todos.js 
---------
-    import { memo } from "react";
-
-    const Todos = ({ todos, addTodo }) => {
-      console.log("child render");
-      return (
-        <>
-          <h2>My Todos</h2>
-          {todos.map((todo, index) => {
-            return <p key={index}>{todo + index}</p>;
-          })}
-
-          <button onClick={addTodo}>Add Todo</button>
-        </>
-      );
-    };
-
-    export default memo(Todos);
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <Child onClick={handleClick} />
+    </div>
+  );
+};
 
 
 
@@ -629,8 +595,7 @@ Difference between useMemo and useCallback hook
      // Usage:
     
     useMemo: Use when you have expensive calculations that you don't want to repeat unless necessary.
-    useCallback: Use when you need to prevent a function from being recreated on every render, especially when passing it as a prop to child components.
-    Return Value:
+    useCallback: Prevent Unnecessary Re-renders of Child Components
     
     // return 
     useMemo: Returns the memoized value.
@@ -1999,8 +1964,3 @@ javascript
 42. What are events in Javascript
  43. What is null and undefined in Javascript 
 44. Explain the difference between == and ===
-
-
-
-
-
