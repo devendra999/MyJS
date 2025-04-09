@@ -918,6 +918,25 @@ we can do it manually like using express and ReactDOMServer
 
 
 
+what is difference between higher order component and shared component
+----------------------------------------
+HOC
+- Reuse logic or behavior	
+- Workes with Other components	
+- return New enhanced component	
+- Wrapping components	
+- Common use cases - Auth, theming, logging	
+
+Shared Component
+- Reuse UI elements
+- workes with JSX/UI directly
+- return JSX component (rendered output)
+- Importing & rendering
+- Buttons, Cards, Loaders, etc.
+	
+
+
+
 code-splitting
 ---------------------------------
 Dividing the app into smaller bundles	
