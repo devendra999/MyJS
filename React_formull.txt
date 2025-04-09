@@ -879,6 +879,44 @@ Tools and techniques for debugging React applications?
     🔹 7️⃣ Redux DevTools (For Redux Apps)
 
 
+improve react app
+----------------------------------------
+⚙️ 1. Use React.memo() to Prevent Unnecessary Re-renders
+⚙️ 2. Use useCallback() and useMemo()
+⚙️ 3. Lazy Load Components (React.lazy)
+⚙️ 4. Code Splitting with React.lazy or Route-Based Splitting - If you're using React Router, split routes:
+⚙️ 5. Avoid Inline Functions and Objects in JSX
+	// ❌ Avoid
+<Component onClick={() => doSomething()} />
+
+// ✅ Use useCallback
+const handleClick = useCallback(() => doSomething(), []);
+<Component onClick={handleClick} />
+
+6. use pagination for large data show
+7. use webpack - it is remove unnecessory code and optimize assets
+⚙️ 8. Debounce Input and Search 
+⚙️ 9. Optimize Images & Static Assets
+
+
+handle errors in react app
+----------------------------------------
+🔐 1. Try/Catch for Async Code (like API calls)
+2. console.log
+3. debugger
+✅ 2. Use a Library: react-error-boundary for Functional Style
+4. 📦 2. Custom Errors - throw new Error('Cannot divide by zero');
+🌐 4. Promise .catch() Method
+💡 3. Form Validation Errors
+🔥 4. Global Error State (for centralized alerts)
+
+
+is it possible server side rendering in  react js
+----------------------------------------
+we can do it manually like using express and ReactDOMServer
+⚙️ Example: Using Express + ReactDOMServer
+
+
 
 code-splitting
 ---------------------------------
