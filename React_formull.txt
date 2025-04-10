@@ -936,6 +936,40 @@ Shared Component
 	
 
 
+what is difference between custom hook and higher order component in react
+----------------------------------------
+custom hook
+- for make start with use Keyword
+- Function that uses React Hooks
+- Logic / behavior	
+- Call inside a functional component	
+- Share logic across components	
+- Data/handlers (not JSX)	
+- uses : Form handling, fetching data, auth		
+
+Higher order component
+- Function that returns a component
+- Logic + JSX wrapper
+- Wrap another component
+- Enhance components (inject props, wrap UI)
+- Can wrap class or function components
+- Logging, auth protection, layout wrappers
+
+
+
+
+middleware
+-----------------
+Middleware is a function that sits between the request and the response — or between an action and the reducer (in Redux) — to process or modify data, control flow, or apply logic.
+
+1. Code Reusability	- Common logic like logging, error handling, or auth can be reused everywhere.
+3. Centralized Control	- Middleware gives one place to manage requests, responses, or actions.
+6. Async Support	- Middleware can handle async operations (like API calls or DB checks).
+5. Easy Extensibility	- Add or remove behavior (like caching or validation) without changing core logic.
+9. Third-Party Integration - Integrate services (like analytics, auth providers, etc.) neatly via middleware.
+
+
+
 
 code-splitting
 ---------------------------------
