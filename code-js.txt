@@ -27,6 +27,30 @@
 
 
 ------------------------------------------
+find two numbers of array that sum is zero whout using js inbuild method
+//Solve by using 2 for loop
+
+const arr = [-9,-8,-5,0,5,10,15,-3,3]
+const output = [-5,5]  
+
+const arr = [-9, -8, -5, 0, 5, 10, 15, -3, 3];
+let output = [];
+
+for (let i = 0; i < arr.length; i++) {
+  for (let j = i + 1; j < arr.length; j++) {
+    if (arr[i] + arr[j] === 0) {
+      output = [arr[i], arr[j]];
+      break; // stop the inner loop
+    }
+  }
+  if (output.length > 0) {
+    break; // stop the outer loop if pair found
+  }
+}
+
+console.log(output); // [-5, 5]
+
+------------------------------------------
 one by one value add and show that value in array
 const array = [1, 5, 3, 7, 8];
 output: [1,6,9,16,24]
