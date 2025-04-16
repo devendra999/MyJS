@@ -9,7 +9,7 @@ login for loginUser
 login for adminUser
 
 import {Login} from './loginUser'
-import {Login as AdminUser} from './AdminUser'
+import {Login as AdminUser} from './AdminUser' // as stand for aliases 
 
 
 
