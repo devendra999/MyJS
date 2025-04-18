@@ -1749,6 +1749,30 @@ for (const [x, y] of Object.entries(person)) {
 
 }
 ------------------------------------------
+function outer() {
+  let counter = 0;
+  return function inner() {
+    counter++;
+    return counter;
+  };
+}
+ 
+const increment = outer();
+console.log(increment()); // 1
+console.log(increment()); // 2
+
+------------------------------------------
+const people = [
+  { name: 'John', age: 25 },
+  { name: 'Alice', age: 30 },
+  { name: 'bob', age: 25 },
+  { name: 'Zoe', age: 25 }
+];
+// people.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+------------------------------------------
+let x = 5;
+console.log(x++); // 5
+console.log(++x); // 7
 
 
 
