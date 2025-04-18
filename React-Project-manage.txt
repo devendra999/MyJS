@@ -68,6 +68,36 @@ import React, { useEffect, useState } from 'react';
 
 
 
+Example of useCallback hook
+-------------------------------------
+import React, { useState, useCallback, memo } from 'react';
+
+import './style.css';
+
+export default function App() {
+  console.log('Parent re-rendered');
+
+  const [counter, setCounter] = useState(0);
+
+  const handleClick = useCallback(() => {
+    return setCounter((prev) => prev + 1);
+  }, []);
+
+  return (
+    <div>
+      <h1>{counter}</h1>
+      <Child onClick={handleClick} />
+    </div>
+  );
+}
+
+const Child = memo(({ onClick }) => {
+  console.log('child re-rendered');
+
+  return <button onClick={onClick}>Add</button>;
+});
+
+
 
 
 
