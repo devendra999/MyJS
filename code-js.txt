@@ -1,3 +1,28 @@
+const obj = {
+  name: "Devendra",
+  increment() {
+    setTimeout(function () {
+      console.log(this.name); // undefined - this inside setTimeout refers to the global object 
+    }, 1000);
+  },
+};
+obj.increment();
+
+-- 
+
+const obj = {
+  name: "Devendra",
+  increment() {
+    setTimeout(() => {
+      console.log(this.name);  // Devendra - lexicalscope
+    }, 1000);
+  },
+};
+
+obj.increment();
+
+------------------------------------------------
+
 1. checknotes function like atm machine
     function getDenominations(checkNotes, amount) {
         // Sort the denominations in descending order
