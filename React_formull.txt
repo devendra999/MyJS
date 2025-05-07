@@ -975,7 +975,94 @@ code-splitting
 ---------------------------------
 Dividing the app into smaller bundles	
 Breaks JavaScript files into chunks	
-Improves bundle size & performance	
+Improves bundle size & performance
+
+react application perform
+------------------------------------------
+✅ 1. Code Splitting & Lazy Loading
+✅ 2. Memoization - useMemo and useCallback and memo hook
+✅ 3. Avoid Re-rendering
+✅ 5. Optimize Images & Static Assets
+✅ 7. Debounce Expensive Operations
+✅ 8. Avoid heavy or unnecessary packages. Use lighter alternatives where possible
+✅ 9. Production Build Optimization - webpack-bundle-analyzer 
+✅ 10. used catched memory - If you request the same data multiple times, Apollo can return it from the cache instead of hitting the server again.
+
+
+
+GraphQl
+------------------------------------------
+setup - npm install @apollo/client graphql
+
+🧩 3. Add Apollo Provider in index.js
+
+// src/index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import App from './App';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000', // Your local GraphQL server
+  cache: new InMemoryCache()
+});
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>
+);
+
+
+// src/App.js
+import React from 'react';
+import { useQuery, gql } from '@apollo/client';
+
+const GET_POSTS = gql`
+  query GetPosts {
+    posts {
+      id
+      title
+      body
+    }
+  }
+`;
+
+function App() {
+  const { loading, error, data } = useQuery(GET_POSTS);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error! {error.message}</p>;
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>Posts</h1>
+      <ul>
+        {data.posts.map(post => (
+          <li key={post.id}>
+            <strong>{post.title}</strong>
+            <p>{post.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+
+code splitting
+------------------------------------------
+Code splitting is a technique used in web development to split your code into smaller chunks, so the browser only loads what it needs when it needs it, instead of downloading everything up front.
+
+
+
 
 
 Webpack
