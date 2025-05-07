@@ -1964,6 +1964,93 @@ difference between dependency and dev-dependency
                     - eslint, jest, webpack, babel, typescript
 
 
+How do you handle errors or failed API requests gracefully?
+-------------------------------------------------------------
+1. Use Standard HTTP Status Codes
+	200 OK – Successful request.
+	400 Bad Request – Client-side input error.
+	401 Unauthorized – Missing or invalid authentication.
+	403 Forbidden – Authenticated but not allowed.
+	404 Not Found – Resource doesn't exist
+	500 Internal Server Error – Unexpected server error.
+
+4. Log Errors Internally
+5. Handle Timeouts and Network Failures
+
+
+
+
+How do you integrate a third-party API into your application?
+-------------------------------------------------------------
+🔧 1. Understand the API Documentation
+	Authentication requirements (e.g., API key, OAuth)
+	Endpoints (URLs to access resources)
+	Request/response format (e.g., JSON, XML)
+
+🧪 2. Get Access Credentials
+	Register on the API provider's platform (if required)
+	Obtain API keys, tokens, or client credentials
+
+✅ 7. Test Thoroughly
+	Test various scenarios (success, failure, timeout, malformed data)
+	Use tools like Postman or curl during development
+
+
+
+two api call
+-------------------------------------------------------------
+🔁 3. Use a Cache or Local Throttling
+🔁 1. cancel Previous Requests 
+
+let controller;
+
+function onSearchInput(query) {
+  if (controller) controller.abort(); // cancel previous call
+  controller = new AbortController();
+
+  debounce(async () => {
+    try {
+      const res1 = fetch("/api/suggestions?q=" + query, { signal: controller.signal });
+      const res2 = fetch("/api/products?q=" + query, { signal: controller.signal });
+
+      const [suggestions, products] = await Promise.all([res1, res2]);
+      updateUI(await suggestions.json(), await products.json());
+    } catch (e) {
+      if (e.name !== "AbortError") console.error(e);
+    }
+  }, 300)();
+}
+
+
+
+What is the difference between REST and SOAP APIs?
+-------------------------------------------------------------
+Rest
+- it is ✅ Faster (JSON)	 formate support
+- Works over HTTP (or HTTPS)
+- Very flexible and lightweight
+
+
+SOAP
+- it is ❌ Slower (XML) fromate support
+- Uses XML-based protocol over HTTP, SMTP, TCP, etc.
+
+
+
+security app
+---------------------------------------------
+Use environment variables only for non-sensitive configurations.
+Any secret should be handled server-side.
+Use HTTPS for all communications.
+Implement authentication and authorization (e.g., JWT, OAuth) server-side.
+Use CORS settings carefully to limit allowed origins.
+Use both frontend and backend validation.
+Use code splitting to reduce attack surface.
+🔏 8. Use Security Headers
+Avoid exposing sourcemaps in production (GENERATE_SOURCEMAP=false).
+
+
+
 how to update package
 --------------------------------------------------------------------------------
 1. npm install <package-name>@latest
